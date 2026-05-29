@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cimiento IA — Biblioteca de Prompts</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #C0392B;
+    --red-light: #fdecea;
+    --red-text: #922b21;
+    --green: #1a7a4a;
+    --green-light: #e8f8f0;
+    --green-text: #145a37;
+    --blue: #1a5fa8;
+    --blue-light: #e8f0fb;
+    --blue-text: #12437a;
+    --dark: #111111;
+    --gray-1: #f5f5f3;
+    --gray-2: #e8e8e5;
+    --gray-3: #b0b0aa;
+    --gray-4: #6b6b66;
+    --white: #ffffff;
+    --font: 'DM Sans', sans-serif;
+    --mono: 'DM Mono', monospace;
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+
+  body {
+    font-family: var(--font);
+    background: var(--gray-1);
+    color: var(--dark);
+    min-height: 100vh;
+    padding: 32px 24px 64px;
+  }
+
+  .page-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+
+  .logo-mark {
+    width: 44px; height: 44px;
+    background: var(--dark);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .logo-mark svg { width: 24px; height: 24px; }
+
+  .page-title { font-size: 22px; font-weight: 600; color: var(--dark); letter-spacing: -0.3px; }
+  .page-subtitle { font-size: 13px; color: var(--gray-4); margin-top: 2px; }
+
+  .section { margin-bottom: 28px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding: 0 2px;
+  }
+
+  .level-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .level-name { font-size: 15px; font-weight: 600; color: var(--dark); }
+
+  .level-pill {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 20px;
+  }
+
+  .level-desc { font-size: 12px; color: var(--gray-4); padding: 0 2px; margin-bottom: 10px; }
+
+  .accordion-list { display: flex; flex-direction: column; gap: 6px; }
+
+  .accordion-item {
+    background: var(--white);
+    border: 1px solid var(--gray-2);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .accordion-item:hover { border-color: #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .accordion-item.open { border-color: #ccc; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+
+  .accordion-trigger {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 13px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .acc-badge {
+    font-size: 10px;
+    font-weight: 600;
+    font-family: var(--mono);
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+    letter-spacing: 0.02em;
+  }
+
+  .acc-label { font-size: 14px; font-weight: 500; color: var(--dark); flex: 1; }
+
+  .acc-chevron {
+    width: 16px; height: 16px;
+    color: var(--gray-3);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  .accordion-item.open .acc-chevron { transform: rotate(180deg); }
+
+  .accordion-body {
+    display: none;
+    padding: 0 16px 14px;
+  }
+
+  .accordion-item.open .accordion-body { display: block; }
+
+  .prompt-box {
+    background: #161616;
+    border-radius: var(--radius-sm);
+    padding: 14px 16px 14px 16px;
+    position: relative;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.75;
+    color: #d4d4d4;
+  }
+
+  .placeholder { color: #60a5fa; }
+
+  .copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #aaa;
+    font-size: 11px;
+    font-family: var(--font);
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.15s;
+  }
+
+  .copy-btn:hover { background: rgba(255,255,255,0.14); color: #fff; }
+  .copy-btn.copied { color: #4ade80; border-color: rgba(74,222,128,0.3); }
+
+  .copy-icon { width: 12px; height: 12px; }
+
+  .expand-all-btn {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray-4);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 2px;
+    margin-bottom: 8px;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .expand-all-btn:hover { color: var(--dark); }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="logo-mark">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="3" fill="#C0392B"/>
+      <path d="M12 2v4M12 18v4M2 12h4M18 12h4M5.64 5.64l2.83 2.83M15.54 15.54l2.83 2.83M5.64 18.36l2.83-2.83M15.54 8.46l2.83-2.83" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <div>
+    <div class="page-title">Biblioteca de Prompts</div>
+    <div class="page-subtitle">Cimiento IA · Polpaico Soluciones</div>
+  </div>
+</div>
+
+<div id="app"></div>
+
+<script>
+const levels = [
+  {
+    key: "B",
+    name: "Nivel Básico",
+    dot: "#22c55e",
+    pillBg: "#dcfce7",
+    pillColor: "#166534",
+    badgeBg: "#e8f8f0",
+    badgeColor: "#145a37",
+    pill: "LO USO EN 30 SEGUNDOS",
+    desc: "Para cualquier persona. Sin conocimiento previo de IA.",
+    prompts: [
+      { code: "B-01", label: "Resumir un documento", text: "Lee el siguiente texto y dame un resumen en 5 puntos clave, en lenguaje simple.\nTexto: [pega aquí]" },
+      { code: "B-02", label: "Resumir un acta de reunión", text: "Resume esta acta de reunión destacando: decisiones tomadas, tareas asignadas y próximos pasos.\nActa: [pega aquí]" },
+      { code: "B-03", label: "Redactar un correo profesional", text: "Redacta un correo profesional para [destinatario] sobre [tema]. El tono debe ser [formal/amigable]. Incluye una llamada a la acción clara." },
+      { code: "B-04", label: "Responder un correo difícil", text: "Tengo que responder este correo de manera diplomática pero firme. Ayúdame a redactar la respuesta.\nCorreo original: [pega aquí]" },
+      { code: "B-05", label: "Traducir al inglés", text: "Traduce el siguiente texto al inglés de negocios, manteniendo un tono profesional.\nTexto: [pega aquí]" },
+      { code: "B-06", label: "Explicar un concepto técnico", text: "Explícame qué es [concepto] como si tuviera 12 años. Usa una analogía del mundo real y un ejemplo práctico." },
+    ]
+  },
+  {
+    key: "P",
+    name: "Nivel Práctico",
+    dot: "#3b82f6",
+    pillBg: "#dbeafe",
+    pillColor: "#1e3a8a",
+    badgeBg: "#e8f0fb",
+    badgeColor: "#12437a",
+    pill: "REQUIERE CONTEXTO",
+    desc: "Para quienes ya usan IA y quieren sacarle más partido.",
+    prompts: [
+      { code: "P-01", label: "Analizar datos de ventas", text: "Analiza estos datos de ventas e identifica: tendencias principales, anomalías y 3 recomendaciones accionables.\nDatos: [pega aquí]" },
+      { code: "P-02", label: "Crear una presentación", text: "Crea el esquema de una presentación de [N] slides sobre [tema] para una audiencia de [perfil]. Incluye el mensaje clave de cada slide." },
+      { code: "P-03", label: "Revisar un documento", text: "Revisa este documento y sugiere mejoras en: claridad, estructura y tono. Indica qué cambiarías y por qué.\nDocumento: [pega aquí]" },
+      { code: "P-04", label: "Preparar preguntas para entrevista", text: "Voy a entrevistar a un candidato para el cargo de [cargo]. Dame 10 preguntas que evalúen [competencias clave]." },
+      { code: "P-05", label: "Generar ideas para un proyecto", text: "Necesito ideas para [proyecto/iniciativa]. Dame 5 enfoques distintos considerando las siguientes restricciones: [restricciones]." },
+      { code: "P-06", label: "Comparar dos opciones", text: "Compara estas dos opciones considerando criterios de [costo / tiempo / riesgo / impacto]. Dame una recomendación fundamentada.\nOpción A: [describe]\nOpción B: [describe]" },
+    ]
+  }
+];
+
+function formatPrompt(text) {
+  return text
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    .replace(/\[([^\]]+)\]/g, '<span class="placeholder">[$1]</span>')
+    .replace(/\n/g, '<br>');
+}
+
+function buildAccordion(level) {
+  return level.prompts.map(p => `
+    <div class="accordion-item" data-raw="${encodeURIComponent(p.text)}">
+      <button class="accordion-trigger" onclick="toggle(this)" aria-expanded="false">
+        <span class="acc-badge" style="background:${level.badgeBg};color:${level.badgeColor}">${p.code}</span>
+        <span class="acc-label">${p.label}</span>
+        <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="accordion-body">
+        <div class="prompt-box">
+          <button class="copy-btn" onclick="copyPrompt(this)">
+            <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copiar
+          </button>
+          <div class="prompt-text">${formatPrompt(p.text)}</div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+const html = levels.map(level => `
+  <div class="section">
+    <div class="section-header">
+      <div class="level-dot" style="background:${level.dot}"></div>
+      <span class="level-name">${level.name}</span>
+      <span class="level-pill" style="background:${level.pillBg};color:${level.pillColor}">${level.pill}</span>
+    </div>
+    <div class="level-desc">${level.desc}</div>
+    <button class="expand-all-btn" onclick="expandAll(this)">Expandir todos</button>
+    <div class="accordion-list">${buildAccordion(level)}</div>
+  </div>
+`).join('');
+
+document.getElementById('app').innerHTML = html;
+
+function toggle(btn) {
+  const item = btn.closest('.accordion-item');
+  const isOpen = item.classList.contains('open');
+  item.classList.toggle('open', !isOpen);
+  btn.setAttribute('aria-expanded', !isOpen);
+}
+
+function expandAll(btn) {
+  const section = btn.closest('.section');
+  const items = section.querySelectorAll('.accordion-item');
+  const allOpen = [...items].every(i => i.classList.contains('open'));
+  items.forEach(i => {
+    i.classList.toggle('open', !allOpen);
+    i.querySelector('.accordion-trigger').setAttribute('aria-expanded', !allOpen);
+  });
+  btn.textContent = allOpen ? 'Expandir todos' : 'Colapsar todos';
+}
+
+function copyPrompt(btn) {
+  const item = btn.closest('.accordion-item');
+  const raw = decodeURIComponent(item.dataset.raw);
+  navigator.clipboard.writeText(raw).then(() => {
+    btn.classList.add('copied');
+    btn.innerHTML = `<svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 15 4 10"/></svg> Copiado`;
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.innerHTML = `<svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copiar`;
+    }, 2000);
+  });
+}
+</script>
+</body>
+</html>
