@@ -23,12 +23,17 @@
     .page-sub { color: #8a8580; font-size: 14px; margin-bottom: 40px; max-width: 480px; }
     .ruta-visual { display: flex; align-items: center; margin-bottom: 40px; padding: 18px 20px; background: #22252b; border-radius: 12px; border: 1px solid rgba(255,255,255,0.07); }
     .nodo { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 80px; }
-    .nodo-circulo { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; }
+    .nodo-circulo { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; transition: all 0.3s; }
     .nodo-circulo.activo { background: #2BA86F; color: #fff; }
-    .nodo-circulo.en-curso { background: #E0982A; color: #fff; }
-    .nodo-circulo.pendiente { background: #D2232A; color: #fff; }
+    .nodo-circulo.pendiente { background: #333; color: #8a8580; border: 2px solid #444; }
     .nodo-label { font-size: 11px; color: #8a8580; text-align: center; max-width: 70px; }
-    .linea-ruta { flex: 1; height: 2px; background: rgba(22,197,214,0.3); margin-bottom: 22px; }
+    .linea-ruta { flex: 1; height: 2px; background: rgba(22,197,214,0.2); margin-bottom: 22px; }
+    .progreso-resumen { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; padding: 14px 18px; background: #22252b; border-radius: 10px; border: 1px solid rgba(255,255,255,0.07); }
+    .progreso-texto { font-size: 13px; color: #8a8580; }
+    .progreso-texto strong { color: #f0ede8; }
+    .progreso-pct { font-size: 22px; font-weight: 800; color: #E0982A; }
+    .progreso-global-bar { height: 6px; background: rgba(255,255,255,0.07); border-radius: 3px; margin-top: 8px; overflow: hidden; }
+    .progreso-global-fill { height: 100%; background: linear-gradient(90deg, #2BA86F, #16C5D6); border-radius: 3px; transition: width 0.6s ease; }
     .modulo { background: #22252b; border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; overflow: hidden; margin-bottom: 16px; transition: border-color 0.2s; }
     .modulo:hover { border-color: rgba(255,255,255,0.14); }
     .modulo-header { padding: 20px 22px; display: flex; align-items: center; gap: 16px; cursor: pointer; user-select: none; }
@@ -46,179 +51,16 @@
     .chevron { color: #8a8580; font-size: 18px; transition: transform 0.3s ease; }
     .modulo.abierto .chevron { transform: rotate(90deg); }
     .progreso-bar { height: 3px; background: rgba(255,255,255,0.07); border-radius: 2px; margin-top: 8px; overflow: hidden; }
-    .progreso-fill { height: 100%; background: #2BA86F; border-radius: 2px; }
+    .progreso-fill { height: 100%; background: #2BA86F; border-radius: 2px; transition: width 0.5s ease; }
     .lecciones { display: none; border-top: 1px solid rgba(255,255,255,0.07); }
     .modulo.abierto .lecciones { display: block; }
     .leccion-item { padding: 0 22px 0 84px; }
     .leccion-trigger { display: flex; align-items: center; gap: 12px; padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: all 0.2s; }
     .leccion-item:last-child .leccion-trigger { border-bottom: none; }
     .leccion-trigger:hover .leccion-nombre { color: #16C5D6; }
-    .leccion-punto { width: 8px; height: 8px; border-radius: 50%; border: 2px solid #8a8580; background: transparent; flex-shrink: 0; transition: all 0.2s; }
-    .leccion-item.activa .leccion-punto { background: #16C5D6; border-color: #16C5D6; box-shadow: 0 0 8px rgba(22,197,214,0.5); }
+    .leccion-punto { width: 22px; height: 22px; border-radius: 50%; border: 2px solid #444; background: transparent; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; transition: all 0.3s; }
+    .leccion-item.activa .leccion-punto { border-color: #16C5D6; box-shadow: 0 0 8px rgba(22,197,214,0.4); }
+    .leccion-item.completada .leccion-punto { background: #2BA86F; border-color: #2BA86F; color: #fff; }
     .leccion-nombre { font-size: 14px; font-weight: 500; flex: 1; transition: color 0.2s; }
+    .leccion-item.completada .leccion-nombre { color: #8a8580; text-decoration: line-through; text-decoration-color: rgba(138,133,128,0.4); }
     .leccion-tags { display: flex; align-items: center; gap: 8px; }
-    .tag { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
-    .tag-lectura { background: rgba(22,197,214,0.12); color: #16C5D6; }
-    .tag-ejercicio { background: rgba(43,168,111,0.12); color: #2BA86F; }
-    .tag-mitos { background: rgba(224,152,42,0.12); color: #E0982A; }
-    .tag-tiempo { font-size: 11px; color: #8a8580; }
-    .leccion-contenido { display: none; background: #1A1C20; border-top: 1px solid rgba(255,255,255,0.07); padding: 28px 28px 28px 84px; animation: fadeIn 0.25s ease; }
-    .leccion-item.activa .leccion-contenido { display: block; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
-    .lc-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 24px; }
-    .lc-icono { width: 38px; height: 38px; border-radius: 10px; background: rgba(22,197,214,0.12); display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
-    .lc-titulo { font-size: 18px; font-weight: 700; margin-bottom: 5px; }
-    .lc-meta { font-size: 12px; color: #8a8580; display: flex; gap: 12px; }
-    .rich p { color: rgba(240,237,232,0.82); margin-bottom: 14px; line-height: 1.75; font-size: 14px; }
-    .rich h3 { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #16C5D6; margin: 24px 0 12px; }
-    .analogia { background: rgba(22,197,214,0.08); border: 1px solid rgba(22,197,214,0.18); border-radius: 10px; padding: 16px 18px; margin: 16px 0; display: flex; gap: 12px; align-items: flex-start; }
-    .analogia .emoji { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
-    .analogia p { margin: 0; font-size: 14px; }
-    .capacidades { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 0; }
-    .cap { background: #22252b; border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; padding: 14px; text-align: center; transition: border-color 0.2s; }
-    .cap:hover { border-color: rgba(22,197,214,0.25); }
-    .cap .cap-emoji { font-size: 22px; margin-bottom: 7px; }
-    .cap .cap-tit { font-size: 13px; font-weight: 700; margin-bottom: 5px; }
-    .cap .cap-desc { font-size: 12px; color: #8a8580; line-height: 1.45; }
-    .no-list { list-style: none; margin: 0 0 14px; }
-    .no-list li { display: flex; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; color: rgba(240,237,232,0.82); }
-    .no-list li:last-child { border-bottom: none; }
-    .x { color: #D2232A; font-size: 15px; flex-shrink: 0; margin-top: 1px; }
-    .callout { background: rgba(210,35,42,0.08); border: 1px solid rgba(210,35,42,0.2); border-radius: 10px; padding: 14px 18px; margin-top: 20px; font-size: 14px; color: rgba(240,237,232,0.88); line-height: 1.65; }
-    .modulo-off { opacity: 0.4; pointer-events: none; }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="header-logo">
-      <div class="logo-dot"></div>
-      <div class="logo-name">Cimiento <span>IA</span></div>
-    </div>
-    <nav>
-      <a href="ruta-ia.html" class="active">Ruta IA</a>
-      <a href="cimiento-ia-prompts.html">Biblioteca</a>
-    </nav>
-  </header>
-  <main>
-    <div class="page-label">Tu camino de aprendizaje</div>
-    <h1 class="page-title">Ruta IA</h1>
-    <p class="page-sub">Aprende a usar inteligencia artificial en tu trabajo, paso a paso. Sin tecnicismos, con ejemplos reales.</p>
-    <div class="ruta-visual">
-      <div class="nodo"><div class="nodo-circulo activo">1</div><div class="nodo-label">Intro a la IA</div></div>
-      <div class="linea-ruta"></div>
-      <div class="nodo"><div class="nodo-circulo en-curso">2</div><div class="nodo-label">Prompts efectivos</div></div>
-      <div class="linea-ruta"></div>
-      <div class="nodo"><div class="nodo-circulo pendiente">3</div><div class="nodo-label">IA en tu rol</div></div>
-    </div>
-    <div class="modulo abierto" id="mod1">
-      <div class="modulo-header" onclick="toggleModulo('mod1')">
-        <div class="modulo-num">01</div>
-        <div class="modulo-icono intro">🧠</div>
-        <div class="modulo-info">
-          <div class="modulo-titulo">Introducción a la IA</div>
-          <div class="modulo-meta"><span>📚 4 lecciones</span><span>⏱ ~45 min</span></div>
-          <div class="progreso-bar"><div class="progreso-fill" style="width:25%"></div></div>
-        </div>
-        <span class="badge badge-activo">Activo</span>
-        <span class="chevron">›</span>
-      </div>
-      <div class="lecciones">
-        <div class="leccion-item activa" id="les1">
-          <div class="leccion-trigger" onclick="toggleLeccion('les1')">
-            <div class="leccion-punto"></div>
-            <div class="leccion-nombre">¿Qué es la IA generativa?</div>
-            <div class="leccion-tags"><span class="tag tag-lectura">Lectura</span><span class="tag-tiempo">⏱ 10 min</span></div>
-          </div>
-          <div class="leccion-contenido">
-            <div class="lc-header">
-              <div class="lc-icono">📖</div>
-              <div>
-                <div class="lc-titulo">¿Qué es la IA generativa?</div>
-                <div class="lc-meta"><span>📚 Lectura</span><span>⏱ 10 min</span><span>🟢 Nivel básico</span></div>
-              </div>
-            </div>
-            <div class="rich">
-              <p>La inteligencia artificial generativa es una tecnología capaz de <strong>crear contenido nuevo</strong>: textos, resúmenes, respuestas, traducciones. No busca en internet ni copia respuestas guardadas. Las construye en el momento, combinando patrones que aprendió durante su entrenamiento.</p>
-              <h3>🔍 Una analogía simple</h3>
-              <div class="analogia">
-                <div class="emoji">👨‍🍳</div>
-                <p>Imagina un chef que ha comido miles de platos distintos y ha aprendido qué ingredientes combinan bien. Cuando le pides algo, no saca un plato del refrigerador: <strong>lo cocina en el momento</strong>, usando lo que sabe. La IA hace algo parecido con el lenguaje.</p>
-              </div>
-              <h3>⚡ Tres cosas que puede hacer</h3>
-              <div class="capacidades">
-                <div class="cap"><div class="cap-emoji">✍️</div><div class="cap-tit">Escribir</div><div class="cap-desc">Correos, informes, resúmenes, propuestas</div></div>
-                <div class="cap"><div class="cap-emoji">💬</div><div class="cap-tit">Explicar</div><div class="cap-desc">Simplifica conceptos complejos en lenguaje claro</div></div>
-                <div class="cap"><div class="cap-emoji">🔄</div><div class="cap-tit">Transformar</div><div class="cap-desc">Traduce, mejora, adapta o reformula textos</div></div>
-              </div>
-              <h3>🚫 Lo que la IA NO es</h3>
-              <ul class="no-list">
-                <li><span class="x">✗</span> No es un buscador — no navega ni consulta páginas en tiempo real</li>
-                <li><span class="x">✗</span> No es infalible — puede equivocarse o inventar datos con confianza</li>
-                <li><span class="x">✗</span> No piensa ni siente — procesa texto con estadística, no con comprensión</li>
-                <li><span class="x">✗</span> No reemplaza el juicio humano — es una herramienta, no un experto autónomo</li>
-              </ul>
-              <div class="callout">💡 <strong>Clave para recordar:</strong> La IA generativa es como un colaborador muy veloz que sabe mucho sobre lenguaje, pero que necesita tu contexto, tu criterio y tu revisión para entregar resultados útiles.</div>
-            </div>
-          </div>
-        </div>
-        <div class="leccion-item" id="les2">
-          <div class="leccion-trigger" onclick="toggleLeccion('les2')">
-            <div class="leccion-punto"></div>
-            <div class="leccion-nombre">Cómo funciona un prompt</div>
-            <div class="leccion-tags"><span class="tag tag-ejercicio">Ejercicio</span><span class="tag-tiempo">⏱ 15 min</span></div>
-          </div>
-          <div class="leccion-contenido">
-            <div class="lc-header"><div class="lc-icono">🧪</div><div><div class="lc-titulo">Cómo funciona un prompt</div><div class="lc-meta"><span>🧪 Ejercicio</span><span>⏱ 15 min</span></div></div></div>
-            <div class="rich"><p>Contenido próximamente disponible.</p></div>
-          </div>
-        </div>
-        <div class="leccion-item" id="les3">
-          <div class="leccion-trigger" onclick="toggleLeccion('les3')">
-            <div class="leccion-punto"></div>
-            <div class="leccion-nombre">IA en tu día a día laboral</div>
-            <div class="leccion-tags"><span class="tag tag-ejercicio">Ejercicio</span><span class="tag-tiempo">⏱ 10 min</span></div>
-          </div>
-          <div class="leccion-contenido">
-            <div class="lc-header"><div class="lc-icono">🧪</div><div><div class="lc-titulo">IA en tu día a día laboral</div><div class="lc-meta"><span>🧪 Ejercicio</span><span>⏱ 10 min</span></div></div></div>
-            <div class="rich"><p>Contenido próximamente disponible.</p></div>
-          </div>
-        </div>
-        <div class="leccion-item" id="les4">
-          <div class="leccion-trigger" onclick="toggleLeccion('les4')">
-            <div class="leccion-punto"></div>
-            <div class="leccion-nombre">Mitos y realidades sobre la IA</div>
-            <div class="leccion-tags"><span class="tag tag-mitos">Mitos</span><span class="tag-tiempo">⏱ 10 min</span></div>
-          </div>
-          <div class="leccion-contenido">
-            <div class="lc-header"><div class="lc-icono">💡</div><div><div class="lc-titulo">Mitos y realidades sobre la IA</div><div class="lc-meta"><span>💡 Reflexión</span><span>⏱ 10 min</span></div></div></div>
-            <div class="rich"><p>Contenido próximamente disponible.</p></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="modulo modulo-off">
-      <div class="modulo-header">
-        <div class="modulo-num">02</div><div class="modulo-icono prompt">✍️</div>
-        <div class="modulo-info"><div class="modulo-titulo">Prompts efectivos</div><div class="modulo-meta"><span>📚 5 lecciones</span><span>⏱ ~60 min</span></div></div>
-        <span class="badge badge-pronto">Próximamente</span><span class="chevron">›</span>
-      </div>
-    </div>
-    <div class="modulo modulo-off">
-      <div class="modulo-header">
-        <div class="modulo-num">03</div><div class="modulo-icono avanzado">🚀</div>
-        <div class="modulo-info"><div class="modulo-titulo">IA aplicada a tu rol</div><div class="modulo-meta"><span>📚 6 lecciones</span><span>⏱ ~90 min</span></div></div>
-        <span class="badge badge-pronto">Próximamente</span><span class="chevron">›</span>
-      </div>
-    </div>
-  </main>
-  <script>
-    function toggleModulo(id) { document.getElementById(id).classList.toggle('abierto'); }
-    function toggleLeccion(id) {
-      var el = document.getElementById(id);
-      var estaActiva = el.classList.contains('activa');
-      document.querySelectorAll('.leccion-item.activa').forEach(function(x) { x.classList.remove('activa'); });
-      if (!estaActiva) { el.classList.add('activa'); setTimeout(function() { el.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 50); }
-    }
-  </script>
-</body>
-</html>
