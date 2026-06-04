@@ -67,20 +67,51 @@
     /* LECCIONES */
     .lecciones { display: none; border-top: 1px solid rgba(255,255,255,0.07); }
     .modulo.abierto .lecciones { display: block; }
-    .leccion-item { padding: 0 22px 0 84px; }
-    .leccion-trigger { display: flex; align-items: center; gap: 12px; padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-    .leccion-item:last-child .leccion-trigger { border-bottom: none; }
-    .leccion-punto { width: 22px; height: 22px; border-radius: 50%; border: 2px solid #444; background: transparent; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; }
+    .leccion-item { border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .leccion-item:last-child { border-bottom: none; }
+    .leccion-trigger { display: flex; align-items: center; gap: 12px; padding: 13px 22px 13px 84px; cursor: pointer; transition: background 0.15s; }
+    .leccion-trigger:hover { background: rgba(255,255,255,0.02); }
+    .leccion-punto { width: 22px; height: 22px; border-radius: 50%; border: 2px solid #444; background: transparent; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; transition: all 0.2s; }
     .leccion-item.activa .leccion-punto { border-color: #16C5D6; box-shadow: 0 0 8px rgba(22,197,214,0.4); }
     .leccion-item.completada .leccion-punto { background: #2BA86F; border-color: #2BA86F; color: #fff; font-size: 12px; }
     .leccion-nombre { font-size: 14px; font-weight: 500; flex: 1; }
     .leccion-item.completada .leccion-nombre { color: #8a8580; text-decoration: line-through; text-decoration-color: rgba(138,133,128,0.4); }
     .leccion-tags { display: flex; align-items: center; gap: 8px; }
     .tag { padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 500; }
-    .tag-video   { background: rgba(22,197,214,0.1); color: #16C5D6; }
-    .tag-lectura { background: rgba(224,152,42,0.1); color: #E0982A; }
-    .tag-practica{ background: rgba(43,168,111,0.1); color: #2BA86F; }
+    .tag-video    { background: rgba(22,197,214,0.1); color: #16C5D6; }
+    .tag-lectura  { background: rgba(224,152,42,0.1); color: #E0982A; }
+    .tag-practica { background: rgba(43,168,111,0.1); color: #2BA86F; }
     .tag-min { color: #555; font-size: 11px; }
+    .leccion-chevron { color: #555; font-size: 14px; transition: transform 0.25s; }
+    .leccion-item.expandida .leccion-chevron { transform: rotate(90deg); }
+
+    /* CONTENIDO DE LECCIÓN */
+    .leccion-contenido { display: none; padding: 0 22px 20px 84px; }
+    .leccion-item.expandida .leccion-contenido { display: block; }
+
+    /* Placeholder video */
+    .ph-video { background: #141618; border-radius: 10px; border: 1px solid rgba(255,255,255,0.07); aspect-ratio: 16/9; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; margin-bottom: 14px; }
+    .ph-play { width: 52px; height: 52px; border-radius: 50%; background: rgba(22,197,214,0.15); border: 2px solid rgba(22,197,214,0.3); display: flex; align-items: center; justify-content: center; }
+    .ph-play-icon { width: 0; height: 0; border-style: solid; border-width: 10px 0 10px 18px; border-color: transparent transparent transparent #16C5D6; margin-left: 3px; }
+    .ph-video-label { font-size: 13px; color: #555; }
+
+    /* Placeholder lectura */
+    .ph-lectura { background: #141618; border-radius: 10px; border: 1px solid rgba(255,255,255,0.07); padding: 20px 22px; margin-bottom: 14px; }
+    .ph-lectura-title { font-size: 15px; font-weight: 700; margin-bottom: 10px; color: #f0ede8; }
+    .ph-lectura p { font-size: 13px; color: #6b6760; line-height: 1.7; margin-bottom: 8px; }
+    .ph-lectura p:last-child { margin-bottom: 0; }
+
+    /* Placeholder práctica */
+    .ph-practica { background: #141618; border-radius: 10px; border: 1px solid rgba(255,255,255,0.07); padding: 20px 22px; margin-bottom: 14px; }
+    .ph-practica-title { font-size: 13px; font-weight: 600; color: #2BA86F; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+    .ph-paso { display: flex; gap: 12px; margin-bottom: 10px; font-size: 13px; color: #6b6760; }
+    .ph-paso-num { width: 20px; height: 20px; border-radius: 50%; background: rgba(43,168,111,0.15); color: #2BA86F; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+
+    /* Botón completar */
+    .btn-completar { display: inline-flex; align-items: center; gap: 7px; padding: 8px 16px; border-radius: 8px; border: none; cursor: pointer; font-size: 13px; font-weight: 600; transition: all 0.2s; background: rgba(43,168,111,0.15); color: #2BA86F; }
+    .btn-completar:hover { background: rgba(43,168,111,0.25); }
+    .leccion-item.completada .btn-completar { background: rgba(255,255,255,0.06); color: #8a8580; }
+    .leccion-item.completada .btn-completar:hover { background: rgba(210,35,42,0.12); color: #D2232A; }
   </style>
 </head>
 <body>
@@ -103,38 +134,22 @@
     <h1 class="page-title">Tu Ruta de Aprendizaje IA</h1>
     <p class="page-sub">Avanza desde los fundamentos hasta casos de uso reales en Polpaico. A tu ritmo, con herramientas que ya usas.</p>
 
-    <!-- VISUAL PATH -->
     <div class="ruta-visual">
-      <div class="nodo">
-        <div class="nodo-circulo activo">01</div>
-        <div class="nodo-label">Fundamentos</div>
-      </div>
+      <div class="nodo"><div class="nodo-circulo activo">01</div><div class="nodo-label">Fundamentos</div></div>
       <div class="linea-ruta"></div>
-      <div class="nodo">
-        <div class="nodo-circulo activo">02</div>
-        <div class="nodo-label">Copilot M365</div>
-      </div>
+      <div class="nodo"><div class="nodo-circulo activo">02</div><div class="nodo-label">Copilot M365</div></div>
       <div class="linea-ruta"></div>
-      <div class="nodo">
-        <div class="nodo-circulo pendiente">03</div>
-        <div class="nodo-label">Prompting</div>
-      </div>
+      <div class="nodo"><div class="nodo-circulo pendiente">03</div><div class="nodo-label">Prompting</div></div>
       <div class="linea-ruta"></div>
-      <div class="nodo">
-        <div class="nodo-circulo pendiente">04</div>
-        <div class="nodo-label">Agentes IA</div>
-      </div>
+      <div class="nodo"><div class="nodo-circulo pendiente">04</div><div class="nodo-label">Agentes IA</div></div>
     </div>
 
-    <!-- PROGRESO RESUMEN -->
     <div class="progreso-resumen">
       <div>
-        <div class="progreso-texto"><strong>6 de 18 lecciones</strong> completadas</div>
-        <div class="progreso-global-bar">
-          <div class="progreso-global-fill" style="width: 33%"></div>
-        </div>
+        <div class="progreso-texto"><strong>0 de 18 lecciones</strong> completadas</div>
+        <div class="progreso-global-bar"><div class="progreso-global-fill"></div></div>
       </div>
-      <div class="progreso-pct">33%</div>
+      <div class="progreso-pct">0%</div>
     </div>
 
     <!-- MÓDULO 1 -->
@@ -144,55 +159,82 @@
         <div class="modulo-icono intro">🧠</div>
         <div class="modulo-info">
           <div class="modulo-titulo">Fundamentos de Inteligencia Artificial</div>
-          <div class="modulo-meta">
-            <span>4 lecciones · 45 min</span>
-            <span class="badge badge-activo">En progreso</span>
-          </div>
-          <div class="progreso-bar"><div class="progreso-fill" style="width: 75%"></div></div>
+          <div class="modulo-meta"><span>4 lecciones · 45 min</span><span class="badge badge-activo">Disponible</span></div>
+          <div class="progreso-bar"><div class="progreso-fill" style="width:0%"></div></div>
         </div>
         <div class="chevron">›</div>
       </div>
       <div class="lecciones">
-        <div class="leccion-item completada">
+
+        <div class="leccion-item" id="l1-1">
           <div class="leccion-trigger">
-            <div class="leccion-punto">✓</div>
+            <div class="leccion-punto"></div>
             <div class="leccion-nombre">¿Qué es la IA y por qué importa en Polpaico?</div>
-            <div class="leccion-tags">
-              <span class="tag tag-video">Video</span>
-              <span class="tag-min">12 min</span>
+            <div class="leccion-tags"><span class="tag tag-video">Video</span><span class="tag-min">12 min</span></div>
+            <div class="leccion-chevron">›</div>
+          </div>
+          <div class="leccion-contenido">
+            <div class="ph-video">
+              <div class="ph-play"><div class="ph-play-icon"></div></div>
+              <div class="ph-video-label">Video · 12 min — contenido en preparación</div>
             </div>
+            <button class="btn-completar">✓ Marcar como completado</button>
           </div>
         </div>
-        <div class="leccion-item completada">
+
+        <div class="leccion-item" id="l1-2">
           <div class="leccion-trigger">
-            <div class="leccion-punto">✓</div>
+            <div class="leccion-punto"></div>
             <div class="leccion-nombre">IA Generativa vs IA Tradicional</div>
-            <div class="leccion-tags">
-              <span class="tag tag-lectura">Lectura</span>
-              <span class="tag-min">8 min</span>
+            <div class="leccion-tags"><span class="tag tag-lectura">Lectura</span><span class="tag-min">8 min</span></div>
+            <div class="leccion-chevron">›</div>
+          </div>
+          <div class="leccion-contenido">
+            <div class="ph-lectura">
+              <div class="ph-lectura-title">IA Generativa vs IA Tradicional</div>
+              <p>La IA tradicional aprende patrones para clasificar o predecir: detectar fallas en una correa, anticipar demanda de cemento, optimizar rutas logísticas. Trabaja sobre datos estructurados y reglas definidas.</p>
+              <p>La IA Generativa (GPT, Copilot, Gemini) genera contenido nuevo: redacta correos, resume reuniones, propone respuestas. No clasifica — crea. Esa diferencia cambia completamente cómo la usamos en el día a día.</p>
+              <p>En Polpaico usamos ambas: IA predictiva en operaciones y SAP, IA generativa en productividad y atención al cliente.</p>
             </div>
+            <button class="btn-completar">✓ Marcar como leído</button>
           </div>
         </div>
-        <div class="leccion-item completada">
+
+        <div class="leccion-item" id="l1-3">
           <div class="leccion-trigger">
-            <div class="leccion-punto">✓</div>
+            <div class="leccion-punto"></div>
             <div class="leccion-nombre">Ética y uso responsable de la IA</div>
-            <div class="leccion-tags">
-              <span class="tag tag-video">Video</span>
-              <span class="tag-min">10 min</span>
+            <div class="leccion-tags"><span class="tag tag-video">Video</span><span class="tag-min">10 min</span></div>
+            <div class="leccion-chevron">›</div>
+          </div>
+          <div class="leccion-contenido">
+            <div class="ph-video">
+              <div class="ph-play"><div class="ph-play-icon"></div></div>
+              <div class="ph-video-label">Video · 10 min — contenido en preparación</div>
             </div>
+            <button class="btn-completar">✓ Marcar como completado</button>
           </div>
         </div>
-        <div class="leccion-item activa">
+
+        <div class="leccion-item" id="l1-4">
           <div class="leccion-trigger">
             <div class="leccion-punto"></div>
             <div class="leccion-nombre">Casos de uso reales en la industria del cemento</div>
-            <div class="leccion-tags">
-              <span class="tag tag-practica">Práctica</span>
-              <span class="tag-min">15 min</span>
+            <div class="leccion-tags"><span class="tag tag-practica">Práctica</span><span class="tag-min">15 min</span></div>
+            <div class="leccion-chevron">›</div>
+          </div>
+          <div class="leccion-contenido">
+            <div class="ph-practica">
+              <div class="ph-practica-title">Ejercicio práctico</div>
+              <div class="ph-paso"><div class="ph-paso-num">1</div><div>Lee los 5 casos de uso que tu equipo envió al Comité de Innovación.</div></div>
+              <div class="ph-paso"><div class="ph-paso-num">2</div><div>Identifica cuál aplica directamente a tu área (Finanzas, Ops, Comercial, RRHH, TI).</div></div>
+              <div class="ph-paso"><div class="ph-paso-num">3</div><div>Anota una tarea repetitiva de tu semana que podrías automatizar con IA.</div></div>
+              <div class="ph-paso"><div class="ph-paso-num">4</div><div>Comparte tu respuesta en el canal de Comunidad.</div></div>
             </div>
+            <button class="btn-completar">✓ Marcar como completado</button>
           </div>
         </div>
+
       </div>
     </div>
 
@@ -203,65 +245,99 @@
         <div class="modulo-icono prompt">💼</div>
         <div class="modulo-info">
           <div class="modulo-titulo">Microsoft Copilot M365 en tu día a día</div>
-          <div class="modulo-meta">
-            <span>5 lecciones · 60 min</span>
-            <span class="badge badge-activo">En progreso</span>
-          </div>
-          <div class="progreso-bar"><div class="progreso-fill" style="width: 40%"></div></div>
+          <div class="modulo-meta"><span>5 lecciones · 60 min</span><span class="badge badge-activo">Disponible</span></div>
+          <div class="progreso-bar"><div class="progreso-fill" style="width:0%"></div></div>
         </div>
         <div class="chevron">›</div>
       </div>
       <div class="lecciones">
-        <div class="leccion-item completada">
+
+        <div class="leccion-item" id="l2-1">
           <div class="leccion-trigger">
-            <div class="leccion-punto">✓</div>
+            <div class="leccion-punto"></div>
             <div class="leccion-nombre">Copilot Chat: tu asistente diario</div>
-            <div class="leccion-tags">
-              <span class="tag tag-video">Video</span>
-              <span class="tag-min">10 min</span>
+            <div class="leccion-tags"><span class="tag tag-video">Video</span><span class="tag-min">10 min</span></div>
+            <div class="leccion-chevron">›</div>
+          </div>
+          <div class="leccion-contenido">
+            <div class="ph-video">
+              <div class="ph-play"><div class="ph-play-icon"></div></div>
+              <div class="ph-video-label">Video · 10 min — contenido en preparación</div>
             </div>
+            <button class="btn-completar">✓ Marcar como completado</button>
           </div>
         </div>
-        <div class="leccion-item completada">
+
+        <div class="leccion-item" id="l2-2">
           <div class="leccion-trigger">
-            <div class="leccion-punto">✓</div>
+            <div class="leccion-punto"></div>
             <div class="leccion-nombre">Copilot en Outlook y Teams</div>
-            <div class="leccion-tags">
-              <span class="tag tag-practica">Práctica</span>
-              <span class="tag-min">12 min</span>
+            <div class="leccion-tags"><span class="tag tag-practica">Práctica</span><span class="tag-min">12 min</span></div>
+            <div class="leccion-chevron">›</div>
+          </div>
+          <div class="leccion-contenido">
+            <div class="ph-practica">
+              <div class="ph-practica-title">Ejercicio práctico</div>
+              <div class="ph-paso"><div class="ph-paso-num">1</div><div>Abre un correo largo en Outlook y usa Copilot para obtener un resumen.</div></div>
+              <div class="ph-paso"><div class="ph-paso-num">2</div><div>Redacta una respuesta profesional con ayuda de Copilot.</div></div>
+              <div class="ph-paso"><div class="ph-paso-num">3</div><div>En la próxima reunión de Teams, activa el resumen automático de Copilot.</div></div>
+              <div class="ph-paso"><div class="ph-paso-num">4</div><div>Compara los puntos clave generados con tus propias notas.</div></div>
             </div>
+            <button class="btn-completar">✓ Marcar como completado</button>
           </div>
         </div>
-        <div class="leccion-item">
+
+        <div class="leccion-item" id="l2-3">
           <div class="leccion-trigger">
             <div class="leccion-punto"></div>
             <div class="leccion-nombre">Copilot en Word y PowerPoint</div>
-            <div class="leccion-tags">
-              <span class="tag tag-video">Video</span>
-              <span class="tag-min">14 min</span>
+            <div class="leccion-tags"><span class="tag tag-video">Video</span><span class="tag-min">14 min</span></div>
+            <div class="leccion-chevron">›</div>
+          </div>
+          <div class="leccion-contenido">
+            <div class="ph-video">
+              <div class="ph-play"><div class="ph-play-icon"></div></div>
+              <div class="ph-video-label">Video · 14 min — contenido en preparación</div>
             </div>
+            <button class="btn-completar">✓ Marcar como completado</button>
           </div>
         </div>
-        <div class="leccion-item">
+
+        <div class="leccion-item" id="l2-4">
           <div class="leccion-trigger">
             <div class="leccion-punto"></div>
             <div class="leccion-nombre">Copilot en Excel: análisis de datos sin fórmulas</div>
-            <div class="leccion-tags">
-              <span class="tag tag-practica">Práctica</span>
-              <span class="tag-min">14 min</span>
+            <div class="leccion-tags"><span class="tag tag-practica">Práctica</span><span class="tag-min">14 min</span></div>
+            <div class="leccion-chevron">›</div>
+          </div>
+          <div class="leccion-contenido">
+            <div class="ph-practica">
+              <div class="ph-practica-title">Ejercicio práctico</div>
+              <div class="ph-paso"><div class="ph-paso-num">1</div><div>Abre un reporte Excel que uses habitualmente (ventas, inventario, presupuesto).</div></div>
+              <div class="ph-paso"><div class="ph-paso-num">2</div><div>Activa Copilot y escribe: "¿Cuáles son las 3 tendencias principales en estos datos?"</div></div>
+              <div class="ph-paso"><div class="ph-paso-num">3</div><div>Pide a Copilot que genere un gráfico de los últimos 3 meses.</div></div>
+              <div class="ph-paso"><div class="ph-paso-num">4</div><div>Usa la función "Insights" para descubrir anomalías automáticamente.</div></div>
             </div>
+            <button class="btn-completar">✓ Marcar como completado</button>
           </div>
         </div>
-        <div class="leccion-item">
+
+        <div class="leccion-item" id="l2-5">
           <div class="leccion-trigger">
             <div class="leccion-punto"></div>
             <div class="leccion-nombre">Reuniones inteligentes con Copilot</div>
-            <div class="leccion-tags">
-              <span class="tag tag-video">Video</span>
-              <span class="tag-min">10 min</span>
+            <div class="leccion-tags"><span class="tag tag-video">Video</span><span class="tag-min">10 min</span></div>
+            <div class="leccion-chevron">›</div>
+          </div>
+          <div class="leccion-contenido">
+            <div class="ph-video">
+              <div class="ph-play"><div class="ph-play-icon"></div></div>
+              <div class="ph-video-label">Video · 10 min — contenido en preparación</div>
             </div>
+            <button class="btn-completar">✓ Marcar como completado</button>
           </div>
         </div>
+
       </div>
     </div>
 
@@ -272,65 +348,103 @@
         <div class="modulo-icono avanzado">✍️</div>
         <div class="modulo-info">
           <div class="modulo-titulo">Arte del Prompting Efectivo</div>
-          <div class="modulo-meta">
-            <span>5 lecciones · 55 min</span>
-            <span class="badge badge-pronto">Próximamente</span>
-          </div>
-          <div class="progreso-bar"><div class="progreso-fill" style="width: 0%"></div></div>
+          <div class="modulo-meta"><span>5 lecciones · 55 min</span><span class="badge badge-pronto">Próximamente</span></div>
+          <div class="progreso-bar"><div class="progreso-fill" style="width:0%"></div></div>
         </div>
         <div class="chevron">›</div>
       </div>
       <div class="lecciones">
-        <div class="leccion-item">
+
+        <div class="leccion-item" id="l3-1">
           <div class="leccion-trigger">
             <div class="leccion-punto"></div>
             <div class="leccion-nombre">Anatomía de un buen prompt</div>
-            <div class="leccion-tags">
-              <span class="tag tag-video">Video</span>
-              <span class="tag-min">10 min</span>
+            <div class="leccion-tags"><span class="tag tag-video">Video</span><span class="tag-min">10 min</span></div>
+            <div class="leccion-chevron">›</div>
+          </div>
+          <div class="leccion-contenido">
+            <div class="ph-video">
+              <div class="ph-play"><div class="ph-play-icon"></div></div>
+              <div class="ph-video-label">Video · 10 min — contenido en preparación</div>
             </div>
+            <button class="btn-completar">✓ Marcar como completado</button>
           </div>
         </div>
-        <div class="leccion-item">
+
+        <div class="leccion-item" id="l3-2">
           <div class="leccion-trigger">
             <div class="leccion-punto"></div>
             <div class="leccion-nombre">Técnicas: cadena de pensamiento y contexto</div>
-            <div class="leccion-tags">
-              <span class="tag tag-lectura">Lectura</span>
-              <span class="tag-min">12 min</span>
+            <div class="leccion-tags"><span class="tag tag-lectura">Lectura</span><span class="tag-min">12 min</span></div>
+            <div class="leccion-chevron">›</div>
+          </div>
+          <div class="leccion-contenido">
+            <div class="ph-lectura">
+              <div class="ph-lectura-title">Técnicas de prompting avanzado</div>
+              <p><strong style="color:#f0ede8">Cadena de pensamiento:</strong> Pide a la IA que razone paso a paso antes de responder. Útil para análisis complejos. Ejemplo: "Analiza este contrato paso a paso e identifica los riesgos principales."</p>
+              <p><strong style="color:#f0ede8">Contexto preciso:</strong> Cuanto más contexto aportes, mejor la respuesta. Incluye tu rol, el objetivo y el formato esperado. Ejemplo: "Soy el jefe de logística de una cementera. Necesito un correo formal para..."</p>
+              <p><strong style="color:#f0ede8">Few-shot:</strong> Muestra ejemplos de lo que quieres antes de pedir la tarea. La IA aprende del patrón que le das.</p>
             </div>
+            <button class="btn-completar">✓ Marcar como leído</button>
           </div>
         </div>
-        <div class="leccion-item">
+
+        <div class="leccion-item" id="l3-3">
           <div class="leccion-trigger">
             <div class="leccion-punto"></div>
             <div class="leccion-nombre">Prompts para tu área: Finanzas, RRHH, Comercial, Ops</div>
-            <div class="leccion-tags">
-              <span class="tag tag-practica">Práctica</span>
-              <span class="tag-min">15 min</span>
+            <div class="leccion-tags"><span class="tag tag-practica">Práctica</span><span class="tag-min">15 min</span></div>
+            <div class="leccion-chevron">›</div>
+          </div>
+          <div class="leccion-contenido">
+            <div class="ph-practica">
+              <div class="ph-practica-title">Ejercicio práctico</div>
+              <div class="ph-paso"><div class="ph-paso-num">1</div><div>Elige un proceso repetitivo de tu área (cierre mensual, informe semanal, respuesta a clientes).</div></div>
+              <div class="ph-paso"><div class="ph-paso-num">2</div><div>Escribe un prompt con: Rol + Contexto + Tarea + Formato esperado.</div></div>
+              <div class="ph-paso"><div class="ph-paso-num">3</div><div>Pruébalo en Copilot Chat y evalúa el resultado.</div></div>
+              <div class="ph-paso"><div class="ph-paso-num">4</div><div>Ajusta el prompt hasta obtener una respuesta útil para tu trabajo real.</div></div>
             </div>
+            <button class="btn-completar">✓ Marcar como completado</button>
           </div>
         </div>
-        <div class="leccion-item">
+
+        <div class="leccion-item" id="l3-4">
           <div class="leccion-trigger">
             <div class="leccion-punto"></div>
             <div class="leccion-nombre">Biblioteca de prompts Polpaico</div>
-            <div class="leccion-tags">
-              <span class="tag tag-lectura">Lectura</span>
-              <span class="tag-min">8 min</span>
+            <div class="leccion-tags"><span class="tag tag-lectura">Lectura</span><span class="tag-min">8 min</span></div>
+            <div class="leccion-chevron">›</div>
+          </div>
+          <div class="leccion-contenido">
+            <div class="ph-lectura">
+              <div class="ph-lectura-title">Biblioteca de prompts — Polpaico</div>
+              <p>Colección de prompts validados por el Comité de Innovación para las áreas de la compañía. Cada prompt fue probado y refinado por los embajadores IA de cada gerencia.</p>
+              <p>Incluye prompts para: cierre mensual con Copilot M365 (Sandra Vallejos, Finanzas), atención al cliente con AgentForce (Claudia Soto, Comercial), comunicaciones automatizadas con Vambe (Kevin Valenzuela, Marketing) y más.</p>
+              <p style="color:#555; font-style: italic;">Contenido completo en preparación — disponible próximamente.</p>
             </div>
+            <button class="btn-completar">✓ Marcar como leído</button>
           </div>
         </div>
-        <div class="leccion-item">
+
+        <div class="leccion-item" id="l3-5">
           <div class="leccion-trigger">
             <div class="leccion-punto"></div>
             <div class="leccion-nombre">Desafío: mejora un proceso con un prompt</div>
-            <div class="leccion-tags">
-              <span class="tag tag-practica">Práctica</span>
-              <span class="tag-min">10 min</span>
+            <div class="leccion-tags"><span class="tag tag-practica">Práctica</span><span class="tag-min">10 min</span></div>
+            <div class="leccion-chevron">›</div>
+          </div>
+          <div class="leccion-contenido">
+            <div class="ph-practica">
+              <div class="ph-practica-title">Desafío final del módulo</div>
+              <div class="ph-paso"><div class="ph-paso-num">1</div><div>Identifica un proceso en tu área que tome más de 30 minutos por semana.</div></div>
+              <div class="ph-paso"><div class="ph-paso-num">2</div><div>Diseña un prompt que automatice o acelere ese proceso.</div></div>
+              <div class="ph-paso"><div class="ph-paso-num">3</div><div>Documenta cuánto tiempo ahorra (estimado) si lo usas diariamente.</div></div>
+              <div class="ph-paso"><div class="ph-paso-num">4</div><div>Envía tu caso al Comité DX para sumarlo al funnel de adopción IA.</div></div>
             </div>
+            <button class="btn-completar">✓ Marcar como completado</button>
           </div>
         </div>
+
       </div>
     </div>
 
@@ -341,55 +455,82 @@
         <div class="modulo-icono agentes">🤖</div>
         <div class="modulo-info">
           <div class="modulo-titulo">Agentes IA y Automatización</div>
-          <div class="modulo-meta">
-            <span>4 lecciones · 50 min</span>
-            <span class="badge badge-pronto">Próximamente</span>
-          </div>
-          <div class="progreso-bar"><div class="progreso-fill" style="width: 0%"></div></div>
+          <div class="modulo-meta"><span>4 lecciones · 50 min</span><span class="badge badge-pronto">Próximamente</span></div>
+          <div class="progreso-bar"><div class="progreso-fill" style="width:0%"></div></div>
         </div>
         <div class="chevron">›</div>
       </div>
       <div class="lecciones">
-        <div class="leccion-item">
+
+        <div class="leccion-item" id="l4-1">
           <div class="leccion-trigger">
             <div class="leccion-punto"></div>
             <div class="leccion-nombre">Copilot Studio: crea tu propio agente</div>
-            <div class="leccion-tags">
-              <span class="tag tag-video">Video</span>
-              <span class="tag-min">15 min</span>
+            <div class="leccion-tags"><span class="tag tag-video">Video</span><span class="tag-min">15 min</span></div>
+            <div class="leccion-chevron">›</div>
+          </div>
+          <div class="leccion-contenido">
+            <div class="ph-video">
+              <div class="ph-play"><div class="ph-play-icon"></div></div>
+              <div class="ph-video-label">Video · 15 min — contenido en preparación</div>
             </div>
+            <button class="btn-completar">✓ Marcar como completado</button>
           </div>
         </div>
-        <div class="leccion-item">
+
+        <div class="leccion-item" id="l4-2">
           <div class="leccion-trigger">
             <div class="leccion-punto"></div>
             <div class="leccion-nombre">AgentForce by Salesforce: automatización comercial</div>
-            <div class="leccion-tags">
-              <span class="tag tag-video">Video</span>
-              <span class="tag-min">12 min</span>
+            <div class="leccion-tags"><span class="tag tag-video">Video</span><span class="tag-min">12 min</span></div>
+            <div class="leccion-chevron">›</div>
+          </div>
+          <div class="leccion-contenido">
+            <div class="ph-video">
+              <div class="ph-play"><div class="ph-play-icon"></div></div>
+              <div class="ph-video-label">Video · 12 min — contenido en preparación</div>
             </div>
+            <button class="btn-completar">✓ Marcar como completado</button>
           </div>
         </div>
-        <div class="leccion-item">
+
+        <div class="leccion-item" id="l4-3">
           <div class="leccion-trigger">
             <div class="leccion-punto"></div>
             <div class="leccion-nombre">Power Automate + IA: flujos sin código</div>
-            <div class="leccion-tags">
-              <span class="tag tag-practica">Práctica</span>
-              <span class="tag-min">13 min</span>
+            <div class="leccion-tags"><span class="tag tag-practica">Práctica</span><span class="tag-min">13 min</span></div>
+            <div class="leccion-chevron">›</div>
+          </div>
+          <div class="leccion-contenido">
+            <div class="ph-practica">
+              <div class="ph-practica-title">Ejercicio práctico</div>
+              <div class="ph-paso"><div class="ph-paso-num">1</div><div>Accede a Power Automate desde el portal M365 de Polpaico.</div></div>
+              <div class="ph-paso"><div class="ph-paso-num">2</div><div>Explora las plantillas de flujos con IA disponibles para tu área.</div></div>
+              <div class="ph-paso"><div class="ph-paso-num">3</div><div>Activa el flujo "Resumen diario de correos importantes" como piloto.</div></div>
+              <div class="ph-paso"><div class="ph-paso-num">4</div><div>Evalúa el resultado durante una semana y documenta el tiempo ahorrado.</div></div>
             </div>
+            <button class="btn-completar">✓ Marcar como completado</button>
           </div>
         </div>
-        <div class="leccion-item">
+
+        <div class="leccion-item" id="l4-4">
           <div class="leccion-trigger">
             <div class="leccion-punto"></div>
             <div class="leccion-nombre">Caso real: Agente de Tesorería con Copilot Studio</div>
-            <div class="leccion-tags">
-              <span class="tag tag-lectura">Lectura</span>
-              <span class="tag-min">10 min</span>
+            <div class="leccion-tags"><span class="tag tag-lectura">Lectura</span><span class="tag-min">10 min</span></div>
+            <div class="leccion-chevron">›</div>
+          </div>
+          <div class="leccion-contenido">
+            <div class="ph-lectura">
+              <div class="ph-lectura-title">Caso real: Agente de Tesorería</div>
+              <p>El equipo de Finanzas, liderado por Sandra Vallejos, desarrolló un agente en Copilot Studio que automatiza las consultas recurrentes al área de Tesorería: estados de cuenta, confirmaciones de pago y conciliaciones.</p>
+              <p>El agente redujo el 40% de las consultas manuales en el primer mes. Está integrado con SAP y responde en lenguaje natural dentro de Teams, sin necesidad de abrir el ERP.</p>
+              <p>Este fue uno de los 5 casos presentados al Comité DX en mayo 2026 y actualmente está en fase de escalamiento al resto de plantas.</p>
             </div>
+            <button class="btn-completar">✓ Marcar como leído</button>
           </div>
         </div>
+
       </div>
     </div>
 
@@ -405,38 +546,42 @@
         });
       });
 
-      // Marcar / desmarcar lecciones
+      // Expandir / colapsar contenido de cada lección
       document.querySelectorAll('.leccion-trigger').forEach(function(trigger) {
         trigger.addEventListener('click', function() {
-          var item = trigger.closest('.leccion-item');
+          trigger.closest('.leccion-item').classList.toggle('expandida');
+        });
+      });
+
+      // Botones "Marcar como completado"
+      document.querySelectorAll('.btn-completar').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          var item = btn.closest('.leccion-item');
           if (item.classList.contains('completada')) {
             item.classList.remove('completada');
-            item.classList.add('activa');
-            trigger.querySelector('.leccion-punto').textContent = '';
+            item.querySelector('.leccion-punto').textContent = '';
+            btn.textContent = btn.textContent.replace('Desmarcar', 'Marcar como');
           } else {
-            item.classList.remove('activa');
             item.classList.add('completada');
-            trigger.querySelector('.leccion-punto').textContent = '✓';
+            item.querySelector('.leccion-punto').textContent = '✓';
+            item.classList.remove('expandida');
           }
           actualizarProgreso();
         });
       });
 
       function actualizarProgreso() {
-        // Por módulo
         document.querySelectorAll('.modulo').forEach(function(modulo) {
-          var total = modulo.querySelectorAll('.leccion-item').length;
+          var total  = modulo.querySelectorAll('.leccion-item').length;
           var hechas = modulo.querySelectorAll('.leccion-item.completada').length;
-          var pct = total > 0 ? Math.round((hechas / total) * 100) : 0;
-          modulo.querySelector('.progreso-fill').style.width = pct + '%';
+          modulo.querySelector('.progreso-fill').style.width = (total ? Math.round(hechas/total*100) : 0) + '%';
         });
-
-        // Global
         var totalAll = document.querySelectorAll('.leccion-item').length;
         var doneAll  = document.querySelectorAll('.leccion-item.completada').length;
-        var pctAll   = totalAll > 0 ? Math.round((doneAll / totalAll) * 100) : 0;
-        document.querySelector('.progreso-global-fill').style.width = pctAll + '%';
-        document.querySelector('.progreso-pct').textContent = pctAll + '%';
+        var pct = totalAll ? Math.round(doneAll/totalAll*100) : 0;
+        document.querySelector('.progreso-global-fill').style.width = pct + '%';
+        document.querySelector('.progreso-pct').textContent = pct + '%';
         document.querySelector('.progreso-texto strong').textContent = doneAll + ' de ' + totalAll + ' lecciones';
       }
 
