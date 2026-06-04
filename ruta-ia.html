@@ -8,7 +8,9 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #1A1C20; color: #f0ede8; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 15px; line-height: 1.6; min-height: 100vh; }
     body::before { content: ''; position: fixed; left: 0; top: 0; width: 14px; height: 100%; background: #D2232A; z-index: 100; }
-    header { background: #22252b; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 20px 40px 20px 36px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 50; }
+
+    /* HEADER */
+    header { background: #22252b; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 18px 40px 18px 36px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 50; }
     .header-logo { display: flex; align-items: center; gap: 10px; }
     .logo-dot { width: 11px; height: 11px; border-radius: 50%; background: #D2232A; }
     .logo-name { font-size: 17px; font-weight: 700; letter-spacing: -0.3px; }
@@ -17,50 +19,387 @@
     nav a { text-decoration: none; font-size: 13px; font-weight: 500; padding: 6px 14px; border-radius: 6px; color: #8a8580; transition: all 0.2s; }
     nav a:hover { color: #f0ede8; background: rgba(255,255,255,0.07); }
     nav a.active { color: #16C5D6; background: rgba(22,197,214,0.12); }
+
+    /* MAIN */
     main { max-width: 860px; margin: 0 auto; padding: 44px 28px 80px; }
     .page-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #16C5D6; margin-bottom: 10px; }
     .page-title { font-size: 32px; font-weight: 800; letter-spacing: -1px; margin-bottom: 10px; }
     .page-sub { color: #8a8580; font-size: 14px; margin-bottom: 40px; max-width: 480px; }
-    .ruta-visual { display: flex; align-items: center; margin-bottom: 40px; padding: 18px 20px; background: #22252b; border-radius: 12px; border: 1px solid rgba(255,255,255,0.07); }
+
+    /* RUTA VISUAL */
+    .ruta-visual { display: flex; align-items: center; margin-bottom: 40px; padding: 18px 20px; background: #22252b; border-radius: 12px; border: 1px solid rgba(255,255,255,0.07); overflow-x: auto; }
     .nodo { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 80px; }
-    .nodo-circulo { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; transition: all 0.3s; }
+    .nodo-circulo { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; }
     .nodo-circulo.activo { background: #2BA86F; color: #fff; }
-    .nodo-circulo.pendiente { background: #333; color: #8a8580; border: 2px solid #444; }
-    .nodo-label { font-size: 11px; color: #8a8580; text-align: center; max-width: 70px; }
-    .linea-ruta { flex: 1; height: 2px; background: rgba(22,197,214,0.2); margin-bottom: 22px; }
+    .nodo-circulo.pendiente { background: #2a2d33; color: #8a8580; border: 2px solid #444; }
+    .nodo-label { font-size: 11px; color: #8a8580; text-align: center; max-width: 70px; line-height: 1.3; }
+    .linea-ruta { flex: 1; height: 2px; background: rgba(22,197,214,0.2); margin-bottom: 22px; min-width: 20px; }
+
+    /* PROGRESO */
     .progreso-resumen { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; padding: 14px 18px; background: #22252b; border-radius: 10px; border: 1px solid rgba(255,255,255,0.07); }
     .progreso-texto { font-size: 13px; color: #8a8580; }
     .progreso-texto strong { color: #f0ede8; }
     .progreso-pct { font-size: 22px; font-weight: 800; color: #E0982A; }
     .progreso-global-bar { height: 6px; background: rgba(255,255,255,0.07); border-radius: 3px; margin-top: 8px; overflow: hidden; }
-    .progreso-global-fill { height: 100%; background: linear-gradient(90deg, #2BA86F, #16C5D6); border-radius: 3px; transition: width 0.6s ease; }
-    .modulo { background: #22252b; border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; overflow: hidden; margin-bottom: 16px; transition: border-color 0.2s; }
-    .modulo:hover { border-color: rgba(255,255,255,0.14); }
+    .progreso-global-fill { height: 100%; background: linear-gradient(90deg, #2BA86F, #16C5D6); border-radius: 3px; width: 0%; }
+
+    /* MÓDULOS */
+    .modulo { background: #22252b; border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; overflow: hidden; margin-bottom: 16px; }
     .modulo-header { padding: 20px 22px; display: flex; align-items: center; gap: 16px; cursor: pointer; user-select: none; }
+    .modulo-header:hover { background: rgba(255,255,255,0.02); }
     .modulo-num { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #8a8580; min-width: 28px; }
     .modulo-icono { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
-    .modulo-icono.intro { background: rgba(22,197,214,0.12); }
-    .modulo-icono.prompt { background: rgba(43,168,111,0.12); }
+    .modulo-icono.intro    { background: rgba(22,197,214,0.12); }
+    .modulo-icono.prompt   { background: rgba(43,168,111,0.12); }
     .modulo-icono.avanzado { background: rgba(224,152,42,0.12); }
+    .modulo-icono.agentes  { background: rgba(210,35,42,0.12); }
     .modulo-info { flex: 1; }
     .modulo-titulo { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
     .modulo-meta { font-size: 12px; color: #8a8580; display: flex; gap: 12px; }
     .badge { padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
     .badge-activo { background: rgba(43,168,111,0.15); color: #2BA86F; }
     .badge-pronto { background: rgba(255,255,255,0.07); color: #8a8580; }
-    .chevron { color: #8a8580; font-size: 18px; transition: transform 0.3s ease; }
+    .chevron { color: #8a8580; font-size: 18px; transition: transform 0.3s ease; line-height: 1; }
     .modulo.abierto .chevron { transform: rotate(90deg); }
     .progreso-bar { height: 3px; background: rgba(255,255,255,0.07); border-radius: 2px; margin-top: 8px; overflow: hidden; }
-    .progreso-fill { height: 100%; background: #2BA86F; border-radius: 2px; transition: width 0.5s ease; }
+    .progreso-fill { height: 100%; background: #2BA86F; border-radius: 2px; }
+
+    /* LECCIONES */
     .lecciones { display: none; border-top: 1px solid rgba(255,255,255,0.07); }
     .modulo.abierto .lecciones { display: block; }
     .leccion-item { padding: 0 22px 0 84px; }
-    .leccion-trigger { display: flex; align-items: center; gap: 12px; padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: all 0.2s; }
+    .leccion-trigger { display: flex; align-items: center; gap: 12px; padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
     .leccion-item:last-child .leccion-trigger { border-bottom: none; }
-    .leccion-trigger:hover .leccion-nombre { color: #16C5D6; }
-    .leccion-punto { width: 22px; height: 22px; border-radius: 50%; border: 2px solid #444; background: transparent; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; transition: all 0.3s; }
+    .leccion-punto { width: 22px; height: 22px; border-radius: 50%; border: 2px solid #444; background: transparent; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; }
     .leccion-item.activa .leccion-punto { border-color: #16C5D6; box-shadow: 0 0 8px rgba(22,197,214,0.4); }
-    .leccion-item.completada .leccion-punto { background: #2BA86F; border-color: #2BA86F; color: #fff; }
-    .leccion-nombre { font-size: 14px; font-weight: 500; flex: 1; transition: color 0.2s; }
+    .leccion-item.completada .leccion-punto { background: #2BA86F; border-color: #2BA86F; color: #fff; font-size: 12px; }
+    .leccion-nombre { font-size: 14px; font-weight: 500; flex: 1; }
     .leccion-item.completada .leccion-nombre { color: #8a8580; text-decoration: line-through; text-decoration-color: rgba(138,133,128,0.4); }
     .leccion-tags { display: flex; align-items: center; gap: 8px; }
+    .tag { padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 500; }
+    .tag-video   { background: rgba(22,197,214,0.1); color: #16C5D6; }
+    .tag-lectura { background: rgba(224,152,42,0.1); color: #E0982A; }
+    .tag-practica{ background: rgba(43,168,111,0.1); color: #2BA86F; }
+    .tag-min { color: #555; font-size: 11px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-logo">
+      <div class="logo-dot"></div>
+      <div class="logo-name">Cimiento <span>IA</span></div>
+    </div>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#" class="active">Ruta IA</a>
+      <a href="#">Prompts</a>
+      <a href="#">Comunidad</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-label">Programa de Formación</div>
+    <h1 class="page-title">Tu Ruta de Aprendizaje IA</h1>
+    <p class="page-sub">Avanza desde los fundamentos hasta casos de uso reales en Polpaico. A tu ritmo, con herramientas que ya usas.</p>
+
+    <!-- VISUAL PATH -->
+    <div class="ruta-visual">
+      <div class="nodo">
+        <div class="nodo-circulo activo">01</div>
+        <div class="nodo-label">Fundamentos</div>
+      </div>
+      <div class="linea-ruta"></div>
+      <div class="nodo">
+        <div class="nodo-circulo activo">02</div>
+        <div class="nodo-label">Copilot M365</div>
+      </div>
+      <div class="linea-ruta"></div>
+      <div class="nodo">
+        <div class="nodo-circulo pendiente">03</div>
+        <div class="nodo-label">Prompting</div>
+      </div>
+      <div class="linea-ruta"></div>
+      <div class="nodo">
+        <div class="nodo-circulo pendiente">04</div>
+        <div class="nodo-label">Agentes IA</div>
+      </div>
+    </div>
+
+    <!-- PROGRESO RESUMEN -->
+    <div class="progreso-resumen">
+      <div>
+        <div class="progreso-texto"><strong>6 de 18 lecciones</strong> completadas</div>
+        <div class="progreso-global-bar">
+          <div class="progreso-global-fill" style="width: 33%"></div>
+        </div>
+      </div>
+      <div class="progreso-pct">33%</div>
+    </div>
+
+    <!-- MÓDULO 1 -->
+    <div class="modulo abierto" id="m1">
+      <div class="modulo-header" onclick="toggleModulo('m1')">
+        <div class="modulo-num">01</div>
+        <div class="modulo-icono intro">🧠</div>
+        <div class="modulo-info">
+          <div class="modulo-titulo">Fundamentos de Inteligencia Artificial</div>
+          <div class="modulo-meta">
+            <span>4 lecciones · 45 min</span>
+            <span class="badge badge-activo">En progreso</span>
+          </div>
+          <div class="progreso-bar"><div class="progreso-fill" style="width: 75%"></div></div>
+        </div>
+        <div class="chevron">›</div>
+      </div>
+      <div class="lecciones">
+        <div class="leccion-item completada">
+          <div class="leccion-trigger">
+            <div class="leccion-punto">✓</div>
+            <div class="leccion-nombre">¿Qué es la IA y por qué importa en Polpaico?</div>
+            <div class="leccion-tags">
+              <span class="tag tag-video">Video</span>
+              <span class="tag-min">12 min</span>
+            </div>
+          </div>
+        </div>
+        <div class="leccion-item completada">
+          <div class="leccion-trigger">
+            <div class="leccion-punto">✓</div>
+            <div class="leccion-nombre">IA Generativa vs IA Tradicional</div>
+            <div class="leccion-tags">
+              <span class="tag tag-lectura">Lectura</span>
+              <span class="tag-min">8 min</span>
+            </div>
+          </div>
+        </div>
+        <div class="leccion-item completada">
+          <div class="leccion-trigger">
+            <div class="leccion-punto">✓</div>
+            <div class="leccion-nombre">Ética y uso responsable de la IA</div>
+            <div class="leccion-tags">
+              <span class="tag tag-video">Video</span>
+              <span class="tag-min">10 min</span>
+            </div>
+          </div>
+        </div>
+        <div class="leccion-item activa">
+          <div class="leccion-trigger">
+            <div class="leccion-punto"></div>
+            <div class="leccion-nombre">Casos de uso reales en la industria del cemento</div>
+            <div class="leccion-tags">
+              <span class="tag tag-practica">Práctica</span>
+              <span class="tag-min">15 min</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÓDULO 2 -->
+    <div class="modulo" id="m2">
+      <div class="modulo-header" onclick="toggleModulo('m2')">
+        <div class="modulo-num">02</div>
+        <div class="modulo-icono prompt">💼</div>
+        <div class="modulo-info">
+          <div class="modulo-titulo">Microsoft Copilot M365 en tu día a día</div>
+          <div class="modulo-meta">
+            <span>5 lecciones · 60 min</span>
+            <span class="badge badge-activo">En progreso</span>
+          </div>
+          <div class="progreso-bar"><div class="progreso-fill" style="width: 40%"></div></div>
+        </div>
+        <div class="chevron">›</div>
+      </div>
+      <div class="lecciones">
+        <div class="leccion-item completada">
+          <div class="leccion-trigger">
+            <div class="leccion-punto">✓</div>
+            <div class="leccion-nombre">Copilot Chat: tu asistente diario</div>
+            <div class="leccion-tags">
+              <span class="tag tag-video">Video</span>
+              <span class="tag-min">10 min</span>
+            </div>
+          </div>
+        </div>
+        <div class="leccion-item completada">
+          <div class="leccion-trigger">
+            <div class="leccion-punto">✓</div>
+            <div class="leccion-nombre">Copilot en Outlook y Teams</div>
+            <div class="leccion-tags">
+              <span class="tag tag-practica">Práctica</span>
+              <span class="tag-min">12 min</span>
+            </div>
+          </div>
+        </div>
+        <div class="leccion-item">
+          <div class="leccion-trigger">
+            <div class="leccion-punto"></div>
+            <div class="leccion-nombre">Copilot en Word y PowerPoint</div>
+            <div class="leccion-tags">
+              <span class="tag tag-video">Video</span>
+              <span class="tag-min">14 min</span>
+            </div>
+          </div>
+        </div>
+        <div class="leccion-item">
+          <div class="leccion-trigger">
+            <div class="leccion-punto"></div>
+            <div class="leccion-nombre">Copilot en Excel: análisis de datos sin fórmulas</div>
+            <div class="leccion-tags">
+              <span class="tag tag-practica">Práctica</span>
+              <span class="tag-min">14 min</span>
+            </div>
+          </div>
+        </div>
+        <div class="leccion-item">
+          <div class="leccion-trigger">
+            <div class="leccion-punto"></div>
+            <div class="leccion-nombre">Reuniones inteligentes con Copilot</div>
+            <div class="leccion-tags">
+              <span class="tag tag-video">Video</span>
+              <span class="tag-min">10 min</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÓDULO 3 -->
+    <div class="modulo" id="m3">
+      <div class="modulo-header" onclick="toggleModulo('m3')">
+        <div class="modulo-num">03</div>
+        <div class="modulo-icono avanzado">✍️</div>
+        <div class="modulo-info">
+          <div class="modulo-titulo">Arte del Prompting Efectivo</div>
+          <div class="modulo-meta">
+            <span>5 lecciones · 55 min</span>
+            <span class="badge badge-pronto">Próximamente</span>
+          </div>
+          <div class="progreso-bar"><div class="progreso-fill" style="width: 0%"></div></div>
+        </div>
+        <div class="chevron">›</div>
+      </div>
+      <div class="lecciones">
+        <div class="leccion-item">
+          <div class="leccion-trigger">
+            <div class="leccion-punto"></div>
+            <div class="leccion-nombre">Anatomía de un buen prompt</div>
+            <div class="leccion-tags">
+              <span class="tag tag-video">Video</span>
+              <span class="tag-min">10 min</span>
+            </div>
+          </div>
+        </div>
+        <div class="leccion-item">
+          <div class="leccion-trigger">
+            <div class="leccion-punto"></div>
+            <div class="leccion-nombre">Técnicas: cadena de pensamiento y contexto</div>
+            <div class="leccion-tags">
+              <span class="tag tag-lectura">Lectura</span>
+              <span class="tag-min">12 min</span>
+            </div>
+          </div>
+        </div>
+        <div class="leccion-item">
+          <div class="leccion-trigger">
+            <div class="leccion-punto"></div>
+            <div class="leccion-nombre">Prompts para tu área: Finanzas, RRHH, Comercial, Ops</div>
+            <div class="leccion-tags">
+              <span class="tag tag-practica">Práctica</span>
+              <span class="tag-min">15 min</span>
+            </div>
+          </div>
+        </div>
+        <div class="leccion-item">
+          <div class="leccion-trigger">
+            <div class="leccion-punto"></div>
+            <div class="leccion-nombre">Biblioteca de prompts Polpaico</div>
+            <div class="leccion-tags">
+              <span class="tag tag-lectura">Lectura</span>
+              <span class="tag-min">8 min</span>
+            </div>
+          </div>
+        </div>
+        <div class="leccion-item">
+          <div class="leccion-trigger">
+            <div class="leccion-punto"></div>
+            <div class="leccion-nombre">Desafío: mejora un proceso con un prompt</div>
+            <div class="leccion-tags">
+              <span class="tag tag-practica">Práctica</span>
+              <span class="tag-min">10 min</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÓDULO 4 -->
+    <div class="modulo" id="m4">
+      <div class="modulo-header" onclick="toggleModulo('m4')">
+        <div class="modulo-num">04</div>
+        <div class="modulo-icono agentes">🤖</div>
+        <div class="modulo-info">
+          <div class="modulo-titulo">Agentes IA y Automatización</div>
+          <div class="modulo-meta">
+            <span>4 lecciones · 50 min</span>
+            <span class="badge badge-pronto">Próximamente</span>
+          </div>
+          <div class="progreso-bar"><div class="progreso-fill" style="width: 0%"></div></div>
+        </div>
+        <div class="chevron">›</div>
+      </div>
+      <div class="lecciones">
+        <div class="leccion-item">
+          <div class="leccion-trigger">
+            <div class="leccion-punto"></div>
+            <div class="leccion-nombre">Copilot Studio: crea tu propio agente</div>
+            <div class="leccion-tags">
+              <span class="tag tag-video">Video</span>
+              <span class="tag-min">15 min</span>
+            </div>
+          </div>
+        </div>
+        <div class="leccion-item">
+          <div class="leccion-trigger">
+            <div class="leccion-punto"></div>
+            <div class="leccion-nombre">AgentForce by Salesforce: automatización comercial</div>
+            <div class="leccion-tags">
+              <span class="tag tag-video">Video</span>
+              <span class="tag-min">12 min</span>
+            </div>
+          </div>
+        </div>
+        <div class="leccion-item">
+          <div class="leccion-trigger">
+            <div class="leccion-punto"></div>
+            <div class="leccion-nombre">Power Automate + IA: flujos sin código</div>
+            <div class="leccion-tags">
+              <span class="tag tag-practica">Práctica</span>
+              <span class="tag-min">13 min</span>
+            </div>
+          </div>
+        </div>
+        <div class="leccion-item">
+          <div class="leccion-trigger">
+            <div class="leccion-punto"></div>
+            <div class="leccion-nombre">Caso real: Agente de Tesorería con Copilot Studio</div>
+            <div class="leccion-tags">
+              <span class="tag tag-lectura">Lectura</span>
+              <span class="tag-min">10 min</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function toggleModulo(id) {
+      document.getElementById(id).classList.toggle('abierto');
+    }
+  </script>
+
+</body>
+</html>
