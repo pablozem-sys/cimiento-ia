@@ -139,7 +139,7 @@
 
     <!-- MÓDULO 1 -->
     <div class="modulo abierto" id="m1">
-      <div class="modulo-header" onclick="toggleModulo('m1')">
+      <div class="modulo-header">
         <div class="modulo-num">01</div>
         <div class="modulo-icono intro">🧠</div>
         <div class="modulo-info">
@@ -198,7 +198,7 @@
 
     <!-- MÓDULO 2 -->
     <div class="modulo" id="m2">
-      <div class="modulo-header" onclick="toggleModulo('m2')">
+      <div class="modulo-header">
         <div class="modulo-num">02</div>
         <div class="modulo-icono prompt">💼</div>
         <div class="modulo-info">
@@ -267,7 +267,7 @@
 
     <!-- MÓDULO 3 -->
     <div class="modulo" id="m3">
-      <div class="modulo-header" onclick="toggleModulo('m3')">
+      <div class="modulo-header">
         <div class="modulo-num">03</div>
         <div class="modulo-icono avanzado">✍️</div>
         <div class="modulo-info">
@@ -336,7 +336,7 @@
 
     <!-- MÓDULO 4 -->
     <div class="modulo" id="m4">
-      <div class="modulo-header" onclick="toggleModulo('m4')">
+      <div class="modulo-header">
         <div class="modulo-num">04</div>
         <div class="modulo-icono agentes">🤖</div>
         <div class="modulo-info">
@@ -396,9 +396,52 @@
   </main>
 
   <script>
-    function toggleModulo(id) {
-      document.getElementById(id).classList.toggle('abierto');
-    }
+    document.addEventListener('DOMContentLoaded', function() {
+
+      // Acordeón de módulos
+      document.querySelectorAll('.modulo-header').forEach(function(header) {
+        header.addEventListener('click', function() {
+          header.closest('.modulo').classList.toggle('abierto');
+        });
+      });
+
+      // Marcar / desmarcar lecciones
+      document.querySelectorAll('.leccion-trigger').forEach(function(trigger) {
+        trigger.addEventListener('click', function() {
+          var item = trigger.closest('.leccion-item');
+          if (item.classList.contains('completada')) {
+            item.classList.remove('completada');
+            item.classList.add('activa');
+            trigger.querySelector('.leccion-punto').textContent = '';
+          } else {
+            item.classList.remove('activa');
+            item.classList.add('completada');
+            trigger.querySelector('.leccion-punto').textContent = '✓';
+          }
+          actualizarProgreso();
+        });
+      });
+
+      function actualizarProgreso() {
+        // Por módulo
+        document.querySelectorAll('.modulo').forEach(function(modulo) {
+          var total = modulo.querySelectorAll('.leccion-item').length;
+          var hechas = modulo.querySelectorAll('.leccion-item.completada').length;
+          var pct = total > 0 ? Math.round((hechas / total) * 100) : 0;
+          modulo.querySelector('.progreso-fill').style.width = pct + '%';
+        });
+
+        // Global
+        var totalAll = document.querySelectorAll('.leccion-item').length;
+        var doneAll  = document.querySelectorAll('.leccion-item.completada').length;
+        var pctAll   = totalAll > 0 ? Math.round((doneAll / totalAll) * 100) : 0;
+        document.querySelector('.progreso-global-fill').style.width = pctAll + '%';
+        document.querySelector('.progreso-pct').textContent = pctAll + '%';
+        document.querySelector('.progreso-texto strong').textContent = doneAll + ' de ' + totalAll + ' lecciones';
+      }
+
+      actualizarProgreso();
+    });
   </script>
 
 </body>
