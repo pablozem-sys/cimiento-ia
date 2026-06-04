@@ -5,495 +5,298 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cimiento IA · Polpaico</title>
   <style>
-    /* ─── TOKENS ────────────────────────────────────────────── */
-    .cimiento-ia {
-      --c-bg:       #1A1C20;
-      --c-surface:  #22252b;
-      --c-border:   rgba(255,255,255,0.08);
-      --c-text:     #f0ede8;
-      --c-muted:    #8a8580;
-      --c-red:      #D2232A;
-      --c-cyan:     #16C5D6;
-      --c-green:    #2BA86F;
-      --c-amber:    #E0982A;
-      --c-stripe:   14px;
-      --radius-lg:  14px;
-      --radius-md:  10px;
-      --radius-sm:  6px;
-      --font:       -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    }
-
-    /* ─── RESET ─────────────────────────────────────────────── */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     a { text-decoration: none; color: inherit; }
+    body { background: #eae7e1; color: #1a1c20; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 15px; line-height: 1.6; min-height: 100vh; }
 
-    /* ─── BASE ──────────────────────────────────────────────── */
-    body.cimiento-ia {
-      background: var(--c-bg);
-      color: var(--c-text);
-      font-family: var(--font);
-      font-size: 15px;
-      line-height: 1.6;
-      min-height: 100vh;
-    }
-    body.cimiento-ia::before {
-      content: '';
-      position: fixed;
-      left: 0; top: 0;
-      width: var(--c-stripe);
-      height: 100%;
-      background: var(--c-red);
-      z-index: 100;
-    }
-
-    /* ─── HEADER ────────────────────────────────────────────── */
-    .ci-header {
-      background: var(--c-surface);
-      border-bottom: 1px solid var(--c-border);
-      padding: 18px 40px 18px 36px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      position: sticky;
-      top: 0;
-      z-index: 50;
-    }
-    .ci-logo { display: flex; align-items: center; gap: 10px; }
-    .ci-logo-dot { width: 11px; height: 11px; border-radius: 50%; background: var(--c-red); }
-    .ci-logo-name { font-size: 17px; font-weight: 700; letter-spacing: -0.3px; }
-    .ci-logo-name span { color: var(--c-cyan); }
-    .ci-nav { margin-left: auto; display: flex; gap: 4px; }
-    .ci-nav a {
-      font-size: 13px; font-weight: 500;
-      padding: 6px 14px; border-radius: var(--radius-sm);
-      color: var(--c-muted); transition: all 0.2s;
-    }
-    .ci-nav a:hover { color: var(--c-text); background: rgba(255,255,255,0.07); }
-    .ci-nav a.active { color: var(--c-cyan); background: rgba(22,197,214,0.12); }
-
-    /* ─── MAIN ──────────────────────────────────────────────── */
-    .ci-main { max-width: 960px; margin: 0 auto; padding: 48px 28px 80px; }
-
-    /* ─── HERO ──────────────────────────────────────────────── */
-    .ci-hero {
+    /* ── HERO ───────────────────────────────────────────────── */
+    .hero {
+      background: #1a1c20;
+      color: #f0ede8;
+      padding: 40px 48px 44px;
       position: relative;
-      background: var(--c-surface);
-      border: 1px solid var(--c-border);
-      border-radius: var(--radius-lg);
-      padding: 44px 48px;
-      margin-bottom: 32px;
       overflow: hidden;
+      border-bottom-left-radius: 16px;
+      border-bottom-right-radius: 16px;
     }
-    .ci-hero::before {
+    .hero::before {
       content: '';
       position: absolute;
-      top: -60px; right: -60px;
-      width: 260px; height: 260px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(22,197,214,0.12) 0%, transparent 70%);
-      pointer-events: none;
+      left: 0; top: 0; bottom: 0;
+      width: 14px;
+      background: #D2232A;
     }
-    .ci-hero::after {
-      content: '';
-      position: absolute;
-      bottom: -40px; right: 160px;
-      width: 160px; height: 160px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(210,35,42,0.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .ci-hero-label {
-      font-size: 11px; font-weight: 600;
-      letter-spacing: 2.5px; text-transform: uppercase;
-      color: var(--c-cyan); margin-bottom: 12px;
-    }
-    .ci-hero-title {
-      font-size: 38px; font-weight: 800;
-      letter-spacing: -1.5px; line-height: 1.1;
-      margin-bottom: 14px;
-    }
-    .ci-hero-title em { font-style: normal; color: var(--c-cyan); }
-    .ci-hero-sub {
-      font-size: 15px; color: var(--c-muted);
-      max-width: 460px; margin-bottom: 28px;
-    }
-    .ci-hero-cta {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--c-cyan); color: #0d1117;
-      font-size: 13px; font-weight: 700;
-      padding: 10px 20px; border-radius: var(--radius-sm);
-      transition: opacity 0.2s;
-    }
-    .ci-hero-cta:hover { opacity: 0.88; }
-    .ci-hero-geo {
-      position: absolute;
-      right: 48px; top: 50%;
-      transform: translateY(-50%);
-      display: flex; flex-direction: column; gap: 10px;
-      opacity: 0.25;
-    }
-    .ci-geo-row { display: flex; gap: 10px; }
-    .ci-geo-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--c-cyan);
-    }
-    .ci-geo-dot.red { background: var(--c-red); }
-    .ci-geo-dot.green { background: var(--c-green); }
-    .ci-geo-dot.amber { background: var(--c-amber); }
-
-    /* ─── KPIs ──────────────────────────────────────────────── */
-    .ci-kpi-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      margin-bottom: 32px;
-    }
-    .ci-kpi {
-      background: var(--c-surface);
-      border: 1px solid var(--c-border);
-      border-radius: var(--radius-md);
-      padding: 20px 18px;
-      display: flex; flex-direction: column; gap: 6px;
-      transition: border-color 0.2s;
-    }
-    .ci-kpi:hover { border-color: rgba(255,255,255,0.16); }
-    .ci-kpi-icon { font-size: 20px; margin-bottom: 2px; }
-    .ci-kpi-num {
-      font-size: 30px; font-weight: 800;
-      letter-spacing: -1px; line-height: 1;
-    }
-    .ci-kpi-num.cyan  { color: var(--c-cyan); }
-    .ci-kpi-num.green { color: var(--c-green); }
-    .ci-kpi-num.amber { color: var(--c-amber); }
-    .ci-kpi-num.red   { color: var(--c-red); }
-    .ci-kpi-label { font-size: 12px; color: var(--c-muted); line-height: 1.3; }
-
-    /* ─── ACCESOS RÁPIDOS ───────────────────────────────────── */
-    .ci-section-label {
+    .hero-breadcrumb {
       font-size: 11px; font-weight: 600;
       letter-spacing: 2px; text-transform: uppercase;
-      color: var(--c-muted); margin-bottom: 14px;
+      color: #16C5D6; margin-bottom: 14px;
+      display: flex; align-items: center; gap: 8px;
     }
-    .ci-accesos-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      margin-bottom: 32px;
+    .hero-breadcrumb span { color: #555; }
+    .hero-title { font-size: 42px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.05; margin-bottom: 12px; }
+    .hero-title em { font-style: normal; color: #16C5D6; }
+    .hero-sub { font-size: 14px; color: #8a8580; max-width: 500px; margin-bottom: 28px; }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #16C5D6; color: #0d1117;
+      font-size: 13px; font-weight: 700;
+      padding: 10px 22px; border-radius: 8px;
+      transition: opacity 0.2s;
     }
-    .ci-acceso {
-      background: var(--c-surface);
-      border: 1px solid var(--c-border);
-      border-radius: var(--radius-lg);
-      padding: 22px 18px;
+    .hero-cta:hover { opacity: 0.88; }
+    .hero-geo {
+      position: absolute; right: 48px; top: 50%; transform: translateY(-50%);
+      opacity: 0.15; display: flex; flex-direction: column; gap: 10px;
+    }
+    .geo-row { display: flex; gap: 10px; }
+    .geo-dot { width: 8px; height: 8px; border-radius: 50%; background: #16C5D6; }
+    .geo-dot.r { background: #D2232A; }
+    .geo-dot.g { background: #2BA86F; }
+    .geo-dot.a { background: #E0982A; }
+
+    /* ── BODY ───────────────────────────────────────────────── */
+    .body { max-width: 900px; margin: 0 auto; padding: 36px 24px 80px; }
+    .section-label {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: #aaa; margin-bottom: 14px;
+    }
+
+    /* ── KPIs ───────────────────────────────────────────────── */
+    .kpi-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 32px; }
+    .kpi-card {
+      background: #fff; border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 12px; padding: 20px 18px;
+      display: flex; flex-direction: column; gap: 6px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      transition: box-shadow 0.2s;
+    }
+    .kpi-card:hover { box-shadow: 0 3px 10px rgba(0,0,0,0.08); }
+    .kpi-icon { font-size: 20px; margin-bottom: 2px; }
+    .kpi-num { font-size: 30px; font-weight: 800; letter-spacing: -1px; line-height: 1; }
+    .kpi-num.cyan  { color: #16C5D6; }
+    .kpi-num.green { color: #2BA86F; }
+    .kpi-num.amber { color: #E0982A; }
+    .kpi-num.red   { color: #D2232A; }
+    .kpi-label { font-size: 12px; color: #999; line-height: 1.3; }
+
+    /* ── ACCESOS ────────────────────────────────────────────── */
+    .accesos-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 32px; }
+    .acceso-card {
+      background: #fff; border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 12px; padding: 22px 18px;
       display: flex; flex-direction: column; gap: 10px;
-      cursor: pointer; transition: all 0.2s;
-      position: relative; overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      transition: all 0.2s; position: relative; overflow: hidden;
     }
-    .ci-acceso::before {
+    .acceso-card::after {
       content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--accent, var(--c-cyan));
-      transform: scaleX(0);
-      transform-origin: left;
+      position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: var(--accent, #16C5D6);
+      transform: scaleX(0); transform-origin: left;
       transition: transform 0.25s ease;
     }
-    .ci-acceso:hover { border-color: rgba(255,255,255,0.16); transform: translateY(-2px); }
-    .ci-acceso:hover::before { transform: scaleX(1); }
-    .ci-acceso-icon {
-      width: 40px; height: 40px;
-      border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px;
-      background: var(--icon-bg, rgba(22,197,214,0.12));
+    .acceso-card:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.1); transform: translateY(-2px); }
+    .acceso-card:hover::after { transform: scaleX(1); }
+    .acceso-icon {
+      width: 40px; height: 40px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center; font-size: 18px;
+      background: var(--icon-bg, rgba(22,197,214,0.1));
     }
-    .ci-acceso-titulo { font-size: 14px; font-weight: 700; }
-    .ci-acceso-desc { font-size: 12px; color: var(--c-muted); line-height: 1.4; flex: 1; }
-    .ci-acceso-arrow { font-size: 13px; color: var(--accent, var(--c-cyan)); font-weight: 600; }
+    .acceso-titulo { font-size: 14px; font-weight: 700; color: #1a1c20; }
+    .acceso-desc { font-size: 12px; color: #999; line-height: 1.4; flex: 1; }
+    .acceso-arrow { font-size: 13px; font-weight: 600; color: var(--accent, #16C5D6); }
 
-    /* ─── BOTTOM GRID (TIP + EMBAJADOR) ─────────────────────── */
-    .ci-bottom-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
+    /* ── BOTTOM GRID ────────────────────────────────────────── */
+    .bottom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
-    /* TIP DE LA SEMANA */
-    .ci-tip {
-      background: var(--c-surface);
-      border: 1px solid var(--c-border);
-      border-left: 3px solid var(--c-cyan);
-      border-radius: var(--radius-lg);
-      padding: 26px 24px;
+    /* Tip de la semana */
+    .tip-card {
+      background: #fff; border: 1px solid rgba(0,0,0,0.08);
+      border-left: 3px solid #16C5D6;
+      border-radius: 12px; padding: 26px 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
     }
-    .ci-tip-header {
-      display: flex; align-items: center;
-      justify-content: space-between;
-      margin-bottom: 14px;
-    }
-    .ci-tip-badge {
+    .tip-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .tip-badge {
       display: flex; align-items: center; gap: 7px;
-      font-size: 11px; font-weight: 700;
-      letter-spacing: 1.5px; text-transform: uppercase;
-      color: var(--c-cyan);
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      color: #0ea5b5;
     }
-    .ci-tip-badge-dot {
-      width: 7px; height: 7px;
-      border-radius: 50%; background: var(--c-cyan);
+    .tip-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: #16C5D6;
       animation: pulse 2s ease-in-out infinite;
     }
-    .ci-edit-hint {
-      font-size: 10px; color: #444;
-      font-style: italic;
-    }
     @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.8); }
+      0%,100% { opacity:1; transform:scale(1); }
+      50% { opacity:0.4; transform:scale(0.8); }
     }
-    .ci-tip-text {
-      font-size: 14px; color: var(--c-text);
-      line-height: 1.65; margin-bottom: 14px;
+    .edit-hint { font-size: 10px; color: #ccc; font-style: italic; }
+    .tip-text { font-size: 14px; color: #333; line-height: 1.65; margin-bottom: 14px; }
+    .tip-prompt {
+      background: #1a1c20; border-radius: 8px; padding: 12px 14px;
+      font-family: 'SF Mono','Fira Mono','Courier New',monospace;
+      font-size: 13px; color: #9ae8f0; line-height: 1.5; font-style: italic;
     }
-    .ci-tip-prompt {
-      background: rgba(22,197,214,0.06);
-      border: 1px solid rgba(22,197,214,0.15);
-      border-radius: var(--radius-sm);
-      padding: 12px 14px;
-      font-size: 13px; color: #9ae8f0;
-      font-style: italic; line-height: 1.5;
-    }
-    .ci-tip-prompt::before { content: '"'; }
-    .ci-tip-prompt::after  { content: '"'; }
+    .tip-prompt::before { content: '"'; }
+    .tip-prompt::after  { content: '"'; }
 
-    /* EMBAJADOR DEL MES */
-    .ci-embajador {
-      background: var(--c-surface);
-      border: 1px solid var(--c-border);
-      border-left: 3px solid var(--c-amber);
-      border-radius: var(--radius-lg);
-      padding: 26px 24px;
+    /* Embajador del mes */
+    .emb-card {
+      background: #fff; border: 1px solid rgba(0,0,0,0.08);
+      border-left: 3px solid #E0982A;
+      border-radius: 12px; padding: 26px 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
     }
-    .ci-emb-header {
-      display: flex; align-items: center;
-      justify-content: space-between;
-      margin-bottom: 18px;
-    }
-    .ci-emb-badge {
-      font-size: 11px; font-weight: 700;
-      letter-spacing: 1.5px; text-transform: uppercase;
-      color: var(--c-amber);
-    }
-    .ci-emb-card { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
-    .ci-emb-avatar {
-      width: 52px; height: 52px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--c-amber), var(--c-red));
+    .emb-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+    .emb-badge { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #b8780a; }
+    .emb-perfil { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .emb-avatar {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: linear-gradient(135deg, #E0982A, #D2232A);
       display: flex; align-items: center; justify-content: center;
-      font-size: 20px; font-weight: 800;
-      color: #fff; flex-shrink: 0;
-      letter-spacing: -1px;
+      font-size: 18px; font-weight: 800; color: #fff; flex-shrink: 0;
     }
-    .ci-emb-nombre { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
-    .ci-emb-area { font-size: 12px; color: var(--c-muted); }
-    .ci-emb-herramienta {
+    .emb-nombre { font-size: 16px; font-weight: 700; color: #1a1c20; margin-bottom: 2px; }
+    .emb-area { font-size: 12px; color: #999; }
+    .emb-tool {
       display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(224,152,42,0.1);
-      border: 1px solid rgba(224,152,42,0.2);
-      border-radius: 20px;
-      padding: 3px 12px;
-      font-size: 12px; font-weight: 600;
-      color: var(--c-amber);
-      margin-bottom: 14px;
+      background: rgba(224,152,42,0.1); border: 1px solid rgba(224,152,42,0.2);
+      border-radius: 20px; padding: 3px 12px;
+      font-size: 12px; font-weight: 600; color: #b8780a; margin-bottom: 14px;
     }
-    .ci-emb-quote {
-      font-size: 13px; color: var(--c-muted);
-      line-height: 1.6; font-style: italic;
-      border-top: 1px solid var(--c-border);
-      padding-top: 14px;
+    .emb-quote {
+      font-size: 13px; color: #888; line-height: 1.6; font-style: italic;
+      border-top: 1px solid #f0ede8; padding-top: 14px;
     }
 
-    /* ─── RESPONSIVE ─────────────────────────────────────────── */
     @media (max-width: 768px) {
-      .ci-kpi-grid { grid-template-columns: repeat(2, 1fr); }
-      .ci-accesos-grid { grid-template-columns: repeat(2, 1fr); }
-      .ci-bottom-grid { grid-template-columns: 1fr; }
-      .ci-hero-geo { display: none; }
-      .ci-hero-title { font-size: 28px; }
-      .ci-header { padding: 14px 20px; }
-      .ci-main { padding: 28px 16px 60px; }
+      .kpi-grid { grid-template-columns: repeat(2,1fr); }
+      .accesos-grid { grid-template-columns: repeat(2,1fr); }
+      .bottom-grid { grid-template-columns: 1fr; }
+      .hero-geo { display: none; }
+      .hero-title { font-size: 30px; }
+      .hero { padding: 28px 24px 32px; }
     }
   </style>
 </head>
-<body class="cimiento-ia">
+<body>
 
-  <header class="ci-header">
-    <div class="ci-logo">
-      <div class="ci-logo-dot"></div>
-      <div class="ci-logo-name">Cimiento <span>IA</span></div>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-breadcrumb">CIMIENTO·IA <span>/</span> POLPAICO SOLUCIONES</div>
+    <h1 class="hero-title">Tu base para<br>dominar la <em>IA</em></h1>
+    <p class="hero-sub">Aprende, experimenta y comparte cómo la inteligencia artificial transforma el trabajo en Polpaico. A tu ritmo, con herramientas reales.</p>
+    <a href="#" class="hero-cta">Comenzar Ruta IA →</a>
+    <div class="hero-geo">
+      <div class="geo-row"><div class="geo-dot"></div><div class="geo-dot r"></div><div class="geo-dot"></div><div class="geo-dot"></div></div>
+      <div class="geo-row"><div class="geo-dot"></div><div class="geo-dot"></div><div class="geo-dot g"></div><div class="geo-dot"></div></div>
+      <div class="geo-row"><div class="geo-dot a"></div><div class="geo-dot"></div><div class="geo-dot"></div><div class="geo-dot"></div></div>
+      <div class="geo-row"><div class="geo-dot"></div><div class="geo-dot r"></div><div class="geo-dot a"></div><div class="geo-dot"></div></div>
     </div>
-    <nav class="ci-nav">
-      <a href="index.html" class="active">Inicio</a>
-      <a href="ruta-ia.html">Ruta IA</a>
-      <a href="cimiento-ia-prompts.html">Prompts</a>
-      <a href="Biblioteca de Prompts _descargable_.html">Biblioteca</a>
-    </nav>
-  </header>
+  </div>
 
-  <main class="ci-main">
-
-    <!-- HERO -->
-    <section class="ci-hero">
-      <div class="ci-hero-label">Portal interno · Polpaico</div>
-      <h1 class="ci-hero-title">Tu base para<br>dominar la <em>IA</em></h1>
-      <p class="ci-hero-sub">Aprende, experimenta y comparte cómo la inteligencia artificial transforma el trabajo en Polpaico. A tu ritmo, con herramientas reales.</p>
-      <a href="ruta-ia.html" class="ci-hero-cta">
-        Comenzar Ruta IA →
-      </a>
-      <!-- Decoración geométrica -->
-      <div class="ci-hero-geo">
-        <div class="ci-geo-row">
-          <div class="ci-geo-dot cyan"></div>
-          <div class="ci-geo-dot"></div>
-          <div class="ci-geo-dot"></div>
-          <div class="ci-geo-dot red"></div>
-        </div>
-        <div class="ci-geo-row">
-          <div class="ci-geo-dot"></div>
-          <div class="ci-geo-dot green"></div>
-          <div class="ci-geo-dot cyan"></div>
-          <div class="ci-geo-dot"></div>
-        </div>
-        <div class="ci-geo-row">
-          <div class="ci-geo-dot amber"></div>
-          <div class="ci-geo-dot"></div>
-          <div class="ci-geo-dot"></div>
-          <div class="ci-geo-dot cyan"></div>
-        </div>
-        <div class="ci-geo-row">
-          <div class="ci-geo-dot"></div>
-          <div class="ci-geo-dot red"></div>
-          <div class="ci-geo-dot amber"></div>
-          <div class="ci-geo-dot"></div>
-        </div>
-      </div>
-    </section>
+  <div class="body">
 
     <!-- KPIs -->
-    <div class="ci-section-label">Adopción IA en Polpaico</div>
-    <div class="ci-kpi-grid">
-      <div class="ci-kpi">
-        <div class="ci-kpi-icon">👥</div>
-        <div class="ci-kpi-num cyan" data-count="87">87</div>
-        <div class="ci-kpi-label">Colaboradores activos</div>
+    <div class="section-label">Adopción IA en Polpaico</div>
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-icon">👥</div>
+        <div class="kpi-num cyan" data-count="87">87</div>
+        <div class="kpi-label">Colaboradores activos</div>
       </div>
-      <div class="ci-kpi">
-        <div class="ci-kpi-icon">📚</div>
-        <div class="ci-kpi-num green" data-count="214">214</div>
-        <div class="ci-kpi-label">Lecciones completadas</div>
+      <div class="kpi-card">
+        <div class="kpi-icon">📚</div>
+        <div class="kpi-num green" data-count="214">214</div>
+        <div class="kpi-label">Lecciones completadas</div>
       </div>
-      <div class="ci-kpi">
-        <div class="ci-kpi-icon">🤖</div>
-        <div class="ci-kpi-num amber" data-count="34">34</div>
-        <div class="ci-kpi-label">Casos de uso en marcha</div>
+      <div class="kpi-card">
+        <div class="kpi-icon">🤖</div>
+        <div class="kpi-num amber" data-count="34">34</div>
+        <div class="kpi-label">Casos de uso en marcha</div>
       </div>
-      <div class="ci-kpi">
-        <div class="ci-kpi-icon">🏆</div>
-        <div class="ci-kpi-num red" data-count="8">8</div>
-        <div class="ci-kpi-label">Áreas con embajador IA</div>
+      <div class="kpi-card">
+        <div class="kpi-icon">🏆</div>
+        <div class="kpi-num red" data-count="8">8</div>
+        <div class="kpi-label">Áreas con embajador IA</div>
       </div>
     </div>
 
-    <!-- ACCESOS RÁPIDOS -->
-    <div class="ci-section-label">Accesos rápidos</div>
-    <div class="ci-accesos-grid">
-      <a href="ruta-ia.html" class="ci-acceso" style="--accent: #16C5D6; --icon-bg: rgba(22,197,214,0.12)">
-        <div class="ci-acceso-icon">🎯</div>
-        <div class="ci-acceso-titulo">Ruta IA</div>
-        <div class="ci-acceso-desc">Tu programa de formación paso a paso. 4 módulos, 18 lecciones.</div>
-        <div class="ci-acceso-arrow">Continuar →</div>
+    <!-- ACCESOS -->
+    <div class="section-label">Accesos rápidos</div>
+    <div class="accesos-grid">
+      <a href="#" class="acceso-card" style="--accent:#16C5D6;--icon-bg:rgba(22,197,214,0.1)">
+        <div class="acceso-icon">🎯</div>
+        <div class="acceso-titulo">Ruta IA</div>
+        <div class="acceso-desc">Tu programa de formación paso a paso. 4 módulos, 18 lecciones.</div>
+        <div class="acceso-arrow">Continuar →</div>
       </a>
-      <a href="cimiento-ia-prompts.html" class="ci-acceso" style="--accent: #2BA86F; --icon-bg: rgba(43,168,111,0.12)">
-        <div class="ci-acceso-icon">✍️</div>
-        <div class="ci-acceso-titulo">Prompts</div>
-        <div class="ci-acceso-desc">Biblioteca de prompts validados por área y herramienta.</div>
-        <div class="ci-acceso-arrow">Explorar →</div>
+      <a href="#" class="acceso-card" style="--accent:#2BA86F;--icon-bg:rgba(43,168,111,0.1)">
+        <div class="acceso-icon">✍️</div>
+        <div class="acceso-titulo">Prompts</div>
+        <div class="acceso-desc">Biblioteca de prompts validados por área y herramienta.</div>
+        <div class="acceso-arrow">Explorar →</div>
       </a>
-      <a href="Biblioteca de Prompts _descargable_.html" class="ci-acceso" style="--accent: #E0982A; --icon-bg: rgba(224,152,42,0.12)">
-        <div class="ci-acceso-icon">📥</div>
-        <div class="ci-acceso-titulo">Biblioteca</div>
-        <div class="ci-acceso-desc">Descarga la colección completa de prompts para usar sin conexión.</div>
-        <div class="ci-acceso-arrow">Descargar →</div>
+      <a href="#" class="acceso-card" style="--accent:#E0982A;--icon-bg:rgba(224,152,42,0.1)">
+        <div class="acceso-icon">📥</div>
+        <div class="acceso-titulo">Biblioteca</div>
+        <div class="acceso-desc">Descarga la colección completa de prompts para usar sin conexión.</div>
+        <div class="acceso-arrow">Descargar →</div>
       </a>
-      <a href="#" class="ci-acceso" style="--accent: #D2232A; --icon-bg: rgba(210,35,42,0.1)">
-        <div class="ci-acceso-icon">💬</div>
-        <div class="ci-acceso-titulo">Comunidad</div>
-        <div class="ci-acceso-desc">Comparte casos de uso, pregunta y aprende con tus colegas.</div>
-        <div class="ci-acceso-arrow">Ir →</div>
+      <a href="#" class="acceso-card" style="--accent:#D2232A;--icon-bg:rgba(210,35,42,0.08)">
+        <div class="acceso-icon">💬</div>
+        <div class="acceso-titulo">Comunidad</div>
+        <div class="acceso-desc">Comparte casos de uso, pregunta y aprende con tus colegas.</div>
+        <div class="acceso-arrow">Ir →</div>
       </a>
     </div>
 
     <!-- TIP + EMBAJADOR -->
-    <div class="ci-bottom-grid">
+    <div class="bottom-grid">
 
-      <!-- ✏️ EDITAR CADA SEMANA — sección Tip -->
-      <div class="ci-tip">
-        <div class="ci-tip-header">
-          <div class="ci-tip-badge">
-            <div class="ci-tip-badge-dot"></div>
-            Tip de la semana
-          </div>
-          <span class="ci-edit-hint">✏️ editar semanalmente</span>
+      <!-- ✏️ EDITAR CADA SEMANA -->
+      <div class="tip-card">
+        <div class="tip-header">
+          <div class="tip-badge"><div class="tip-dot"></div>Tip de la semana</div>
+          <span class="edit-hint">✏️ editar semanalmente</span>
         </div>
-        <!-- EDITAR: cambia el texto y el prompt de ejemplo -->
-        <p class="ci-tip-text">
-          Cuando uses Copilot en Outlook, empieza siempre dándole el <strong>contexto de tu rol</strong>. No es lo mismo pedirle que resuma un correo a secas, que decirle que eres Jefe de Logística y necesitas identificar los compromisos pendientes.
-        </p>
-        <div class="ci-tip-prompt">
-          Soy [tu cargo] en Polpaico. Resume este correo e identifica los 3 compromisos concretos que debo cumplir antes del viernes.
-        </div>
-        <!-- FIN EDITAR -->
+        <p class="tip-text">Cuando uses Copilot en Outlook, empieza siempre dándole el <strong>contexto de tu rol</strong>. No es lo mismo pedirle que resuma un correo a secas, que decirle que eres Jefe de Logística y necesitas identificar los compromisos pendientes.</p>
+        <div class="tip-prompt">Soy [tu cargo] en Polpaico. Resume este correo e identifica los 3 compromisos concretos que debo cumplir antes del viernes.</div>
       </div>
+      <!-- FIN EDITAR CADA SEMANA -->
 
-      <!-- ✏️ EDITAR CADA MES — sección Embajador -->
-      <div class="ci-embajador">
-        <div class="ci-emb-header">
-          <div class="ci-emb-badge">⭐ Embajador del mes</div>
-          <span class="ci-edit-hint">✏️ editar mensualmente</span>
+      <!-- ✏️ EDITAR CADA MES -->
+      <div class="emb-card">
+        <div class="emb-header">
+          <div class="emb-badge">⭐ Embajador del mes</div>
+          <span class="edit-hint">✏️ editar mensualmente</span>
         </div>
-        <!-- EDITAR: cambia nombre, área, herramienta e iniciales del avatar -->
-        <div class="ci-emb-card">
-          <div class="ci-emb-avatar">PZ</div>
+        <div class="emb-perfil">
+          <div class="emb-avatar">PZ</div>
           <div>
-            <div class="ci-emb-nombre">Pablo Zemelman</div>
-            <div class="ci-emb-area">Transformación Digital</div>
+            <div class="emb-nombre">Pablo Zemelman</div>
+            <div class="emb-area">Transformación Digital</div>
           </div>
         </div>
-        <div class="ci-emb-herramienta">🛠 Copilot Studio</div>
-        <div class="ci-emb-quote">
-          "La IA no reemplaza el criterio — lo amplifica. Nuestro trabajo ahora es aprender a hacer las preguntas correctas."
-        </div>
-        <!-- FIN EDITAR -->
+        <div class="emb-tool">🛠 Copilot Studio</div>
+        <div class="emb-quote">"La IA no reemplaza el criterio — lo amplifica. Nuestro trabajo ahora es aprender a hacer las preguntas correctas."</div>
       </div>
+      <!-- FIN EDITAR CADA MES -->
 
     </div>
-
-  </main>
+  </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Animación contador KPIs
       document.querySelectorAll('[data-count]').forEach(function(el) {
         var target = parseInt(el.getAttribute('data-count'), 10);
-        var duration = 1200;
         var start = null;
         function step(ts) {
           if (!start) start = ts;
-          var progress = Math.min((ts - start) / duration, 1);
-          var ease = 1 - Math.pow(1 - progress, 3);
-          el.textContent = Math.floor(ease * target);
-          if (progress < 1) requestAnimationFrame(step);
+          var p = Math.min((ts - start) / 1200, 1);
+          el.textContent = Math.floor((1 - Math.pow(1-p, 3)) * target);
+          if (p < 1) requestAnimationFrame(step);
           else el.textContent = target;
         }
         requestAnimationFrame(step);
