@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IA Generativa vs Tradicional</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.x/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f9f9f7;
+      color: #1a1a1a;
+      padding: 2rem 1rem;
+    }
+
+    .article-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 0 3rem;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #f0efe8;
+      color: #888780;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 0.5px solid #d3d1c7;
+      margin-bottom: 1rem;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-title {
+      font-size: 26px;
+      font-weight: 500;
+      line-height: 1.3;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      color: #5f5e5a;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .divider {
+      height: 0.5px;
+      background: #d3d1c7;
+      margin: 2rem 0;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: #888780;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: 17px;
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+
+    .body-text {
+      font-size: 15px;
+      color: #5f5e5a;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .analogy-box {
+      background: #f0efe8;
+      border-left: 3px solid #1D9E75;
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+    }
+
+    .analogy-box p {
+      font-size: 14px;
+      color: #5f5e5a;
+      line-height: 1.6;
+    }
+
+    .analogy-box strong { color: #1a1a1a; font-weight: 500; }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 1.5rem 0;
+    }
+
+    @media (max-width: 520px) {
+      .compare-grid { grid-template-columns: 1fr; }
+    }
+
+    .compare-card {
+      background: #fff;
+      border: 0.5px solid #d3d1c7;
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+    }
+
+    .compare-card .card-label {
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .compare-card .card-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1a1a1a;
+      margin-bottom: 0.75rem;
+    }
+
+    .compare-card ul {
+      padding-left: 1rem;
+    }
+
+    .compare-card li {
+      font-size: 13px;
+      color: #5f5e5a;
+      line-height: 1.6;
+      margin-bottom: 4px;
+    }
+
+    .trad-card { border-top: 2px solid #378ADD; }
+    .trad-card .card-label { color: #185FA5; }
+
+    .gen-card { border-top: 2px solid #1D9E75; }
+    .gen-card .card-label { color: #0F6E56; }
+
+    .use-case-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin: 1.5rem 0;
+    }
+
+    .use-case-item {
+      background: #f0efe8;
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      border: 0.5px solid #d3d1c7;
+    }
+
+    .use-case-item .uc-icon {
+      font-size: 20px;
+      color: #1D9E75;
+      margin-bottom: 6px;
+    }
+
+    .use-case-item .uc-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+    }
+
+    .use-case-item .uc-desc {
+      font-size: 12px;
+      color: #888780;
+      line-height: 1.5;
+    }
+
+    .highlight-box {
+      background: #E1F5EE;
+      border: 0.5px solid #5DCAA5;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .highlight-box p {
+      font-size: 14px;
+      color: #085041;
+      line-height: 1.65;
+    }
+
+    .highlight-box strong { color: #0F6E56; }
+  </style>
+</head>
+<body>
+  <div class="article-wrap">
+    <span class="tag">Comunidad digital · IA en acción</span>
+    <h1 class="hero-title">IA tradicional vs. IA generativa: ¿cuál es la diferencia y por qué importa?</h1>
+    <p class="hero-sub">Dos tecnologías que suenan parecido pero hacen cosas muy distintas. Entender la diferencia cambia cómo usamos las herramientas del día a día.</p>
+
+    <div class="divider"></div>
+
+    <div class="section-label">El problema con los nombres</div>
+    <h2 class="section-title">Todo se llama "inteligencia artificial"... pero no todo es igual</h2>
+    <p class="body-text">Cuando escuchamos "IA" pensamos en robots futuristas o en ChatGPT. Pero dentro del paraguas de la inteligencia artificial existen tecnologías muy distintas, con propósitos y capacidades diferentes. Las dos más relevantes hoy son la <strong>IA tradicional</strong> y la <strong>IA generativa</strong>.</p>
+
+    <div class="analogy-box">
+      <p>🔧 <strong>Analogía simple:</strong> La IA tradicional es como una báscula inteligente — mide, clasifica y predice con altísima precisión. La IA generativa es como un colaborador creativo — entiende lo que le preguntas, escribe, propone y genera cosas nuevas.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-label">Las diferencias clave</div>
+    <h2 class="section-title">¿Qué hace cada una?</h2>
+
+    <div class="compare-grid">
+      <div class="compare-card trad-card">
+        <div class="card-label">IA TRADICIONAL</div>
+        <div class="card-title">Analiza y predice con datos estructurados</div>
+        <ul>
+          <li>Aprende de datos históricos con reglas claras</li>
+          <li>Clasifica, detecta anomalías, predice valores</li>
+          <li>Muy buena en una tarea específica</li>
+          <li>Resultados precisos y explicables</li>
+          <li>Necesita datos etiquetados para entrenar</li>
+        </ul>
+      </div>
+      <div class="compare-card gen-card">
+        <div class="card-label">IA GENERATIVA</div>
+        <div class="card-title">Entiende y genera texto, imágenes, código</div>
+        <ul>
+          <li>Aprende patrones del lenguaje y contexto</li>
+          <li>Genera respuestas, redacta, traduce, resume</li>
+          <li>Flexible: sirve para muchas tareas distintas</li>
+          <li>Interacción natural en lenguaje humano</li>
+          <li>No necesita datos propios para empezar</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-label">Ejemplos concretos</div>
+    <h2 class="section-title">¿Y en el trabajo, cómo se ve cada una?</h2>
+    <p class="body-text">Ambas tecnologías ya están presentes en nuestro entorno. La clave es saber cuándo usar cada una.</p>
+
+    <div class="use-case-grid">
+      <div class="use-case-item">
+        <div class="uc-icon"><i class="ti ti-chart-bar"></i></div>
+        <div class="uc-title">Predicción de ventas</div>
+        <div class="uc-desc">IA tradicional analiza histórico y proyecta demanda</div>
+      </div>
+      <div class="use-case-item">
+        <div class="uc-icon"><i class="ti ti-file-text"></i></div>
+        <div class="uc-title">Redactar un informe</div>
+        <div class="uc-desc">IA generativa toma tus datos y genera el texto</div>
+      </div>
+      <div class="use-case-item">
+        <div class="uc-icon"><i class="ti ti-alert-triangle"></i></div>
+        <div class="uc-title">Detectar fallas</div>
+        <div class="uc-desc">IA tradicional identifica patrones anómalos en producción</div>
+      </div>
+      <div class="use-case-item">
+        <div class="uc-icon"><i class="ti ti-message-circle"></i></div>
+        <div class="uc-title">Responder preguntas</div>
+        <div class="uc-desc">IA generativa entiende la pregunta y da contexto útil</div>
+      </div>
+      <div class="use-case-item">
+        <div class="uc-icon"><i class="ti ti-check"></i></div>
+        <div class="uc-title">Clasificar reclamos</div>
+        <div class="uc-desc">IA tradicional categoriza tickets según patrones previos</div>
+      </div>
+      <div class="use-case-item">
+        <div class="uc-icon"><i class="ti ti-bulb"></i></div>
+        <div class="uc-title">Brainstorming</div>
+        <div class="uc-desc">IA generativa propone ideas, variantes y alternativas</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-label">El gran aprendizaje</div>
+    <h2 class="section-title">No son rivales — son complementarias</h2>
+    <p class="body-text">La IA tradicional lleva décadas optimizando procesos industriales, financieros y logísticos. La IA generativa llegó a democratizar el acceso: ahora cualquier persona puede interactuar con IA sin saber programar.</p>
+    <p class="body-text">El poder real está en combinarlas: usar IA tradicional para analizar datos de calidad de hormigón, y luego usar IA generativa para explicarle los resultados a un cliente en lenguaje simple.</p>
+
+    <div class="highlight-box">
+      <p>💡 <strong>Para recordar:</strong> Si la tarea tiene datos históricos claros y una respuesta correcta definida → IA tradicional. Si necesitas generar, redactar, resumir o conversar → IA generativa. En muchos casos, las mejores soluciones usan ambas.</p>
+    </div>
+  </div>
+</body>
+</html>
