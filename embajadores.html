@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Embajadores Digitales · Cimiento IA</title>
+  <title>Quick Wins IA · Cimiento IA</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     a { text-decoration: none; color: inherit; }
@@ -35,17 +35,17 @@
     .hero-stats { display: flex; gap: 32px; }
     .hero-stat-num { font-size: 26px; font-weight: 800; color: #f0ede8; line-height: 1; }
     .hero-stat-label { font-size: 11px; color: #555; margin-top: 2px; }
-    .hero-net {
-      position: absolute; right: 48px; top: 50%; transform: translateY(-50%);
-      opacity: 0.12;
-    }
+    .hero-net { position: absolute; right: 48px; top: 50%; transform: translateY(-50%); opacity: 0.12; }
     .hero-net svg { width: 180px; height: 140px; }
 
     /* ── BODY ───────────────────────────────────────────────── */
     .body { max-width: 960px; margin: 0 auto; padding: 32px 24px 80px; }
 
+    /* ── BARRA SUPERIOR ─────────────────────────────────────── */
+    .top-bar { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 28px; flex-wrap: wrap; gap: 14px; }
+
     /* ── FILTROS ────────────────────────────────────────────── */
-    .filtros { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+    .filtros { display: flex; flex-wrap: wrap; gap: 8px; }
     .filtro-pill {
       padding: 6px 16px; border-radius: 20px;
       font-size: 12px; font-weight: 600;
@@ -56,8 +56,13 @@
     .filtro-pill:hover { border-color: #1a1c20; color: #1a1c20; }
     .filtro-pill.activo { background: #1a1c20; color: #f0ede8; border-color: #1a1c20; }
 
+    /* Status legend */
+    .status-legend { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding-top: 4px; }
+    .legend-dot { display: flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
     /* ── GRID ───────────────────────────────────────────────── */
-    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 
     /* ── CARD ───────────────────────────────────────────────── */
     .card {
@@ -66,90 +71,93 @@
       border-radius: 14px;
       overflow: hidden;
       box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-      transition: box-shadow 0.2s, transform 0.2s, opacity 0.3s;
+      transition: box-shadow 0.2s, transform 0.2s;
       display: flex; flex-direction: column;
     }
     .card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.1); transform: translateY(-3px); }
     .card.oculta { display: none; }
+    .card-stripe { height: 5px; flex-shrink: 0; }
 
-    /* Franja de color por área */
-    .card-stripe { height: 4px; }
-
-    /* Cabecera de card */
-    .card-top { padding: 20px 18px 14px; display: flex; flex-direction: column; gap: 12px; }
-    .card-meta { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
-    .card-avatar {
-      width: 48px; height: 48px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 16px; font-weight: 800; color: #fff;
-      flex-shrink: 0; letter-spacing: -0.5px;
-    }
-    .badge-nivel {
-      padding: 3px 9px; border-radius: 20px;
+    /* Cabecera */
+    .card-head { padding: 18px 20px 14px; display: flex; flex-direction: column; gap: 10px; }
+    .card-badges { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+    .badge-area {
+      padding: 3px 10px; border-radius: 20px;
       font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-      flex-shrink: 0;
     }
-    .badge-embajador { background: rgba(224,152,42,0.15); color: #b8780a; border: 1px solid rgba(224,152,42,0.3); }
-    .badge-experto   { background: rgba(22,197,214,0.12); color: #0ea5b5; border: 1px solid rgba(22,197,214,0.25); }
-    .badge-pionero   { background: rgba(43,168,111,0.12); color: #1d8a52; border: 1px solid rgba(43,168,111,0.25); }
+    .badge-status {
+      padding: 3px 10px; border-radius: 6px;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.3px; white-space: nowrap;
+    }
+    .s-entregado  { background: rgba(43,168,111,0.12); color: #1d8a52; border: 1px solid rgba(43,168,111,0.25); }
+    .s-pruebas    { background: rgba(224,152,42,0.12); color: #b8780a; border: 1px solid rgba(224,152,42,0.25); }
+    .s-desarrollo { background: rgba(22,197,214,0.12); color: #0ea5b5; border: 1px solid rgba(22,197,214,0.25); }
 
-    .card-nombre { font-size: 15px; font-weight: 800; letter-spacing: -0.3px; line-height: 1.2; }
-    .card-area   { font-size: 12px; color: #999; margin-top: 1px; }
+    .card-title { font-size: 15px; font-weight: 800; letter-spacing: -0.3px; line-height: 1.25; }
+    .card-sponsor { font-size: 12px; color: #aaa; }
+    .card-sponsor strong { color: #555; font-weight: 600; }
 
-    /* Herramienta */
-    .card-tool {
-      display: inline-flex; align-items: center; gap: 5px;
+    /* Bloque oscuro */
+    .card-bloque {
+      margin: 0 14px;
+      background: #1a1c20; border-radius: 10px;
+      padding: 14px 16px; flex: 1;
+    }
+    .card-bloque-text {
+      font-family: 'SF Mono','Fira Mono','Courier New',monospace;
+      font-size: 12px; color: #8a8580; line-height: 1.7;
+    }
+    .card-bloque-text .hi  { color: #16C5D6; }
+    .card-bloque-text .val { color: #2BA86F; font-weight: 700; }
+    .card-bloque-text .lbl { color: #E0982A; }
+    .card-bloque-text p { margin-bottom: 0; }
+
+    /* Footer */
+    .card-footer {
+      padding: 12px 20px 16px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid rgba(0,0,0,0.06); margin-top: 14px;
+      gap: 8px; flex-wrap: wrap;
+    }
+    .card-kpi { font-size: 12px; color: #888; display: flex; flex-direction: column; gap: 1px; }
+    .card-kpi strong { font-size: 13px; font-weight: 700; color: #1a1c20; }
+    .card-prov {
       padding: 3px 10px; border-radius: 6px;
       font-size: 11px; font-weight: 600;
-      background: rgba(0,0,0,0.04); color: #555;
-      border: 1px solid rgba(0,0,0,0.08);
-      align-self: flex-start;
+      background: rgba(0,0,0,0.04); color: #888;
+      border: 1px solid rgba(0,0,0,0.08); white-space: nowrap;
     }
-
-    /* Caso de uso */
-    .card-caso {
-      margin: 0 14px 14px;
-      background: #1a1c20; border-radius: 8px;
-      padding: 12px 14px; flex: 1;
-    }
-    .card-caso-text {
-      font-family: 'SF Mono','Fira Mono','Courier New',monospace;
-      font-size: 11.5px; color: #8a8580; line-height: 1.6;
-    }
-    .card-caso-text .hi { color: #16C5D6; }
-    .card-caso-text .val { color: #2BA86F; }
   </style>
 </head>
 <body>
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-breadcrumb">CIMIENTO·IA <span>/</span> COMITÉ DX</div>
-    <h1 class="hero-title">Embajadores<br><em>Digitales</em></h1>
-    <p class="hero-sub">Los líderes que están transformando Polpaico desde adentro. Cada embajador impulsa la adopción IA en su área y es tu primer contacto para aprender.</p>
+    <div class="hero-breadcrumb">CIMIENTO·IA <span>/</span> CENTRO DE EXCELENCIA IA</div>
+    <h1 class="hero-title">Quick Wins<br><em>IA</em></h1>
+    <p class="hero-sub">Iniciativas concretas de inteligencia artificial en marcha en Polpaico. 6 Quick Wins identificados en 5 áreas, desarrollados con CENIA y Grupo Datco.</p>
     <div class="hero-stats">
       <div>
-        <div class="hero-stat-num">8</div>
-        <div class="hero-stat-label">Embajadores activos</div>
+        <div class="hero-stat-num">5</div>
+        <div class="hero-stat-label">Iniciativas en curso</div>
       </div>
       <div>
-        <div class="hero-stat-num">6</div>
-        <div class="hero-stat-label">Áreas cubiertas</div>
+        <div class="hero-stat-num">2</div>
+        <div class="hero-stat-label">Ya entregadas</div>
       </div>
       <div>
-        <div class="hero-stat-num">34</div>
-        <div class="hero-stat-label">Casos de uso liderados</div>
+        <div class="hero-stat-num">5</div>
+        <div class="hero-stat-label">Áreas involucradas</div>
       </div>
     </div>
-    <!-- Red decorativa -->
     <div class="hero-net">
       <svg viewBox="0 0 180 140" fill="none" xmlns="http://www.w3.org/2000/svg">
         <line x1="30" y1="70" x2="90" y2="30"  stroke="#16C5D6" stroke-width="1.5"/>
         <line x1="90" y1="30" x2="150" y2="50" stroke="#16C5D6" stroke-width="1.5"/>
-        <line x1="90" y1="30" x2="110" y2="90" stroke="#16C5D6" stroke-width="1.5"/>
+        <line x1="90" y1="30" x2="110" y2="90" stroke="#16C5D6" stroke-width="1"/>
         <line x1="30" y1="70" x2="110" y2="90" stroke="#16C5D6" stroke-width="1"/>
         <line x1="110" y1="90" x2="150" y2="50" stroke="#16C5D6" stroke-width="1"/>
-        <line x1="110" y1="90" x2="80" y2="120" stroke="#16C5D6" stroke-width="1"/>
+        <line x1="110" y1="90" x2="80"  y2="120" stroke="#16C5D6" stroke-width="1"/>
         <circle cx="30"  cy="70"  r="5" fill="#D2232A"/>
         <circle cx="90"  cy="30"  r="7" fill="#16C5D6"/>
         <circle cx="150" cy="50"  r="5" fill="#2BA86F"/>
@@ -161,201 +169,176 @@
 
   <div class="body">
 
-    <!-- FILTROS -->
-    <div class="filtros" id="filtros">
-      <div class="filtro-pill activo" data-filtro="todos">Todos</div>
-      <div class="filtro-pill" data-filtro="TI">TI</div>
-      <div class="filtro-pill" data-filtro="Finanzas">Finanzas</div>
-      <div class="filtro-pill" data-filtro="Marketing">Marketing</div>
-      <div class="filtro-pill" data-filtro="Comercial">Comercial</div>
-      <div class="filtro-pill" data-filtro="Operaciones">Operaciones</div>
-      <div class="filtro-pill" data-filtro="RRHH">RRHH</div>
+    <div class="top-bar">
+      <!-- Filtros por área -->
+      <div class="filtros" id="filtros">
+        <div class="filtro-pill activo" data-filtro="todos">Todos</div>
+        <div class="filtro-pill" data-filtro="Logística">Logística</div>
+        <div class="filtro-pill" data-filtro="Comercial">Comercial</div>
+        <div class="filtro-pill" data-filtro="Finanzas">Finanzas</div>
+        <div class="filtro-pill" data-filtro="Legal">Legal</div>
+        <div class="filtro-pill" data-filtro="RRHH">RRHH</div>
+      </div>
+      <!-- Leyenda de status -->
+      <div class="status-legend">
+        <div class="legend-dot"><div class="dot" style="background:#2BA86F"></div><span style="color:#1d8a52">Entregado</span></div>
+        <div class="legend-dot"><div class="dot" style="background:#E0982A"></div><span style="color:#b8780a">En pruebas</span></div>
+        <div class="legend-dot"><div class="dot" style="background:#16C5D6"></div><span style="color:#0ea5b5">En desarrollo</span></div>
+      </div>
     </div>
 
     <!-- GRID -->
     <div class="grid" id="grid">
 
-      <!-- Christian Vergara -->
-      <div class="card" data-area="TI">
-        <div class="card-stripe" style="background:#16C5D6"></div>
-        <div class="card-top">
-          <div class="card-meta">
-            <div class="card-avatar" style="background:linear-gradient(135deg,#16C5D6,#0891b2)">CV</div>
-            <span class="badge-nivel badge-embajador">Embajador</span>
+      <!-- 1 · Descarga de Guías · Logística -->
+      <div class="card" data-area="Logística">
+        <div class="card-stripe" style="background:#8B5CF6"></div>
+        <div class="card-head">
+          <div class="card-badges">
+            <span class="badge-area" style="background:rgba(139,92,246,0.1);color:#7c3aed;border:1px solid rgba(139,92,246,0.2)">Logística · PPEE</span>
+            <span class="badge-status s-pruebas">En pruebas</span>
           </div>
-          <div>
-            <div class="card-nombre">Christian Vergara</div>
-            <div class="card-area">TI · SAP</div>
-          </div>
-          <div class="card-tool">⚙️ SAP Joule ERP</div>
+          <div class="card-title">Agente IA de Descarga y Ordenamiento de Guías de Despacho</div>
+          <div class="card-sponsor">Sponsor: <strong>Leonardo Sabariego</strong></div>
         </div>
-        <div class="card-caso">
-          <div class="card-caso-text">
-            Integración de <span class="hi">SAP Joule ERP</span> con flujos<br>
-            de aprobación automática.<br>
-            Tiempo de procesamiento <span class="val">−35%</span>.
+        <div class="card-bloque">
+          <div class="card-bloque-text">
+            <p>Los analistas descargaban guías manualmente</p>
+            <p>desde el portal — proceso de <span class="lbl">horas o días</span>.</p>
+            <p>&nbsp;</p>
+            <p>Agente <span class="hi">conversacional</span> que interpreta pedidos</p>
+            <p>en lenguaje natural y entrega los PDFs</p>
+            <p>solicitados directo en el chat.</p>
           </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-kpi">
+            <span>Beneficio</span>
+            <strong>Rapidez · Menos errores</strong>
+          </div>
+          <span class="card-prov">CENIA</span>
         </div>
       </div>
 
-      <!-- Sandra Vallejos -->
+      <!-- 2 · Monitor de Precios · Comercial -->
+      <div class="card" data-area="Comercial">
+        <div class="card-stripe" style="background:#D2232A"></div>
+        <div class="card-head">
+          <div class="card-badges">
+            <span class="badge-area" style="background:rgba(210,35,42,0.1);color:#D2232A;border:1px solid rgba(210,35,42,0.2)">Gestión Comercial</span>
+            <span class="badge-status s-entregado">Entregado</span>
+          </div>
+          <div class="card-title">Agente IA para Monitoreo de Precios de Mercado</div>
+          <div class="card-sponsor">Sponsor: <strong>Claudia Soto</strong></div>
+        </div>
+        <div class="card-bloque">
+          <div class="card-bloque-text">
+            <p>Scraping manual de Sodimac, Construmart</p>
+            <p>y Prodalam a Excel — tiempo perdido en</p>
+            <p>carga administrativa.</p>
+            <p>&nbsp;</p>
+            <p>Agente que extrae precios de cemento 25 kg</p>
+            <p>automáticamente y los tabula en <span class="hi">Databricks</span>.</p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-kpi">
+            <span>KPI</span>
+            <strong>Productividad ×10 · Tiempo −90%</strong>
+          </div>
+          <span class="card-prov">CENIA</span>
+        </div>
+      </div>
+
+      <!-- 3 · Tesorería · Finanzas -->
       <div class="card" data-area="Finanzas">
         <div class="card-stripe" style="background:#2BA86F"></div>
-        <div class="card-top">
-          <div class="card-meta">
-            <div class="card-avatar" style="background:linear-gradient(135deg,#2BA86F,#059669)">SV</div>
-            <span class="badge-nivel badge-embajador">Embajador</span>
+        <div class="card-head">
+          <div class="card-badges">
+            <span class="badge-area" style="background:rgba(43,168,111,0.1);color:#1d8a52;border:1px solid rgba(43,168,111,0.2)">Finanzas · Tesorería</span>
+            <span class="badge-status s-pruebas">En pruebas</span>
           </div>
-          <div>
-            <div class="card-nombre">Sandra Vallejos</div>
-            <div class="card-area">Finanzas</div>
-          </div>
-          <div class="card-tool">💼 Copilot M365</div>
+          <div class="card-title">Agente Tesorería — Respuestas de Pago Automatizadas</div>
+          <div class="card-sponsor">Sponsor: <strong>Juan Valladares</strong></div>
         </div>
-        <div class="card-caso">
-          <div class="card-caso-text">
-            Cierre mensual automatizado con<br>
-            <span class="hi">Copilot M365</span>.<br>
-            <span class="val">−8 horas</span> de trabajo manual por período.
+        <div class="card-bloque">
+          <div class="card-bloque-text">
+            <p>Analistas verificaban facturas en <span class="hi">SAP</span></p>
+            <p>y respondían manualmente — alta carga y</p>
+            <p>respuestas sin estandarizar.</p>
+            <p>&nbsp;</p>
+            <p>Agente que detecta consultas por mail,</p>
+            <p>valida folios y genera borrador de respuesta</p>
+            <p>con fecha de pago para revisión.</p>
           </div>
         </div>
-      </div>
-
-      <!-- Kevin Valenzuela -->
-      <div class="card" data-area="Marketing">
-        <div class="card-stripe" style="background:#E0982A"></div>
-        <div class="card-top">
-          <div class="card-meta">
-            <div class="card-avatar" style="background:linear-gradient(135deg,#E0982A,#d97706)">KV</div>
-            <span class="badge-nivel badge-experto">Experto</span>
+        <div class="card-footer">
+          <div class="card-kpi">
+            <span>KPI</span>
+            <strong>Ahorro 4 HH / día</strong>
           </div>
-          <div>
-            <div class="card-nombre">Kevin Valenzuela</div>
-            <div class="card-area">Marketing</div>
-          </div>
-          <div class="card-tool">📣 Vambe</div>
-        </div>
-        <div class="card-caso">
-          <div class="card-caso-text">
-            Voicebot logístico con <span class="hi">Vambe</span>.<br>
-            Automatiza el <span class="val">60%</span> de llamadas<br>
-            entrantes del área.
-          </div>
+          <span class="card-prov">Grupo Datco</span>
         </div>
       </div>
 
-      <!-- Claudia Soto -->
-      <div class="card" data-area="Comercial">
-        <div class="card-stripe" style="background:#D2232A"></div>
-        <div class="card-top">
-          <div class="card-meta">
-            <div class="card-avatar" style="background:linear-gradient(135deg,#D2232A,#9f1239)">CS</div>
-            <span class="badge-nivel badge-experto">Experto</span>
-          </div>
-          <div>
-            <div class="card-nombre">Claudia Soto</div>
-            <div class="card-area">Comercial · CSC</div>
-          </div>
-          <div class="card-tool">🤖 AgentForce</div>
-        </div>
-        <div class="card-caso">
-          <div class="card-caso-text">
-            Agente <span class="hi">AgentForce</span> en CSC.<br>
-            NPS del área <span class="val">+12 puntos</span><br>
-            en los primeros 60 días.
-          </div>
-        </div>
-      </div>
-
-      <!-- Matías Peralta -->
-      <div class="card" data-area="TI">
+      <!-- 4 · Solicitudes Legales · Legal -->
+      <div class="card" data-area="Legal">
         <div class="card-stripe" style="background:#16C5D6"></div>
-        <div class="card-top">
-          <div class="card-meta">
-            <div class="card-avatar" style="background:linear-gradient(135deg,#6366f1,#16C5D6)">MP</div>
-            <span class="badge-nivel badge-embajador">Embajador</span>
+        <div class="card-head">
+          <div class="card-badges">
+            <span class="badge-area" style="background:rgba(22,197,214,0.1);color:#0ea5b5;border:1px solid rgba(22,197,214,0.2)">Legal · Contratos</span>
+            <span class="badge-status s-entregado">Entregado</span>
           </div>
-          <div>
-            <div class="card-nombre">Matías Peralta</div>
-            <div class="card-area">TI · Arquitectura</div>
-          </div>
-          <div class="card-tool">☁️ Azure AI Foundry</div>
+          <div class="card-title">Agente de Gestión — Solicitudes Legales</div>
+          <div class="card-sponsor">Sponsor: <strong>Pamela Arranz</strong></div>
         </div>
-        <div class="card-caso">
-          <div class="card-caso-text">
-            Arquitectura del hub IA corporativo<br>
-            sobre <span class="hi">Azure AI Foundry</span>.<br>
-            Base para los <span class="val">34 casos</span> del comité.
+        <div class="card-bloque">
+          <div class="card-bloque-text">
+            <p>Solicitudes llegaban por correo y se</p>
+            <p>registraban en Excel manualmente — riesgo</p>
+            <p>de pérdida y poca visibilidad.</p>
+            <p>&nbsp;</p>
+            <p>Agente que procesa <span class="hi">legal@polpaico.cl</span>,</p>
+            <p>clasifica contratos, extrae datos clave y</p>
+            <p>actualiza la planilla automáticamente.</p>
           </div>
         </div>
-      </div>
-
-      <!-- Francisco Echeverría -->
-      <div class="card" data-area="Operaciones">
-        <div class="card-stripe" style="background:#8B5CF6"></div>
-        <div class="card-top">
-          <div class="card-meta">
-            <div class="card-avatar" style="background:linear-gradient(135deg,#8B5CF6,#6366f1)">FE</div>
-            <span class="badge-nivel badge-pionero">Pionero</span>
+        <div class="card-footer">
+          <div class="card-kpi">
+            <span>Beneficio</span>
+            <strong>Trazabilidad · Reducción de errores</strong>
           </div>
-          <div>
-            <div class="card-nombre">Francisco Echeverría</div>
-            <div class="card-area">Operaciones</div>
-          </div>
-          <div class="card-tool">🔬 CENIA</div>
-        </div>
-        <div class="card-caso">
-          <div class="card-caso-text">
-            IA predictiva en operaciones<br>
-            con <span class="hi">CENIA</span>. Detección temprana<br>
-            de fallas en equipos de planta.
-          </div>
+          <span class="card-prov">CENIA</span>
         </div>
       </div>
 
-      <!-- Jesús Bravo -->
-      <div class="card" data-area="Comercial">
-        <div class="card-stripe" style="background:#D2232A"></div>
-        <div class="card-top">
-          <div class="card-meta">
-            <div class="card-avatar" style="background:linear-gradient(135deg,#D2232A,#E0982A)">JB</div>
-            <span class="badge-nivel badge-pionero">Pionero</span>
-          </div>
-          <div>
-            <div class="card-nombre">Jesús Bravo</div>
-            <div class="card-area">Comercial</div>
-          </div>
-          <div class="card-tool">📊 Einstein Analytics</div>
-        </div>
-        <div class="card-caso">
-          <div class="card-caso-text">
-            Scoring de clientes B2B con<br>
-            <span class="hi">Salesforce Einstein</span>.<br>
-            Priorización automática de cartera.
-          </div>
-        </div>
-      </div>
-
-      <!-- Dunia Alangua -->
+      <!-- 5 · Legislación Laboral · RRHH -->
       <div class="card" data-area="RRHH">
         <div class="card-stripe" style="background:#E0982A"></div>
-        <div class="card-top">
-          <div class="card-meta">
-            <div class="card-avatar" style="background:linear-gradient(135deg,#E0982A,#D2232A)">DA</div>
-            <span class="badge-nivel badge-experto">Experto</span>
+        <div class="card-head">
+          <div class="card-badges">
+            <span class="badge-area" style="background:rgba(224,152,42,0.1);color:#b8780a;border:1px solid rgba(224,152,42,0.2)">RRHH · Gestión de Personas</span>
+            <span class="badge-status s-desarrollo">En desarrollo</span>
           </div>
-          <div>
-            <div class="card-nombre">Dunia Alangua</div>
-            <div class="card-area">RRHH</div>
-          </div>
-          <div class="card-tool">👥 SAP Joule SF</div>
+          <div class="card-title">Agente de Monitoreo de Legislación y Contingencia Laboral</div>
+          <div class="card-sponsor">Sponsor: <strong>Luis Marchant</strong></div>
         </div>
-        <div class="card-caso">
-          <div class="card-caso-text">
-            Agente laboral con <span class="hi">SAP Joule SF</span>.<br>
-            Consultas de RRHH <span class="val">24/7</span><br>
-            sin intervención manual.
+        <div class="card-bloque">
+          <div class="card-bloque-text">
+            <p>RRHH se enteraba de cambios legales solo</p>
+            <p>después de aprobados — sin anticipación.</p>
+            <p>&nbsp;</p>
+            <p>Agente en <span class="hi">Copilot Web</span> que vigila fuentes</p>
+            <p>oficiales, detecta cambios con NLP y genera</p>
+            <p>reportes de impacto para el equipo.</p>
           </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-kpi">
+            <span>Beneficio</span>
+            <strong>Mayor velocidad en extracción de información</strong>
+          </div>
+          <span class="card-prov">CENIA</span>
         </div>
       </div>
 
@@ -371,7 +354,6 @@
         pill.addEventListener('click', function() {
           pills.forEach(function(p) { p.classList.remove('activo'); });
           pill.classList.add('activo');
-
           var filtro = pill.getAttribute('data-filtro');
           cards.forEach(function(card) {
             if (filtro === 'todos' || card.getAttribute('data-area') === filtro) {
