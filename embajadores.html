@@ -41,6 +41,38 @@
     /* ── BODY ───────────────────────────────────────────────── */
     .body { max-width: 960px; margin: 0 auto; padding: 32px 24px 80px; }
 
+    /* ── TABS ───────────────────────────────────────────────── */
+    .tabs-bar {
+      display: flex; gap: 4px;
+      border-bottom: 2px solid rgba(0,0,0,0.08);
+      margin-bottom: 28px;
+    }
+    .tab-btn {
+      padding: 10px 20px; font-size: 13px; font-weight: 600;
+      color: #999; background: none; border: none;
+      cursor: pointer; position: relative; bottom: -2px;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s; white-space: nowrap;
+    }
+    .tab-btn:hover { color: #1a1c20; }
+    .tab-btn.activo { color: #1a1c20; border-bottom-color: #1a1c20; }
+
+    .tab-panel { display: none; }
+    .tab-panel.activo { display: block; }
+
+    /* Por definir */
+    .por-definir {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 80px 24px; text-align: center; gap: 16px;
+    }
+    .por-definir-icono {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: rgba(0,0,0,0.06); display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+    }
+    .por-definir h3 { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; }
+    .por-definir p { font-size: 13px; color: #999; max-width: 360px; }
+
     /* ── BARRA SUPERIOR ─────────────────────────────────────── */
     .top-bar { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 28px; flex-wrap: wrap; gap: 14px; }
 
@@ -168,6 +200,15 @@
   </div>
 
   <div class="body">
+
+    <!-- TABS -->
+    <div class="tabs-bar">
+      <button class="tab-btn activo" data-tab="quick-wins">Quick Wins IA</button>
+      <button class="tab-btn" data-tab="embajadores">Conoce a nuestros Embajadores Digitales por área</button>
+    </div>
+
+    <!-- PANEL: Quick Wins -->
+    <div class="tab-panel activo" id="tab-quick-wins">
 
     <div class="top-bar">
       <!-- Filtros por área -->
@@ -342,14 +383,38 @@
         </div>
       </div>
 
+    </div><!-- /grid -->
+
+    </div><!-- /tab-panel quick-wins -->
+
+    <!-- PANEL: Embajadores -->
+    <div class="tab-panel" id="tab-embajadores">
+      <div class="por-definir">
+        <div class="por-definir-icono">🧭</div>
+        <h3>Por definir</h3>
+        <p>Los embajadores digitales por área serán anunciados próximamente. Aquí aparecerán los líderes de adopción IA de cada gerencia.</p>
+      </div>
     </div>
+
   </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+
+      // Tabs
+      var tabBtns = document.querySelectorAll('.tab-btn');
+      tabBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          tabBtns.forEach(function(b) { b.classList.remove('activo'); });
+          document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('activo'); });
+          btn.classList.add('activo');
+          document.getElementById('tab-' + btn.getAttribute('data-tab')).classList.add('activo');
+        });
+      });
+
+      // Filtros
       var pills = document.querySelectorAll('.filtro-pill');
       var cards = document.querySelectorAll('.card');
-
       pills.forEach(function(pill) {
         pill.addEventListener('click', function() {
           pills.forEach(function(p) { p.classList.remove('activo'); });
