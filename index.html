@@ -84,6 +84,28 @@
     .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 14px; margin-bottom: 32px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
     .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
+    /* ── CASO ÉXITO ─────────────────────────────────────────── */
+    .caso-card {
+      background: #fff; border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 14px; overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      margin-bottom: 32px;
+    }
+    .caso-header {
+      background: #1a1c20; padding: 18px 24px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .caso-badge {
+      background: rgba(210,35,42,0.2); border: 1px solid rgba(210,35,42,0.4);
+      border-radius: 20px; padding: 3px 12px;
+      font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      color: #ff6b6b; flex-shrink: 0;
+    }
+    .caso-titulo { font-size: 14px; font-weight: 700; color: #f0ede8; }
+    .caso-subtitulo { font-size: 12px; color: #555; margin-top: 2px; }
+    .caso-video { padding: 0; }
+    .caso-video video { display: block; width: 100%; max-height: 420px; background: #000; }
+
     /* ── ACCESOS ────────────────────────────────────────────── */
     .accesos-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 32px; }
     .acceso-card {
@@ -256,10 +278,27 @@
       </a>
     </div>
 
-    <!-- VIDEO -->
+    <!-- VIDEO INTRO -->
     <div class="section-label">Introducción a la IA</div>
     <div class="video-wrap">
       <iframe src="https://www.youtube.com/embed/4bXNYw_dTeY" title="Introducción a la IA" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <!-- CASO DE ÉXITO -->
+    <div class="section-label">Caso de éxito</div>
+    <div class="caso-card">
+      <div class="caso-header">
+        <span class="caso-badge">Entregado</span>
+        <div>
+          <div class="caso-titulo">Agente IA para Monitoreo de Precios de Mercado</div>
+          <div class="caso-subtitulo">Gestión Comercial · Sponsor: Claudia Soto · Desarrollado con CENIA</div>
+        </div>
+      </div>
+      <div class="caso-video">
+        <video controls preload="metadata">
+          <source src="video-monitoreo-precios.mp4" type="video/mp4">
+        </video>
+      </div>
     </div>
 
     <!-- TIP + EMBAJADOR -->

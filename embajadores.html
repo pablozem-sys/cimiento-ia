@@ -159,6 +159,14 @@
       background: rgba(0,0,0,0.04); color: #888;
       border: 1px solid rgba(0,0,0,0.08); white-space: nowrap;
     }
+
+    /* Video dentro de card */
+    .card-video { margin: 0 14px 14px; border-radius: 10px; overflow: hidden; }
+    .card-video video { display: block; width: 100%; background: #000; }
+    .card-video-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      color: #aaa; padding: 0 14px 8px; margin-top: 12px;
+    }
   </style>
 </head>
 <body>
@@ -281,6 +289,12 @@
             <p>Agente que extrae precios de cemento 25 kg</p>
             <p>automáticamente y los tabula en <span class="hi">Databricks</span>.</p>
           </div>
+        </div>
+        <div class="card-video-label">Cápsula · Caso de éxito</div>
+        <div class="card-video">
+          <video controls preload="metadata">
+            <source src="video-monitoreo-precios.mp4" type="video/mp4">
+          </video>
         </div>
         <div class="card-footer">
           <div class="card-kpi">
