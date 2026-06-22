@@ -63,7 +63,7 @@
     }
 
     /* ── KPIs ───────────────────────────────────────────────── */
-    .kpi-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 32px; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 32px; }
     .kpi-card {
       background: #fff; border: 1px solid rgba(0,0,0,0.08);
       border-radius: 12px; padding: 20px 18px;
@@ -197,7 +197,7 @@
     }
 
     @media (max-width: 768px) {
-      .kpi-grid { grid-template-columns: repeat(2,1fr); }
+      .kpi-grid { grid-template-columns: repeat(3,1fr); }
       .accesos-grid { grid-template-columns: repeat(2,1fr); }
       .bottom-grid { grid-template-columns: 1fr; }
       .hero-geo { display: none; }
@@ -228,24 +228,19 @@
     <div class="section-label">Adopción IA en Polpaico</div>
     <div class="kpi-grid">
       <div class="kpi-card">
-        <div class="kpi-icon">👥</div>
-        <div class="kpi-num cyan" data-count="87">87</div>
-        <div class="kpi-label">Colaboradores activos</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-icon">📚</div>
-        <div class="kpi-num green" data-count="214">214</div>
-        <div class="kpi-label">Lecciones completadas</div>
-      </div>
-      <div class="kpi-card">
         <div class="kpi-icon">🤖</div>
-        <div class="kpi-num amber" data-count="34">34</div>
-        <div class="kpi-label">Casos de uso en marcha</div>
+        <div class="kpi-num amber" data-count="5">5</div>
+        <div class="kpi-label">Casos de uso activos</div>
       </div>
       <div class="kpi-card">
         <div class="kpi-icon">🏆</div>
-        <div class="kpi-num red" data-count="8">8</div>
-        <div class="kpi-label">Áreas con embajador IA</div>
+        <div class="kpi-num cyan" data-count="8">8</div>
+        <div class="kpi-label">Embajadores digitales</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">🚀</div>
+        <div class="kpi-num red" style="font-size:22px;letter-spacing:-0.5px">24 JUN</div>
+        <div class="kpi-label">Lanzamiento oficial</div>
       </div>
     </div>
 
