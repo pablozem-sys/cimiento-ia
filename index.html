@@ -79,6 +79,34 @@
     .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 14px; margin-bottom: 32px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
     .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
+    /* ── SOLICITAR CASO DE USO ──────────────────────────────── */
+    .solicitar-intro { font-size: 17px; font-weight: 700; color: #1a1c20; line-height: 1.4; margin-bottom: 18px; letter-spacing: -0.3px; }
+    .solicitar-intro em { font-style: normal; color: #16C5D6; }
+    .sub-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #16C5D6; margin-bottom: 10px; }
+    .camino-grid { display: flex; align-items: stretch; margin-bottom: 20px; gap: 0; }
+    .camino-step { flex: 1; background: #0d1520; border-radius: 10px; padding: 16px 13px; display: flex; flex-direction: column; gap: 5px; }
+    .camino-sep { display: flex; align-items: center; padding: 0 5px; color: #16C5D6; font-size: 20px; flex-shrink: 0; }
+    .camino-step-num { font-size: 24px; font-weight: 800; color: #16C5D6; line-height: 1; }
+    .camino-step-titulo { font-size: 12px; font-weight: 700; color: #fff; line-height: 1.2; margin-top: 2px; }
+    .camino-step-desc { font-size: 11px; color: rgba(255,255,255,0.48); line-height: 1.45; margin-top: 3px; }
+    .cuando-row { display: flex; align-items: center; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; }
+    .cuando-fase { padding: 9px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; }
+    .cuando-fase.activa { background: #2BA86F; color: #fff; }
+    .cuando-fase.proceso { background: #E0982A; color: #fff; }
+    .cuando-fase.pendiente { background: rgba(0,0,0,0.06); color: #aaa; border: 1px solid rgba(0,0,0,0.09); }
+    .cuando-sep { color: #bbb; font-size: 18px; }
+    .esperamos-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 20px; }
+    .esp-card { background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 18px 16px; }
+    .esp-num { width: 28px; height: 28px; border-radius: 50%; background: #16C5D6; color: #fff; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+    .esp-titulo { font-size: 13px; font-weight: 700; color: #1a1c20; margin-bottom: 5px; }
+    .esp-desc { font-size: 12px; color: #777; line-height: 1.5; }
+    .solicitar-cta { background: #0d1520; border-radius: 14px; padding: 22px 26px; display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 32px; }
+    .cta-texto { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+    .cta-texto strong { color: #fff; }
+    .cta-hi { color: #2BA86F; font-weight: 600; }
+    .cta-btn { background: #D2232A; color: #fff; border-radius: 10px; padding: 12px 22px; font-size: 13px; font-weight: 700; text-decoration: none; white-space: nowrap; flex-shrink: 0; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.88; }
+
     /* ── CASO ÉXITO ─────────────────────────────────────────── */
     .caso-card {
       background: #fff; border: 1px solid rgba(0,0,0,0.08);
@@ -197,6 +225,10 @@
       .logro-item:not(:last-child) { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); margin-right: 0; padding-right: 0; padding-bottom: 16px; }
       .logros-ejemplos { width: 100%; border-left: none; border-top: 1px solid rgba(255,255,255,0.07); }
       .logro-num { font-size: 40px; }
+      .camino-grid { flex-direction: column; }
+      .camino-sep { transform: rotate(90deg); align-self: flex-start; padding: 2px 0; }
+      .esperamos-grid { grid-template-columns: 1fr; }
+      .solicitar-cta { flex-direction: column; }
       .accesos-grid { grid-template-columns: repeat(2,1fr); }
       .bottom-grid { grid-template-columns: 1fr; }
       .hero-geo { display: none; }
@@ -250,6 +282,79 @@
           <li>Asistente consultas de proveedores</li>
         </ul>
       </div>
+    </div>
+
+    <!-- CÓMO SOLICITAR UN CASO DE USO -->
+    <div class="section-label" style="color:#16C5D6">CÓMO SOLICITAR UN CASO DE USO</div>
+    <p class="solicitar-intro">¿Tienes una tarea repetitiva o lenta?<br><em>Te acompañamos paso a paso.</em></p>
+
+    <div class="sub-label">EL CAMINO</div>
+    <div class="camino-grid">
+      <div class="camino-step">
+        <div class="camino-step-num">1</div>
+        <div class="camino-step-titulo">Nos cuentas</div>
+        <div class="camino-step-desc">Compartes la tarea o problema que quieres mejorar.</div>
+      </div>
+      <div class="camino-sep">›</div>
+      <div class="camino-step">
+        <div class="camino-step-num">2</div>
+        <div class="camino-step-titulo">Te orientamos</div>
+        <div class="camino-step-desc">Te explicamos qué se puede hacer y por dónde empezar.</div>
+      </div>
+      <div class="camino-sep">›</div>
+      <div class="camino-step">
+        <div class="camino-step-num">3</div>
+        <div class="camino-step-titulo">Vemos si conviene</div>
+        <div class="camino-step-desc">Revisamos juntos factibilidad, valor y prioridad del caso.</div>
+      </div>
+      <div class="camino-sep">›</div>
+      <div class="camino-step">
+        <div class="camino-step-num">4</div>
+        <div class="camino-step-titulo">Lo hacemos juntos</div>
+        <div class="camino-step-desc">El CoE acompaña el desarrollo, pruebas y puesta en marcha.</div>
+      </div>
+      <div class="camino-sep">›</div>
+      <div class="camino-step">
+        <div class="camino-step-num">5</div>
+        <div class="camino-step-titulo">Lo compartimos</div>
+        <div class="camino-step-desc">Documentamos aprendizajes y los abrimos a otras áreas.</div>
+      </div>
+    </div>
+
+    <div class="sub-label">CUÁNDO</div>
+    <div class="cuando-row">
+      <div class="cuando-fase activa">Recolectamos ideas &nbsp;·&nbsp; 9 jun – 4 jul</div>
+      <div class="cuando-sep">›</div>
+      <div class="cuando-fase proceso">Procesamos y priorizamos &nbsp;·&nbsp; 7 – 25 jul</div>
+      <div class="cuando-sep">›</div>
+      <div class="cuando-fase pendiente">Definimos cuándo y cómo &nbsp;·&nbsp; desde 3 ago</div>
+    </div>
+
+    <div class="sub-label">QUÉ ESPERAMOS DE TI</div>
+    <div class="esperamos-grid">
+      <div class="esp-card">
+        <div class="esp-num">1</div>
+        <div class="esp-titulo">Comparte tus ideas</div>
+        <div class="esp-desc">Si una tarea es repetitiva o te quita tiempo, cuéntanos. Puede tener solución.</div>
+      </div>
+      <div class="esp-card">
+        <div class="esp-num">2</div>
+        <div class="esp-titulo">Pide ayuda al equipo</div>
+        <div class="esp-desc">No lo hagas solo: hay un equipo que te guía y te dice cómo hacerlo bien y seguro.</div>
+      </div>
+      <div class="esp-card">
+        <div class="esp-num">3</div>
+        <div class="esp-titulo">Anímate a participar</div>
+        <div class="esp-desc">Súmate al grupo de compañeros que ya están usando estas herramientas en su área.</div>
+      </div>
+    </div>
+
+    <div class="solicitar-cta">
+      <div class="cta-texto">
+        Si lo haces a mano y se repite, <span class="cta-hi">seguro la tecnología puede ayudarte.</span><br>
+        Escríbenos a <strong>mesa.transformacion@polpaicosoluciones.cl</strong>
+      </div>
+      <a href="FORMS_URL_AQUI" target="_blank" class="cta-btn">Solicitar caso de uso →</a>
     </div>
 
     <!-- ACCESOS -->
