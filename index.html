@@ -7,12 +7,12 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     a { text-decoration: none; color: inherit; }
-    body { background: #eae7e1; color: #1a1c20; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 15px; line-height: 1.6; min-height: 100vh; }
+    body { background: #F9FAFC; color: #15193E; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 15px; line-height: 1.6; min-height: 100vh; }
 
     /* ── HERO ───────────────────────────────────────────────── */
     .hero {
-      background: #1a1c20;
-      color: #f0ede8;
+      background: #15193E;
+      color: #FFFFFF;
       padding: 24px 48px 28px;
       position: relative;
       overflow: hidden;
@@ -24,16 +24,16 @@
       position: absolute;
       left: 0; top: 0; bottom: 0;
       width: 14px;
-      background: #D2232A;
+      background: linear-gradient(180deg, #C9455F 0%, #065FE2 100%);
     }
     .hero-breadcrumb { margin-bottom: 18px; }
     .hero-breadcrumb img { height: 58px; width: auto; display: block; }
     .hero-title { font-size: 42px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.05; margin-bottom: 12px; }
-    .hero-title em { font-style: normal; color: #16C5D6; }
-    .hero-sub { font-size: 14px; color: #8a8580; max-width: 500px; margin-bottom: 28px; }
+    .hero-title em { font-style: normal; color: #F31976; }
+    .hero-sub { font-size: 14px; color: #A9ADC4; max-width: 500px; margin-bottom: 28px; }
     .hero-cta {
       display: inline-flex; align-items: center; gap: 8px;
-      background: #16C5D6; color: #0d1117;
+      background: linear-gradient(135deg, #C9455F 0%, #065FE2 100%); color: #FFFFFF;
       font-size: 13px; font-weight: 700;
       padding: 10px 22px; border-radius: 8px;
       transition: opacity 0.2s;
@@ -54,14 +54,14 @@
     }
 
     /* ── LOGROS ─────────────────────────────────────────────── */
-    .logros-card { display: flex; background: #0d1520; border-radius: 14px; overflow: hidden; margin-bottom: 32px; }
+    .logros-card { display: flex; background: #1C2044; border-radius: 14px; overflow: hidden; margin-bottom: 32px; }
     .logros-stats { display: flex; flex: 1; padding: 28px 32px; gap: 0; }
     .logro-item { flex: 1; }
     .logro-item:not(:last-child) { border-right: 1px solid rgba(255,255,255,0.07); margin-right: 24px; padding-right: 24px; }
     .logro-num { font-size: 52px; font-weight: 800; color: #2BA86F; letter-spacing: -2px; line-height: 1; margin-bottom: 8px; }
     .logro-desc { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.45; max-width: 140px; }
     .logros-ejemplos { width: 210px; flex-shrink: 0; background: rgba(255,255,255,0.03); border-left: 1px solid rgba(255,255,255,0.07); padding: 24px 20px; }
-    .logros-ej-titulo { font-size: 10px; font-weight: 700; letter-spacing: 1.8px; color: #16C5D6; margin-bottom: 14px; text-transform: uppercase; }
+    .logros-ej-titulo { font-size: 10px; font-weight: 700; letter-spacing: 1.8px; color: #065FE2; margin-bottom: 14px; text-transform: uppercase; }
     .logros-ej-lista { list-style: none; padding: 0; margin: 0; }
     .logros-ej-lista li { font-size: 12px; color: rgba(255,255,255,0.65); padding: 5px 0 5px 14px; position: relative; }
     .logros-ej-lista li::before { content: '•'; position: absolute; left: 0; color: #2BA86F; }
@@ -71,13 +71,13 @@
     .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
     /* ── SOLICITAR CASO DE USO ──────────────────────────────── */
-    .solicitar-intro { font-size: 17px; font-weight: 700; color: #1a1c20; line-height: 1.4; margin-bottom: 18px; letter-spacing: -0.3px; }
-    .solicitar-intro em { font-style: normal; color: #16C5D6; }
-    .sub-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #16C5D6; margin-bottom: 10px; }
+    .solicitar-intro { font-size: 17px; font-weight: 700; color: #15193E; line-height: 1.4; margin-bottom: 18px; letter-spacing: -0.3px; }
+    .solicitar-intro em { font-style: normal; color: #065FE2; }
+    .sub-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #065FE2; margin-bottom: 10px; }
     .camino-grid { display: flex; align-items: stretch; margin-bottom: 20px; gap: 0; }
-    .camino-step { flex: 1; background: #0d1520; border-radius: 10px; padding: 16px 13px; display: flex; flex-direction: column; gap: 5px; }
-    .camino-sep { display: flex; align-items: center; padding: 0 5px; color: #16C5D6; font-size: 20px; flex-shrink: 0; }
-    .camino-step-num { font-size: 24px; font-weight: 800; color: #16C5D6; line-height: 1; }
+    .camino-step { flex: 1; background: #1C2044; border-radius: 10px; padding: 16px 13px; display: flex; flex-direction: column; gap: 5px; }
+    .camino-sep { display: flex; align-items: center; padding: 0 5px; color: #065FE2; font-size: 20px; flex-shrink: 0; }
+    .camino-step-num { font-size: 24px; font-weight: 800; color: #065FE2; line-height: 1; }
     .camino-step-titulo { font-size: 12px; font-weight: 700; color: #fff; line-height: 1.2; margin-top: 2px; }
     .camino-step-desc { font-size: 11px; color: rgba(255,255,255,0.48); line-height: 1.45; margin-top: 3px; }
     .cuando-row { display: flex; align-items: center; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; }
@@ -88,14 +88,14 @@
     .cuando-sep { color: #bbb; font-size: 18px; }
     .esperamos-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 20px; }
     .esp-card { background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 18px 16px; }
-    .esp-num { width: 28px; height: 28px; border-radius: 50%; background: #16C5D6; color: #fff; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
-    .esp-titulo { font-size: 13px; font-weight: 700; color: #1a1c20; margin-bottom: 5px; }
+    .esp-num { width: 28px; height: 28px; border-radius: 50%; background: #065FE2; color: #fff; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+    .esp-titulo { font-size: 13px; font-weight: 700; color: #15193E; margin-bottom: 5px; }
     .esp-desc { font-size: 12px; color: #777; line-height: 1.5; }
-    .solicitar-cta { background: #0d1520; border-radius: 14px; padding: 22px 26px; display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 32px; }
+    .solicitar-cta { background: #1C2044; border-radius: 14px; padding: 22px 26px; display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 32px; }
     .cta-texto { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.6; }
     .cta-texto strong { color: #fff; }
     .cta-hi { color: #2BA86F; font-weight: 600; }
-    .cta-btn { background: #D2232A; color: #fff; border-radius: 10px; padding: 12px 22px; font-size: 13px; font-weight: 700; text-decoration: none; white-space: nowrap; flex-shrink: 0; transition: opacity 0.2s; }
+    .cta-btn { background: #C9455F; color: #fff; border-radius: 10px; padding: 12px 22px; font-size: 13px; font-weight: 700; text-decoration: none; white-space: nowrap; flex-shrink: 0; transition: opacity 0.2s; }
     .cta-btn:hover { opacity: 0.88; }
 
     /* ── CASO ÉXITO ─────────────────────────────────────────── */
@@ -106,16 +106,16 @@
       margin-bottom: 32px;
     }
     .caso-header {
-      background: #1a1c20; padding: 18px 24px;
+      background: #15193E; padding: 18px 24px;
       display: flex; align-items: center; gap: 14px;
     }
     .caso-badge {
-      background: rgba(210,35,42,0.2); border: 1px solid rgba(210,35,42,0.4);
+      background: rgba(201,69,95,0.2); border: 1px solid rgba(201,69,95,0.4);
       border-radius: 20px; padding: 3px 12px;
       font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
       color: #ff6b6b; flex-shrink: 0;
     }
-    .caso-titulo { font-size: 14px; font-weight: 700; color: #f0ede8; }
+    .caso-titulo { font-size: 14px; font-weight: 700; color: #FFFFFF; }
     .caso-subtitulo { font-size: 12px; color: #555; margin-top: 2px; }
     .caso-video { padding: 0; }
     .caso-video video { display: block; width: 100%; max-height: 420px; background: #000; }
@@ -132,7 +132,7 @@
     .acceso-card::after {
       content: '';
       position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
-      background: var(--accent, #16C5D6);
+      background: var(--accent, #065FE2);
       transform: scaleX(0); transform-origin: left;
       transition: transform 0.25s ease;
     }
@@ -141,11 +141,11 @@
     .acceso-icon {
       width: 40px; height: 40px; border-radius: 8px;
       display: flex; align-items: center; justify-content: center; font-size: 18px;
-      background: var(--icon-bg, rgba(22,197,214,0.1));
+      background: var(--icon-bg, rgba(6,95,226,0.1));
     }
-    .acceso-titulo { font-size: 14px; font-weight: 700; color: #1a1c20; }
+    .acceso-titulo { font-size: 14px; font-weight: 700; color: #15193E; }
     .acceso-desc { font-size: 12px; color: #999; line-height: 1.4; flex: 1; }
-    .acceso-arrow { font-size: 13px; font-weight: 600; color: var(--accent, #16C5D6); }
+    .acceso-arrow { font-size: 13px; font-weight: 600; color: var(--accent, #065FE2); }
 
     /* ── BOTTOM GRID ────────────────────────────────────────── */
     .bottom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -153,7 +153,7 @@
     /* Tip de la semana */
     .tip-card {
       background: #fff; border: 1px solid rgba(0,0,0,0.08);
-      border-left: 3px solid #16C5D6;
+      border-left: 3px solid #065FE2;
       border-radius: 12px; padding: 26px 24px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.04);
     }
@@ -161,10 +161,10 @@
     .tip-badge {
       display: flex; align-items: center; gap: 7px;
       font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
-      color: #0ea5b5;
+      color: #065FE2;
     }
     .tip-dot {
-      width: 7px; height: 7px; border-radius: 50%; background: #16C5D6;
+      width: 7px; height: 7px; border-radius: 50%; background: #065FE2;
       animation: pulse 2s ease-in-out infinite;
     }
     @keyframes pulse {
@@ -174,7 +174,7 @@
     .edit-hint { font-size: 10px; color: #ccc; font-style: italic; }
     .tip-text { font-size: 14px; color: #333; line-height: 1.65; margin-bottom: 14px; }
     .tip-prompt {
-      background: #1a1c20; border-radius: 8px; padding: 12px 14px;
+      background: #15193E; border-radius: 8px; padding: 12px 14px;
       font-family: 'SF Mono','Fira Mono','Courier New',monospace;
       font-size: 13px; color: #9ae8f0; line-height: 1.5; font-style: italic;
     }
@@ -193,11 +193,11 @@
     .emb-perfil { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
     .emb-avatar {
       width: 52px; height: 52px; border-radius: 50%;
-      background: linear-gradient(135deg, #E0982A, #D2232A);
+      background: linear-gradient(135deg, #E0982A, #C9455F);
       display: flex; align-items: center; justify-content: center;
       font-size: 18px; font-weight: 800; color: #fff; flex-shrink: 0;
     }
-    .emb-nombre { font-size: 16px; font-weight: 700; color: #1a1c20; margin-bottom: 2px; }
+    .emb-nombre { font-size: 16px; font-weight: 700; color: #15193E; margin-bottom: 2px; }
     .emb-area { font-size: 12px; color: #999; }
     .emb-tool {
       display: inline-flex; align-items: center; gap: 6px;
@@ -207,7 +207,7 @@
     }
     .emb-quote {
       font-size: 13px; color: #888; line-height: 1.6; font-style: italic;
-      border-top: 1px solid #f0ede8; padding-top: 14px;
+      border-top: 1px solid #FFFFFF; padding-top: 14px;
     }
 
     @media (max-width: 768px) {
@@ -243,7 +243,7 @@
   <div class="body">
 
     <!-- LOGROS -->
-    <div class="section-label" style="color:#16C5D6">LO QUE YA ESTAMOS LOGRANDO</div>
+    <div class="section-label" style="color:#065FE2">LO QUE YA ESTAMOS LOGRANDO</div>
     <div class="logros-card">
       <div class="logros-stats">
         <div class="logro-item">
@@ -272,7 +272,7 @@
     </div>
 
     <!-- CÓMO SOLICITAR UN CASO DE USO -->
-    <div class="section-label" style="color:#16C5D6">CÓMO SOLICITAR UN CASO DE USO</div>
+    <div class="section-label" style="color:#065FE2">CÓMO SOLICITAR UN CASO DE USO</div>
     <p class="solicitar-intro">¿Tienes una tarea repetitiva o lenta?<br><em>Te acompañamos paso a paso.</em></p>
 
     <div class="sub-label">EL CAMINO</div>
@@ -347,7 +347,7 @@
     <!-- ACCESOS -->
     <div class="section-label">Accesos rápidos</div>
     <div class="accesos-grid">
-      <a href="https://prd-sap-build-work-zone-bysoee4x.workzone.cfapps.br10.hana.ondemand.com/site#workzone-home&/groups/zxqLUZ7h5OaJvQJbm9P01D/workpage_tabs/q3S3FlmxWL10JZMPfkA01D?show_draft=true" target="_top" class="acceso-card" style="--accent:#16C5D6;--icon-bg:rgba(22,197,214,0.1)">
+      <a href="https://prd-sap-build-work-zone-bysoee4x.workzone.cfapps.br10.hana.ondemand.com/site#workzone-home&/groups/zxqLUZ7h5OaJvQJbm9P01D/workpage_tabs/q3S3FlmxWL10JZMPfkA01D?show_draft=true" target="_top" class="acceso-card" style="--accent:#065FE2;--icon-bg:rgba(6,95,226,0.1)">
         <div class="acceso-icon">🎯</div>
         <div class="acceso-titulo">Ruta IA</div>
         <div class="acceso-desc">Tu ruta de aprendizaje paso a paso. 4 módulos, 18 lecciones.</div>
@@ -365,7 +365,7 @@
         <div class="acceso-desc">Descarga la colección completa de prompts para usar sin conexión.</div>
         <div class="acceso-arrow">Descargar →</div>
       </a>
-      <a href="https://forms.office.com/Pages/DesignPageV2.aspx?subpage=design&id=s6httdI_p0WkpL38mlWWyd66-ds9XntGo5rBOWPPyUhUM0U1NFU0WlAwNUdXNTY5VVJTUk85UzZHWi4u" target="_blank" class="acceso-card" style="--accent:#D2232A;--icon-bg:rgba(210,35,42,0.08)">
+      <a href="https://forms.office.com/Pages/DesignPageV2.aspx?subpage=design&id=s6httdI_p0WkpL38mlWWyd66-ds9XntGo5rBOWPPyUhUM0U1NFU0WlAwNUdXNTY5VVJTUk85UzZHWi4u" target="_blank" class="acceso-card" style="--accent:#C9455F;--icon-bg:rgba(201,69,95,0.08)">
         <div class="acceso-icon">💬</div>
         <div class="acceso-titulo">Comparte tu caso</div>
         <div class="acceso-desc">Ingresa tu caso de uso aquí y comparte cómo usas IA en tu trabajo.</div>

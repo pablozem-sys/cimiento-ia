@@ -7,11 +7,11 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     a { text-decoration: none; color: inherit; }
-    body { background: #eae7e1; color: #1a1c20; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 15px; line-height: 1.6; min-height: 100vh; }
+    body { background: #F9FAFC; color: #15193E; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 15px; line-height: 1.6; min-height: 100vh; }
 
     /* ── HERO ───────────────────────────────────────────────── */
     .hero {
-      background: #1a1c20; color: #f0ede8;
+      background: #15193E; color: #FFFFFF;
       padding: 24px 48px 28px;
       position: relative; overflow: hidden;
       border-bottom-left-radius: 16px;
@@ -20,15 +20,15 @@
     .hero::before {
       content: ''; position: absolute;
       left: 0; top: 0; bottom: 0; width: 14px;
-      background: #D2232A;
+      background: linear-gradient(180deg, #C9455F 0%, #065FE2 100%);
     }
     .hero-breadcrumb { margin-bottom: 18px; }
     .hero-breadcrumb img { height: 58px; width: auto; display: block; }
     .hero-title { font-size: 42px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.05; margin-bottom: 12px; }
-    .hero-title em { font-style: normal; color: #16C5D6; }
-    .hero-sub { font-size: 14px; color: #8a8580; max-width: 520px; margin-bottom: 28px; }
+    .hero-title em { font-style: normal; color: #F31976; }
+    .hero-sub { font-size: 14px; color: #A9ADC4; max-width: 520px; margin-bottom: 28px; }
     .hero-stats { display: flex; gap: 32px; }
-    .hero-stat-num { font-size: 26px; font-weight: 800; color: #f0ede8; line-height: 1; }
+    .hero-stat-num { font-size: 26px; font-weight: 800; color: #FFFFFF; line-height: 1; }
     .hero-stat-label { font-size: 11px; color: #555; margin-top: 2px; }
     .hero-net { position: absolute; right: 52px; top: 50%; transform: translateY(-50%); display: flex; align-items: center; }
     .hero-net img { width: 260px; height: auto; opacity: 0.92; }
@@ -49,8 +49,8 @@
       border-bottom: 2px solid transparent;
       transition: all 0.2s; white-space: nowrap;
     }
-    .tab-btn:hover { color: #1a1c20; }
-    .tab-btn.activo { color: #1a1c20; border-bottom-color: #1a1c20; }
+    .tab-btn:hover { color: #15193E; }
+    .tab-btn.activo { color: #15193E; border-bottom-color: #15193E; }
 
     .tab-panel { display: none; }
     .tab-panel.activo { display: block; }
@@ -80,8 +80,8 @@
       background: #fff; color: #888;
       cursor: pointer; transition: all 0.2s; user-select: none;
     }
-    .filtro-pill:hover { border-color: #1a1c20; color: #1a1c20; }
-    .filtro-pill.activo { background: #1a1c20; color: #f0ede8; border-color: #1a1c20; }
+    .filtro-pill:hover { border-color: #15193E; color: #15193E; }
+    .filtro-pill.activo { background: #15193E; color: #FFFFFF; border-color: #15193E; }
 
     /* Status legend */
     .status-legend { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding-top: 4px; }
@@ -118,7 +118,7 @@
     }
     .s-entregado  { background: rgba(43,168,111,0.12); color: #1d8a52; border: 1px solid rgba(43,168,111,0.25); }
     .s-pruebas    { background: rgba(224,152,42,0.12); color: #b8780a; border: 1px solid rgba(224,152,42,0.25); }
-    .s-desarrollo { background: rgba(22,197,214,0.12); color: #0ea5b5; border: 1px solid rgba(22,197,214,0.25); }
+    .s-desarrollo { background: rgba(6,95,226,0.12); color: #065FE2; border: 1px solid rgba(6,95,226,0.25); }
 
     .card-title { font-size: 15px; font-weight: 800; letter-spacing: -0.3px; line-height: 1.25; }
     .card-sponsor { font-size: 12px; color: #aaa; }
@@ -127,14 +127,14 @@
     /* Bloque oscuro */
     .card-bloque {
       margin: 0 14px;
-      background: #1a1c20; border-radius: 10px;
+      background: #15193E; border-radius: 10px;
       padding: 14px 16px; flex: 1;
     }
     .card-bloque-text {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       font-size: 13px; color: rgba(255,255,255,0.72); line-height: 1.65;
     }
-    .card-bloque-text .hi  { color: #16C5D6; }
+    .card-bloque-text .hi  { color: #065FE2; }
     .card-bloque-text .val { color: #2BA86F; font-weight: 700; }
     .card-bloque-text .lbl { color: #E0982A; }
     .card-bloque-text p { margin-bottom: 0; }
@@ -147,7 +147,7 @@
       gap: 8px; flex-wrap: wrap;
     }
     .card-kpi { font-size: 12px; color: #888; display: flex; flex-direction: column; gap: 1px; }
-    .card-kpi strong { font-size: 13px; font-weight: 700; color: #1a1c20; }
+    .card-kpi strong { font-size: 13px; font-weight: 700; color: #15193E; }
     .card-prov {
       padding: 3px 10px; border-radius: 6px;
       font-size: 11px; font-weight: 600;
@@ -214,7 +214,7 @@
       <div class="status-legend">
         <div class="legend-dot"><div class="dot" style="background:#2BA86F"></div><span style="color:#1d8a52">Entregado</span></div>
         <div class="legend-dot"><div class="dot" style="background:#E0982A"></div><span style="color:#b8780a">En pruebas</span></div>
-        <div class="legend-dot"><div class="dot" style="background:#16C5D6"></div><span style="color:#0ea5b5">En desarrollo</span></div>
+        <div class="legend-dot"><div class="dot" style="background:#065FE2"></div><span style="color:#065FE2">En desarrollo</span></div>
       </div>
     </div>
 
@@ -253,10 +253,10 @@
 
       <!-- 2 · Monitor de Precios · Comercial -->
       <div class="card" data-area="Comercial">
-        <div class="card-stripe" style="background:#D2232A"></div>
+        <div class="card-stripe" style="background:#C9455F"></div>
         <div class="card-head">
           <div class="card-badges">
-            <span class="badge-area" style="background:rgba(210,35,42,0.1);color:#D2232A;border:1px solid rgba(210,35,42,0.2)">Gestión Comercial</span>
+            <span class="badge-area" style="background:rgba(201,69,95,0.1);color:#C9455F;border:1px solid rgba(201,69,95,0.2)">Gestión Comercial</span>
             <span class="badge-status s-entregado">Entregado</span>
           </div>
           <div class="card-title">Agente IA para Monitoreo de Precios de Mercado</div>
@@ -320,10 +320,10 @@
 
       <!-- 4 · Solicitudes Legales · Legal -->
       <div class="card" data-area="Legal">
-        <div class="card-stripe" style="background:#16C5D6"></div>
+        <div class="card-stripe" style="background:#065FE2"></div>
         <div class="card-head">
           <div class="card-badges">
-            <span class="badge-area" style="background:rgba(22,197,214,0.1);color:#0ea5b5;border:1px solid rgba(22,197,214,0.2)">Legal · Contratos</span>
+            <span class="badge-area" style="background:rgba(6,95,226,0.1);color:#065FE2;border:1px solid rgba(6,95,226,0.2)">Legal · Contratos</span>
             <span class="badge-status s-entregado">Entregado</span>
           </div>
           <div class="card-title">Agente de Gestión — Solicitudes Legales</div>
