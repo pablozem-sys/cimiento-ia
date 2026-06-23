@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cómo solicitar tu licencia · Cimiento IA</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    a { text-decoration: none; color: inherit; }
+    body { background: #F9FAFC; color: #15193E; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 15px; line-height: 1.6; min-height: 100vh; }
+
+    /* ── HERO ───────────────────────────────────────────────── */
+    .hero {
+      background: #15193E; color: #FFFFFF;
+      padding: 24px 48px 28px;
+      position: relative; overflow: hidden;
+      border-bottom-left-radius: 16px;
+      border-bottom-right-radius: 16px;
+    }
+    .hero::before {
+      content: ''; position: absolute;
+      left: 0; top: 0; bottom: 0; width: 14px;
+      background: linear-gradient(180deg, #C9455F 0%, #065FE2 100%);
+    }
+    .hero-title { font-size: 38px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.05; margin-bottom: 10px; }
+    .hero-title em { font-style: normal; color: #F31976; }
+    .hero-sub { font-size: 14px; color: #A9ADC4; max-width: 540px; }
+    .hero-geo { position: absolute; right: 52px; top: 50%; transform: translateY(-50%); display: flex; align-items: center; justify-content: center; }
+    .hero-geo img { width: 260px; height: auto; opacity: 0.92; }
+
+    /* ── NAV ────────────────────────────────────────────────── */
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 600; color: #A9ADC4;
+      margin-bottom: 16px; transition: color 0.2s;
+    }
+    .back-link:hover { color: #FFFFFF; }
+
+    /* ── BODY ───────────────────────────────────────────────── */
+    .body { max-width: 900px; margin: 0 auto; padding: 36px 24px 80px; }
+    .section-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #aaa; margin-bottom: 14px; }
+
+    /* ── INTRO ──────────────────────────────────────────────── */
+    .intro-box {
+      background: #15193E; border-radius: 14px; padding: 24px 28px;
+      margin-bottom: 32px; display: flex; align-items: flex-start; gap: 20px;
+    }
+    .intro-icon { font-size: 32px; flex-shrink: 0; }
+    .intro-titulo { font-size: 18px; font-weight: 800; color: #FFFFFF; margin-bottom: 6px; letter-spacing: -0.3px; }
+    .intro-desc { font-size: 13px; color: #A9ADC4; line-height: 1.65; }
+
+    /* ── SECCIÓN LABEL ──────────────────────────────────────── */
+    .sub-titulo {
+      font-size: 15px; font-weight: 700; color: #15193E;
+      margin: 28px 0 14px; padding-bottom: 8px;
+      border-bottom: 2px solid rgba(6,95,226,0.15);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .sub-titulo .num {
+      width: 26px; height: 26px; border-radius: 50%; background: #065FE2;
+      color: #fff; font-size: 13px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+
+    /* ── COPILOT CARDS ──────────────────────────────────────── */
+    .copilot-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-bottom: 32px; }
+    .copilot-card {
+      border: 2px solid #065FE2; border-radius: 14px; padding: 20px 18px;
+      background: #fff; display: flex; flex-direction: column; gap: 8px;
+    }
+    .copilot-badge {
+      display: inline-block; font-size: 10px; font-weight: 700;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      padding: 3px 10px; border-radius: 20px; margin-bottom: 4px;
+    }
+    .copilot-badge.gratis { background: rgba(43,168,111,0.1); color: #1d8a52; }
+    .copilot-badge.pago   { background: rgba(201,69,95,0.1);  color: #C9455F; }
+    .copilot-badge.custom { background: rgba(6,95,226,0.1);   color: #065FE2; }
+    .copilot-title { font-size: 15px; font-weight: 800; color: #065FE2; }
+    .copilot-sub   { font-size: 12px; color: #C9455F; font-style: italic; }
+    .copilot-list  { padding-left: 16px; font-size: 13px; color: #444; line-height: 1.6; margin-top: 4px; }
+    .copilot-list li { margin-bottom: 6px; }
+    .copilot-list li:last-child { margin-bottom: 0; }
+
+    /* ── PROCESO STEPS ──────────────────────────────────────── */
+    .licencia-steps { display: flex; align-items: stretch; gap: 0; margin-bottom: 16px; }
+    .licencia-step {
+      flex: 1; background: #fff; border: 1.5px solid rgba(6,95,226,0.2);
+      border-radius: 14px; padding: 18px 16px;
+      display: flex; flex-direction: column; gap: 5px;
+    }
+    .licencia-num {
+      width: 40px; height: 40px; border-radius: 50%; background: #065FE2;
+      color: #fff; font-size: 18px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center; margin-bottom: 10px; flex-shrink: 0;
+    }
+    .licencia-rol { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #065FE2; }
+    .licencia-titulo { font-size: 14px; font-weight: 700; color: #15193E; line-height: 1.25; margin: 4px 0; }
+    .licencia-desc { font-size: 12px; color: #666; line-height: 1.55; }
+    .licencia-arrow { display: flex; align-items: center; padding: 0 10px; color: #065FE2; font-size: 28px; flex-shrink: 0; }
+
+    /* ── NOTA FINAL ─────────────────────────────────────────── */
+    .licencia-nota {
+      background: rgba(6,95,226,0.06); border: 1px solid rgba(6,95,226,0.18);
+      border-radius: 12px; padding: 16px 22px;
+      font-size: 13px; font-style: italic; color: #065FE2;
+      font-weight: 600; text-align: center; margin-bottom: 32px;
+    }
+
+    /* ── CONTACTO ───────────────────────────────────────────── */
+    .contacto-box {
+      background: #15193E; border-radius: 14px; padding: 22px 28px;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    }
+    .contacto-texto { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+    .contacto-texto strong { color: #fff; }
+    .contacto-btn {
+      background: linear-gradient(135deg, #C9455F 0%, #065FE2 100%);
+      color: #fff; border-radius: 10px; padding: 12px 24px;
+      font-size: 13px; font-weight: 700; text-decoration: none;
+      white-space: nowrap; flex-shrink: 0; transition: opacity 0.2s;
+    }
+    .contacto-btn:hover { opacity: 0.88; }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 700px) {
+      .hero { padding: 24px 24px 28px; }
+      .hero-geo { display: none; }
+      .hero-title { font-size: 28px; }
+      .copilot-grid { grid-template-columns: 1fr; }
+      .licencia-steps { flex-direction: column; }
+      .licencia-arrow { transform: rotate(90deg); padding: 6px 0; justify-content: center; }
+      .contacto-box { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <div class="hero">
+    <a href="index.html" class="back-link">← Volver al inicio</a>
+    <h1 class="hero-title">Cómo solicitar tu<br><em>licencia</em></h1>
+    <p class="hero-sub">Qué usar y cómo se cobra: Chat, Copilot 365 y Copilot Studio. Guía de decisión de herramienta y procedimiento de cobro — CoE IA.</p>
+    <div class="hero-geo"><img src="logo-ia-blanco.png" alt="Inteligencia Artificial · Transformación Digital"></div>
+  </div>
+
+  <div class="body">
+
+    <!-- INTRO -->
+    <div class="intro-box">
+      <div class="intro-icon">🔑</div>
+      <div>
+        <div class="intro-titulo">Antes de solicitar, elige la herramienta correcta</div>
+        <div class="intro-desc">Hay tres niveles de Copilot disponibles en Polpaico. Cada uno tiene un modelo de cobro distinto. Esta guía te ayuda a elegir cuál necesitas y te explica el proceso para tramitar la licencia.</div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 1 -->
+    <div class="sub-titulo"><span class="num">1</span> Qué usar — tres niveles de Copilot</div>
+    <div class="copilot-grid">
+      <div class="copilot-card">
+        <span class="copilot-badge gratis">Sin costo</span>
+        <div class="copilot-title">Copilot Chat</div>
+        <div class="copilot-sub">Incluido por defecto</div>
+        <ul class="copilot-list">
+          <li>Chat con IA y grounding web para usuarios M365, sin licencia de pago</li>
+          <li>No usa datos de trabajo ni añade Copilot a las apps Office</li>
+        </ul>
+      </div>
+      <div class="copilot-card">
+        <span class="copilot-badge pago">Licencia de pago</span>
+        <div class="copilot-title">Microsoft 365 Copilot</div>
+        <div class="copilot-sub">$30 / usuario / mes</div>
+        <ul class="copilot-list">
+          <li>Productividad en Office con grounding en tu trabajo (usuarios licenciados)</li>
+          <li>El uso del agente no consume créditos para esos usuarios</li>
+        </ul>
+      </div>
+      <div class="copilot-card">
+        <span class="copilot-badge custom">A la medida</span>
+        <div class="copilot-title">Copilot Studio</div>
+        <div class="copilot-sub">Plataforma de agentes</div>
+        <ul class="copilot-list">
+          <li>Automatización con acciones, flujos y conectores para un proceso específico</li>
+          <li>Para no licenciados, canales externos o ejecución autónoma</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 2 -->
+    <div class="sub-titulo"><span class="num">2</span> Cómo se cobra la licencia — acuerdo CoE IA</div>
+    <div class="licencia-steps">
+      <div class="licencia-step">
+        <div class="licencia-num">1</div>
+        <div class="licencia-rol">Área solicitante</div>
+        <div class="licencia-titulo">Solicitud a MDA</div>
+        <div class="licencia-desc">El área solicitante genera la solicitud de la licencia a MDA.</div>
+      </div>
+      <div class="licencia-arrow">›</div>
+      <div class="licencia-step">
+        <div class="licencia-num">2</div>
+        <div class="licencia-rol">Área solicitante</div>
+        <div class="licencia-titulo">Indicar el CeCo</div>
+        <div class="licencia-desc">Especifica en la solicitud el Centro de Costo (CeCo) al que se cobrará la licencia.</div>
+      </div>
+      <div class="licencia-arrow">›</div>
+      <div class="licencia-step">
+        <div class="licencia-num">3</div>
+        <div class="licencia-rol">Sponsor · Dueño del CeCo</div>
+        <div class="licencia-titulo">Evidencia de aprobación</div>
+        <div class="licencia-desc">Adjunta evidencia del dueño del CeCo (Sponsor) que aprueba cubrir el gasto.</div>
+      </div>
+      <div class="licencia-arrow">›</div>
+      <div class="licencia-step">
+        <div class="licencia-num">4</div>
+        <div class="licencia-rol">Sponsor</div>
+        <div class="licencia-titulo">Cobertura y proyección</div>
+        <div class="licencia-desc">El Sponsor cubre el costo mensual de la licencia y las proyecciones de uso futuro.</div>
+      </div>
+    </div>
+    <div class="licencia-nota">El CeCo asignado y la evidencia del Sponsor son requisito para que MDA tramite la licencia.</div>
+
+    <!-- CONTACTO -->
+    <div class="contacto-box">
+      <div class="contacto-texto">
+        ¿Tienes dudas sobre qué licencia necesitas?<br>
+        Escríbenos a <strong>mesa.transformacion@polpaicosoluciones.cl</strong>
+      </div>
+      <a href="https://forms.office.com/?redirecturl=https%3a%2f%2fforms.office.com%2fPages%2fDesignPageV2.aspx%3fsubpage%3ddesign%26id%3ds6httdI_p0WkpL38mlWWyd66-ds9XntGo5rBOWPPyUhUM0U1NFU0WlAwNUdXNTY5VVJTUk85UzZHWi4u&auth_pvr=OrgId" target="_blank" class="contacto-btn">Solicitar licencia →</a>
+    </div>
+
+  </div>
+
+</body>
+</html>
