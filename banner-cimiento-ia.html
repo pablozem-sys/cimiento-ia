@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 1500px; height: 270px;
+      overflow: hidden;
+      background: #15193E;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      position: relative;
+    }
+    /* Grid sutil */
+    body::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 44px 44px;
+    }
+    /* Franja izquierda */
+    .stripe {
+      position: absolute; left: 0; top: 0; bottom: 0; width: 7px;
+      background: linear-gradient(180deg, #C9455F 0%, #065FE2 100%);
+      z-index: 2;
+    }
+    /* Degradado lateral izquierdo */
+    .fade-right {
+      position: absolute; left: 0; top: 0; bottom: 0; width: 200px;
+      background: linear-gradient(270deg, transparent 0%, rgba(21,25,62,0.7) 100%);
+      z-index: 2;
+    }
+    /* Texto */
+    .content {
+      position: absolute; right: 68px; top: 50%; transform: translateY(-50%);
+      text-align: right; z-index: 3;
+    }
+    .breadcrumb {
+      font-size: 10px; font-weight: 700; letter-spacing: 3.5px;
+      text-transform: uppercase; color: #065FE2; margin-bottom: 14px;
+      display: flex; align-items: center; justify-content: flex-end; gap: 10px;
+    }
+    .breadcrumb::after {
+      content: '';
+      display: block; width: 28px; height: 1.5px;
+      background: #065FE2; flex-shrink: 0;
+    }
+    .title {
+      font-size: 68px; font-weight: 900; letter-spacing: -3px; line-height: 0.95;
+      color: #FFFFFF; margin-bottom: 14px;
+    }
+    .title em { font-style: normal; color: #C9455F; }
+    .subtitle {
+      font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.55;
+      margin-bottom: 18px;
+    }
+    /* Red icon accent */
+    .icon-accent {
+      display: flex; align-items: center; justify-content: flex-end; gap: 8px; margin-top: 4px;
+    }
+    .icon-dot { width: 6px; height: 6px; border-radius: 50%; background: #C9455F; flex-shrink: 0; }
+    .icon-text { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.35); letter-spacing: 1.5px; text-transform: uppercase; }
+    .logo-inline { display: flex; justify-content: flex-end; margin-bottom: 10px; }
+    .logo-inline img { width: 130px; height: auto; opacity: 0.9; }
+  </style>
+</head>
+<body>
+  <div class="stripe"></div>
+  <div class="fade-right"></div>
+
+  <!-- Red de nodos SVG -->
+  <svg style="position:absolute;left:0;top:0;width:720px;height:270px;z-index:1" viewBox="0 0 720 270" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Líneas -->
+    <line x1="120" y1="30"  x2="280" y2="95"  stroke="rgba(6,95,226,0.30)"  stroke-width="1.5"/>
+    <line x1="280" y1="95"  x2="460" y2="55"  stroke="rgba(6,95,226,0.30)"  stroke-width="1.5"/>
+    <line x1="280" y1="95"  x2="340" y2="195" stroke="rgba(6,95,226,0.30)"  stroke-width="1.5"/>
+    <line x1="340" y1="195" x2="510" y2="215" stroke="rgba(6,95,226,0.25)"  stroke-width="1.5"/>
+    <line x1="460" y1="55"  x2="560" y2="125" stroke="rgba(6,95,226,0.30)"  stroke-width="1.5"/>
+    <line x1="560" y1="125" x2="510" y2="215" stroke="rgba(6,95,226,0.25)"  stroke-width="1.5"/>
+    <line x1="120" y1="30"  x2="190" y2="155" stroke="rgba(6,95,226,0.18)"  stroke-width="1"/>
+    <line x1="190" y1="155" x2="340" y2="195" stroke="rgba(6,95,226,0.18)"  stroke-width="1"/>
+    <line x1="460" y1="55"  x2="620" y2="70"  stroke="rgba(6,95,226,0.20)"  stroke-width="1"/>
+    <line x1="620" y1="70"  x2="680" y2="175" stroke="rgba(6,95,226,0.18)"  stroke-width="1"/>
+    <line x1="560" y1="125" x2="680" y2="175" stroke="rgba(6,95,226,0.20)"  stroke-width="1"/>
+    <line x1="340" y1="195" x2="280" y2="240" stroke="rgba(6,95,226,0.15)"  stroke-width="1"/>
+    <!-- Nodos base -->
+    <circle cx="120" cy="30"  r="4"  fill="#065FE2" opacity="0.75"/>
+    <circle cx="280" cy="95"  r="5"  fill="#4A90D9" opacity="0.85"/>
+    <circle cx="460" cy="55"  r="4"  fill="#065FE2" opacity="0.70"/>
+    <circle cx="190" cy="155" r="3"  fill="#065FE2" opacity="0.55"/>
+    <circle cx="510" cy="215" r="4"  fill="#4A90D9" opacity="0.70"/>
+    <circle cx="560" cy="125" r="4"  fill="#065FE2" opacity="0.75"/>
+    <circle cx="620" cy="70"  r="3"  fill="#065FE2" opacity="0.55"/>
+    <circle cx="680" cy="175" r="3"  fill="#4A90D9" opacity="0.50"/>
+    <circle cx="280" cy="240" r="3"  fill="#065FE2" opacity="0.45"/>
+    <!-- Nodo acento coral (el punto rojo destacado) -->
+    <circle cx="340" cy="195" r="12" fill="none" stroke="#C9455F" stroke-width="1.5" opacity="0.6"/>
+    <circle cx="340" cy="195" r="6"  fill="#C9455F" opacity="0.95"/>
+    <!-- Halo glow azul en nodo central -->
+    <circle cx="280" cy="95"  r="14" fill="rgba(6,95,226,0.08)"/>
+  </svg>
+
+  <div class="content">
+    <div class="logo-inline"><img src="file:///Users/pedropablozemelman/polpaico-ia/logo-ia-blanco.png" alt="Transformación Digital"></div>
+    <div class="title">Construye con<br><em>inteligencia.</em></div>
+    <div class="subtitle">El espacio donde aprendemos, compartimos<br>y aceleramos nuestra adopción de IA.</div>
+    <div class="icon-accent">
+      <div class="icon-dot"></div>
+      <div class="icon-text">CoE Inteligencia Artificial · 2026</div>
+    </div>
+  </div>
+
+</body>
+</html>
