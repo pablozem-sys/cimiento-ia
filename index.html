@@ -62,23 +62,18 @@
       color: #aaa; margin-bottom: 14px;
     }
 
-    /* ── KPIs ───────────────────────────────────────────────── */
-    .kpi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 32px; }
-    .kpi-card {
-      background: #fff; border: 1px solid rgba(0,0,0,0.08);
-      border-radius: 12px; padding: 20px 18px;
-      display: flex; flex-direction: column; gap: 6px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-      transition: box-shadow 0.2s;
-    }
-    .kpi-card:hover { box-shadow: 0 3px 10px rgba(0,0,0,0.08); }
-    .kpi-icon { font-size: 20px; margin-bottom: 2px; }
-    .kpi-num { font-size: 30px; font-weight: 800; letter-spacing: -1px; line-height: 1; }
-    .kpi-num.cyan  { color: #16C5D6; }
-    .kpi-num.green { color: #2BA86F; }
-    .kpi-num.amber { color: #E0982A; }
-    .kpi-num.red   { color: #D2232A; }
-    .kpi-label { font-size: 12px; color: #999; line-height: 1.3; }
+    /* ── LOGROS ─────────────────────────────────────────────── */
+    .logros-card { display: flex; background: #0d1520; border-radius: 14px; overflow: hidden; margin-bottom: 32px; }
+    .logros-stats { display: flex; flex: 1; padding: 28px 32px; gap: 0; }
+    .logro-item { flex: 1; }
+    .logro-item:not(:last-child) { border-right: 1px solid rgba(255,255,255,0.07); margin-right: 24px; padding-right: 24px; }
+    .logro-num { font-size: 52px; font-weight: 800; color: #2BA86F; letter-spacing: -2px; line-height: 1; margin-bottom: 8px; }
+    .logro-desc { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.45; max-width: 140px; }
+    .logros-ejemplos { width: 210px; flex-shrink: 0; background: rgba(255,255,255,0.03); border-left: 1px solid rgba(255,255,255,0.07); padding: 24px 20px; }
+    .logros-ej-titulo { font-size: 10px; font-weight: 700; letter-spacing: 1.8px; color: #16C5D6; margin-bottom: 14px; text-transform: uppercase; }
+    .logros-ej-lista { list-style: none; padding: 0; margin: 0; }
+    .logros-ej-lista li { font-size: 12px; color: rgba(255,255,255,0.65); padding: 5px 0 5px 14px; position: relative; }
+    .logros-ej-lista li::before { content: '•'; position: absolute; left: 0; color: #2BA86F; }
 
     /* ── VIDEO ─────────────────────────────────────────────── */
     .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 14px; margin-bottom: 32px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
@@ -197,7 +192,11 @@
     }
 
     @media (max-width: 768px) {
-      .kpi-grid { grid-template-columns: repeat(3,1fr); }
+      .logros-card { flex-direction: column; }
+      .logros-stats { flex-direction: column; gap: 20px; padding: 20px; }
+      .logro-item:not(:last-child) { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); margin-right: 0; padding-right: 0; padding-bottom: 16px; }
+      .logros-ejemplos { width: 100%; border-left: none; border-top: 1px solid rgba(255,255,255,0.07); }
+      .logro-num { font-size: 40px; }
       .accesos-grid { grid-template-columns: repeat(2,1fr); }
       .bottom-grid { grid-template-columns: 1fr; }
       .hero-geo { display: none; }
@@ -224,23 +223,32 @@
 
   <div class="body">
 
-    <!-- KPIs -->
-    <div class="section-label">Adopción IA en Polpaico</div>
-    <div class="kpi-grid">
-      <div class="kpi-card">
-        <div class="kpi-icon">🤖</div>
-        <div class="kpi-num amber" data-count="5">5</div>
-        <div class="kpi-label">Casos de uso activos</div>
+    <!-- LOGROS -->
+    <div class="section-label" style="color:#16C5D6">LO QUE YA ESTAMOS LOGRANDO</div>
+    <div class="logros-card">
+      <div class="logros-stats">
+        <div class="logro-item">
+          <div class="logro-num" data-count="5">5</div>
+          <div class="logro-desc">áreas ya trabajando con IA</div>
+        </div>
+        <div class="logro-item">
+          <div class="logro-num" data-count="7">7</div>
+          <div class="logro-desc">primeras soluciones en marcha blanca</div>
+        </div>
+        <div class="logro-item">
+          <div class="logro-num" data-count="10" data-prefix="+">+10</div>
+          <div class="logro-desc">nuevas ideas recogidas durante este 1S 2026</div>
+        </div>
       </div>
-      <div class="kpi-card">
-        <div class="kpi-icon">🏆</div>
-        <div class="kpi-num cyan" data-count="8">8</div>
-        <div class="kpi-label">Embajadores digitales</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-icon">🚀</div>
-        <div class="kpi-num red" style="font-size:22px;letter-spacing:-0.5px">24 JUN</div>
-        <div class="kpi-label">Lanzamiento oficial</div>
+      <div class="logros-ejemplos">
+        <div class="logros-ej-titulo">ALGUNOS EJEMPLOS</div>
+        <ul class="logros-ej-lista">
+          <li>Monitor de precios</li>
+          <li>Soporte consultas legales</li>
+          <li>Organizador guías de despacho</li>
+          <li>Soporte servicios laborales</li>
+          <li>Asistente consultas de proveedores</li>
+        </ul>
       </div>
     </div>
 
@@ -335,13 +343,14 @@
     document.addEventListener('DOMContentLoaded', function() {
       document.querySelectorAll('[data-count]').forEach(function(el) {
         var target = parseInt(el.getAttribute('data-count'), 10);
+        var prefix = el.getAttribute('data-prefix') || '';
         var start = null;
         function step(ts) {
           if (!start) start = ts;
           var p = Math.min((ts - start) / 1200, 1);
-          el.textContent = Math.floor((1 - Math.pow(1-p, 3)) * target);
+          el.textContent = prefix + Math.floor((1 - Math.pow(1-p, 3)) * target);
           if (p < 1) requestAnimationFrame(step);
-          else el.textContent = target;
+          else el.textContent = prefix + target;
         }
         requestAnimationFrame(step);
       });
