@@ -181,34 +181,6 @@
     .tip-prompt::before { content: '"'; }
     .tip-prompt::after  { content: '"'; }
 
-    /* Embajador del mes */
-    .emb-card {
-      background: #fff; border: 1px solid rgba(0,0,0,0.08);
-      border-left: 3px solid #E0982A;
-      border-radius: 12px; padding: 26px 24px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    }
-    .emb-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
-    .emb-badge { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #b8780a; }
-    .emb-perfil { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
-    .emb-avatar {
-      width: 52px; height: 52px; border-radius: 50%;
-      background: linear-gradient(135deg, #E0982A, #C9455F);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px; font-weight: 800; color: #fff; flex-shrink: 0;
-    }
-    .emb-nombre { font-size: 16px; font-weight: 700; color: #15193E; margin-bottom: 2px; }
-    .emb-area { font-size: 12px; color: #999; }
-    .emb-tool {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(224,152,42,0.1); border: 1px solid rgba(224,152,42,0.2);
-      border-radius: 20px; padding: 3px 12px;
-      font-size: 12px; font-weight: 600; color: #b8780a; margin-bottom: 14px;
-    }
-    .emb-quote {
-      font-size: 13px; color: #888; line-height: 1.6; font-style: italic;
-      border-top: 1px solid #FFFFFF; padding-top: 14px;
-    }
 
     @media (max-width: 768px) {
       .logros-card { flex-direction: column; }
@@ -410,23 +382,6 @@
       </div>
       <!-- FIN EDITAR CADA SEMANA -->
 
-      <!-- ✏️ EDITAR CADA MES -->
-      <div class="emb-card">
-        <div class="emb-header">
-          <div class="emb-badge">⭐ Embajador del mes</div>
-          <span class="edit-hint">✏️ editar mensualmente</span>
-        </div>
-        <div class="emb-perfil">
-          <div class="emb-avatar">PZ</div>
-          <div>
-            <div class="emb-nombre">Pablo Zemelman</div>
-            <div class="emb-area">Transformación Digital</div>
-          </div>
-        </div>
-        <div class="emb-tool">🛠 Copilot Studio</div>
-        <div class="emb-quote">"La IA no reemplaza el criterio — lo amplifica. Nuestro trabajo ahora es aprender a hacer las preguntas correctas."</div>
-      </div>
-      <!-- FIN EDITAR CADA MES -->
 
     </div>
   </div>
