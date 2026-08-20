@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trabajemos con IA de forma segura · Cimiento IA</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    a { text-decoration: none; color: inherit; }
+    body { background: #F9FAFC; color: #15193E; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 15px; line-height: 1.6; min-height: 100vh; }
+
+    /* ── HERO ───────────────────────────────────────────────── */
+    .hero {
+      background: #15193E; color: #FFFFFF;
+      padding: 24px 48px 28px;
+      position: relative; overflow: hidden;
+      border-bottom-left-radius: 16px;
+      border-bottom-right-radius: 16px;
+    }
+    .hero::before {
+      content: ''; position: absolute;
+      left: 0; top: 0; bottom: 0; width: 14px;
+      background: linear-gradient(180deg, #D2232A 0%, #065FE2 100%);
+    }
+    .hero-title { font-size: 38px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.05; margin-bottom: 10px; }
+    .hero-title em { font-style: normal; color: #D2232A; }
+    .hero-sub { font-size: 14px; color: #A9ADC4; max-width: 560px; }
+    .hero-geo { position: absolute; right: 52px; top: 50%; transform: translateY(-50%); display: flex; align-items: center; justify-content: center; }
+    .hero-geo img { width: 260px; height: auto; opacity: 0.92; }
+
+    /* ── NAV ────────────────────────────────────────────────── */
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 600; color: #A9ADC4;
+      margin-bottom: 16px; transition: color 0.2s;
+    }
+    .back-link:hover { color: #FFFFFF; }
+
+    /* ── BODY ───────────────────────────────────────────────── */
+    .body { max-width: 900px; margin: 0 auto; padding: 36px 24px 80px; }
+    .section-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #aaa; margin-bottom: 14px; }
+
+    /* ── INTRO ──────────────────────────────────────────────── */
+    .intro-box {
+      background: #15193E; border-radius: 14px; padding: 24px 28px;
+      margin-bottom: 20px; display: flex; align-items: flex-start; gap: 20px;
+    }
+    .intro-icon { font-size: 32px; flex-shrink: 0; }
+    .intro-titulo { font-size: 18px; font-weight: 800; color: #FFFFFF; margin-bottom: 6px; letter-spacing: -0.3px; }
+    .intro-desc { font-size: 13px; color: #A9ADC4; line-height: 1.65; }
+    .intro-desc strong { color: #fff; }
+
+    /* ── CHECKS ─────────────────────────────────────────────── */
+    .checks-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 32px; }
+    .check-card {
+      background: #fff; border: 1px solid rgba(43,168,111,0.25); border-left: 3px solid #2BA86F;
+      border-radius: 10px; padding: 16px 14px;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .check-icon { font-size: 16px; }
+    .check-text { font-size: 12.5px; color: #333; line-height: 1.4; font-weight: 600; }
+
+    /* ── SECCIÓN LABEL ──────────────────────────────────────── */
+    .sub-titulo {
+      font-size: 15px; font-weight: 700; color: #15193E;
+      margin: 28px 0 14px; padding-bottom: 8px;
+      border-bottom: 2px solid rgba(6,95,226,0.15);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .sub-titulo .num {
+      width: 26px; height: 26px; border-radius: 50%; background: #065FE2;
+      color: #fff; font-size: 13px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .sub-titulo.alerta .num { background: #D2232A; }
+
+    .lead-text { font-size: 13.5px; color: #555; line-height: 1.7; margin-bottom: 16px; }
+    .lead-text strong { color: #15193E; }
+
+    /* ── LISTAS ─────────────────────────────────────────────── */
+    .check-list { list-style: none; padding: 0; margin: 0 0 18px; display: flex; flex-direction: column; gap: 10px; }
+    .check-list li {
+      background: #fff; border: 1px solid rgba(0,0,0,0.07); border-left: 3px solid #2BA86F;
+      border-radius: 8px; padding: 12px 16px; font-size: 13px; color: #333; line-height: 1.5;
+    }
+    .nota-box {
+      background: rgba(6,95,226,0.06); border: 1px solid rgba(6,95,226,0.18);
+      border-radius: 10px; padding: 12px 16px; font-size: 12.5px; color: #065FE2;
+      font-weight: 600; line-height: 1.55; margin-bottom: 28px;
+    }
+
+    /* ── PROHIBICIONES ──────────────────────────────────────── */
+    .prohibido-box {
+      background: #fff5f5; border: 1.5px solid rgba(210,35,42,0.3);
+      border-radius: 14px; padding: 22px 24px; margin-bottom: 28px;
+    }
+    .prohibido-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+    .prohibido-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 13px; color: #4a1a1c; line-height: 1.55; }
+    .prohibido-num {
+      width: 22px; height: 22px; border-radius: 50%; background: #D2232A; color: #fff;
+      font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ── RESPONSABILIDADES ──────────────────────────────────── */
+    .resp-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-bottom: 28px; }
+    .resp-card { background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 16px 18px; }
+    .resp-rol { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #065FE2; margin-bottom: 6px; }
+    .resp-desc { font-size: 12.5px; color: #555; line-height: 1.55; }
+
+    /* ── INCIDENTES ─────────────────────────────────────────── */
+    .incidente-steps { display: flex; align-items: stretch; gap: 0; margin-bottom: 16px; }
+    .incidente-step {
+      flex: 1; background: #fff; border: 1.5px solid rgba(6,95,226,0.2);
+      border-radius: 14px; padding: 18px 16px;
+      display: flex; flex-direction: column; gap: 5px;
+    }
+    .incidente-num {
+      width: 34px; height: 34px; border-radius: 50%; background: #065FE2;
+      color: #fff; font-size: 15px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center; margin-bottom: 8px; flex-shrink: 0;
+    }
+    .incidente-titulo { font-size: 13px; font-weight: 700; color: #15193E; line-height: 1.25; margin: 2px 0; }
+    .incidente-desc { font-size: 11.5px; color: #666; line-height: 1.5; }
+    .incidente-arrow { display: flex; align-items: center; padding: 0 8px; color: #065FE2; font-size: 24px; flex-shrink: 0; }
+
+    /* ── FICHA DOCUMENTO ────────────────────────────────────── */
+    .ficha-doc {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px;
+    }
+    .ficha-tag {
+      background: rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 20px; padding: 5px 14px; font-size: 11px; font-weight: 600; color: #666;
+    }
+    .ficha-tag strong { color: #15193E; }
+
+    /* ── CONTACTO ───────────────────────────────────────────── */
+    .contacto-box {
+      background: #15193E; border-radius: 14px; padding: 22px 28px;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    }
+    .contacto-texto { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+    .contacto-texto strong { color: #fff; }
+    .contacto-btn {
+      background: linear-gradient(135deg, #D2232A 0%, #065FE2 100%);
+      color: #fff; border-radius: 10px; padding: 12px 24px;
+      font-size: 13px; font-weight: 700; text-decoration: none;
+      white-space: nowrap; flex-shrink: 0; transition: opacity 0.2s;
+    }
+    .contacto-btn:hover { opacity: 0.88; }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 760px) {
+      .hero { padding: 24px 24px 28px; }
+      .hero-geo { display: none; }
+      .hero-title { font-size: 28px; }
+      .checks-grid { grid-template-columns: repeat(2,1fr); }
+      .resp-grid { grid-template-columns: 1fr; }
+      .incidente-steps { flex-direction: column; }
+      .incidente-arrow { transform: rotate(90deg); padding: 4px 0; justify-content: center; }
+      .contacto-box { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <div class="hero">
+    <a href="index.html" class="back-link">← Volver al inicio</a>
+    <h1 class="hero-title">Trabajemos con IA<br>de forma <em>segura</em></h1>
+    <p class="hero-sub">Copilot es la única IA generativa autorizada para el trabajo en Polpaico. Acá está resumida la Política de Uso Aceptable de Inteligencia Artificial Generativa (POL-SI-011) que lo respalda.</p>
+    <div class="hero-geo"><img src="logo-ia-blanco.png" alt="Inteligencia Artificial · Transformación Digital"></div>
+  </div>
+
+  <div class="body">
+
+    <!-- INTRO -->
+    <div class="intro-box">
+      <div class="intro-icon">🛡️</div>
+      <div>
+        <div class="intro-titulo">Microsoft Copilot es la herramienta autorizada</div>
+        <div class="intro-desc">Hoy existen muchas herramientas de IA generativa disponibles, pero para trabajar con información de la compañía es importante usar únicamente las que han sido evaluadas y aprobadas por Polpaico Soluciones. Por eso, <strong>Microsoft Copilot es la única IA generativa autorizada y disponible para uso de los trabajadores de la compañía.</strong></div>
+      </div>
+    </div>
+
+    <!-- CHECKS -->
+    <div class="checks-grid">
+      <div class="check-card"><span class="check-icon">✅</span><span class="check-text">Proteger información sensible y confidencial</span></div>
+      <div class="check-card"><span class="check-icon">✅</span><span class="check-text">Reducir riesgos de filtración de datos</span></div>
+      <div class="check-card"><span class="check-icon">✅</span><span class="check-text">Prevenir amenazas de ciberseguridad</span></div>
+      <div class="check-card"><span class="check-icon">✅</span><span class="check-text">Resguardar a las personas y al negocio</span></div>
+    </div>
+
+    <!-- FICHA DEL DOCUMENTO -->
+    <div class="ficha-doc">
+      <span class="ficha-tag">Código <strong>POL-SI-011</strong></span>
+      <span class="ficha-tag">Versión <strong>1</strong></span>
+      <span class="ficha-tag">Publicada <strong>26-sep-2025</strong></span>
+      <span class="ficha-tag">Confidencialidad <strong>Uso Interno</strong></span>
+      <span class="ficha-tag">Responsable <strong>Gerencia de Tecnología</strong></span>
+    </div>
+
+    <!-- OBJETIVO Y ALCANCE -->
+    <div class="sub-titulo"><span class="num">1</span> Objetivo y alcance</div>
+    <p class="lead-text">Establecer los lineamientos para el uso <strong>responsable, seguro y ético</strong> de IA Generativa en la organización, protegiendo los derechos y la privacidad de clientes, la propiedad intelectual, la información confidencial, la reputación corporativa y el cumplimiento normativo vigente.</p>
+    <p class="lead-text">Aplica a <strong>todos los colaboradores</strong> — empleados, consultores, proveedores y terceros — en actividades como creación de contenido y marketing, análisis de datos, programación, procesos de RRHH, gestión de proveedores, capacitación interna y gestión de riesgos. No aplica a IA tradicional (motores de reglas, sistemas de recomendación).</p>
+
+    <!-- PRINCIPIOS -->
+    <div class="sub-titulo"><span class="num">2</span> Principios generales</div>
+    <ul class="check-list">
+      <li><strong>Legalidad y cumplimiento normativo</strong> — ajustarse a la legislación chilena vigente (ambiental, laboral, libre competencia, protección de datos personales).</li>
+      <li><strong>Ética</strong> — actuar con ética profesional y responsabilidad en la protección de datos.</li>
+      <li><strong>Uso responsable</strong> — la IA apoya la toma de decisiones, pero la responsabilidad final siempre es de las personas. Supervisión humana en todas las decisiones.</li>
+      <li><strong>Seguridad y confidencialidad</strong> — proteger los datos estratégicos de la compañía y la información personal de colaboradores, clientes y proveedores.</li>
+      <li><strong>Formación y capacitación</strong> — recibir formación adecuada sobre uso, ética legal e implicancias legales de la IA Generativa.</li>
+    </ul>
+
+    <!-- USO PERMITIDO -->
+    <div class="sub-titulo"><span class="num">3</span> Uso permitido</div>
+    <ul class="check-list">
+      <li>Creación de comunicaciones internas/externas de marketing y publicidad.</li>
+      <li>Generación de ideas para campañas, presentaciones o proyectos.</li>
+      <li>Traducción y mejora de estilo de documentos de uso interno.</li>
+      <li>Apoyo en gestiones de programación, sin compartir información confidencial.</li>
+      <li>Análisis de tendencias de mercado con información pública.</li>
+      <li>Elaboración de resúmenes de documentos públicos o internos no confidenciales.</li>
+    </ul>
+    <div class="nota-box">Nota: el uso de información confidencial, financiera, estratégica o de clientes solo puede hacerse cuando la herramienta de IA haya sido aprobada expresamente para manejar ese tipo de información.</div>
+
+    <!-- PROHIBICIONES -->
+    <div class="sub-titulo alerta"><span class="num">!</span> Prohibiciones</div>
+    <div class="prohibido-box">
+      <ol class="prohibido-list">
+        <li><span class="prohibido-num">1</span>Generar contenido ilegal, que vulnere la normativa vigente, contravenga políticas internas, o pueda afectar la reputación e imagen corporativa.</li>
+        <li><span class="prohibido-num">2</span>Compartir información estratégica, confidencial o sensible de la compañía en plataformas de IA generativa (planes de inversión, costos de producción, estrategias comerciales, proyectos en evaluación).</li>
+        <li><span class="prohibido-num">3</span>Ingresar información de clientes, proveedores, precios, documentos con propiedad intelectual, o antecedentes de nuevos proyectos en sistemas de IA no autorizados.</li>
+        <li><span class="prohibido-num">4</span>Tomar decisiones críticas (operacionales, legales, financieras, ambientales o de seguridad) basadas exclusivamente en resultados de IA, sin revisión y validación humana.</li>
+        <li><span class="prohibido-num">5</span>Utilizar plataformas o herramientas de IA generativa no autorizadas por la Gerencia de Tecnología de la Información.</li>
+      </ol>
+    </div>
+
+    <!-- REVISIÓN Y RESPONSABILIDADES -->
+    <div class="sub-titulo"><span class="num">4</span> Revisión humana y responsabilidades</div>
+    <p class="lead-text">Todo contenido generado por IA debe ser <strong>revisado y aprobado</strong> antes de su uso en comunicaciones externas o decisiones relevantes. La compañía mantiene un registro de los prompts utilizados y los resultados generados, para auditorías y mejora continua.</p>
+    <div class="resp-grid">
+      <div class="resp-card">
+        <div class="resp-rol">Colaboradores</div>
+        <div class="resp-desc">Cumplir la política y reportar de forma oportuna cualquier uso indebido o incidente.</div>
+      </div>
+      <div class="resp-card">
+        <div class="resp-rol">Gerencia de Tecnología</div>
+        <div class="resp-desc">Evaluar y aprobar las herramientas de IA, supervisar agentes automatizados y la seguridad tecnológica.</div>
+      </div>
+      <div class="resp-card">
+        <div class="resp-rol">Gerencia de Capital Humano</div>
+        <div class="resp-desc">Difundir esta política, promover capacitación y asegurar su correcta aplicación.</div>
+      </div>
+      <div class="resp-card">
+        <div class="resp-rol">Responsable de Cumplimiento</div>
+        <div class="resp-desc">Supervisar el cumplimiento, gestionar incidentes y coordinar auditorías periódicas.</div>
+      </div>
+    </div>
+
+    <!-- INCIDENTES -->
+    <div class="sub-titulo"><span class="num">5</span> Si algo sale mal — gestión de incidentes</div>
+    <p class="lead-text">Se considera incidente cualquier uso indebido, no autorizado o riesgoso de IA generativa o agentes automatizados: exposición de información confidencial, interacciones automatizadas inapropiadas, o contenido contrario a la normativa.</p>
+    <div class="incidente-steps">
+      <div class="incidente-step">
+        <div class="incidente-num">1</div>
+        <div class="incidente-titulo">Reporta de inmediato</div>
+        <div class="incidente-desc">Al Responsable de Cumplimiento y a la Gerencia de Tecnología, por los canales definidos.</div>
+      </div>
+      <div class="incidente-arrow">›</div>
+      <div class="incidente-step">
+        <div class="incidente-num">2</div>
+        <div class="incidente-titulo">Se investiga</div>
+        <div class="incidente-desc">Cumplimiento coordina una investigación interna del caso.</div>
+      </div>
+      <div class="incidente-arrow">›</div>
+      <div class="incidente-step">
+        <div class="incidente-num">3</div>
+        <div class="incidente-titulo">Se corrige</div>
+        <div class="incidente-desc">Acciones correctivas inmediatas para mitigar el riesgo y evitar que se repita.</div>
+      </div>
+      <div class="incidente-arrow">›</div>
+      <div class="incidente-step">
+        <div class="incidente-num">4</div>
+        <div class="incidente-titulo">Se documenta</div>
+        <div class="incidente-desc">Queda como lección aprendida para futuras revisiones de la política.</div>
+      </div>
+    </div>
+    <div class="nota-box">El incumplimiento de esta política se considera una falta grave, sancionada según la normativa interna y la legislación vigente. La política se revisa al menos una vez al año.</div>
+
+    <!-- CONTACTO -->
+    <div class="contacto-box">
+      <div class="contacto-texto">
+        ¿Tienes dudas sobre qué herramienta usar o cómo reportar un incidente?<br>
+        Escríbenos a <strong>mesa.transformacion@polpaicosoluciones.cl</strong>
+      </div>
+      <a href="licencia.html" class="contacto-btn">Cómo pedir tu licencia →</a>
+    </div>
+
+  </div>
+
+</body>
+</html>
