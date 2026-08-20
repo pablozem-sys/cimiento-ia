@@ -77,31 +77,6 @@
     color: var(--hormigones);
   }
 
-  nav {
-    display: flex;
-    gap: 28px;
-    align-items: center;
-  }
-
-  nav a {
-    color: var(--text-2);
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    padding-bottom: 4px;
-    border-bottom: 2px solid transparent;
-    transition: color .15s ease, border-color .15s ease;
-  }
-
-  nav a:hover {
-    color: var(--text);
-  }
-
-  nav a.activo {
-    color: var(--text);
-    border-bottom-color: var(--hormigones);
-  }
-
   /* ── Layout general ─────────────────────────────────────── */
   main {
     max-width: 1180px;
@@ -448,7 +423,6 @@
     .charts { grid-template-columns: 1fr; }
     .cards-grid { grid-template-columns: 1fr; }
     .modal-grid { grid-template-columns: 1fr; }
-    nav { gap: 16px; }
     header { padding: 14px 18px; }
     main { padding: 24px 18px 60px; }
   }
@@ -463,11 +437,6 @@
     <span class="logo-dot"></span>
     <span>Cimiento <span class="ia">IA</span></span>
   </div>
-  <nav>
-    <a href="ruta-ia.html">Ruta IA</a>
-    <a href="Biblioteca de Prompts _descargable_.html">Biblioteca</a>
-    <a href="casos-coe-ia.html" class="activo">CoE IA</a>
-  </nav>
 </header>
 
 <main>
