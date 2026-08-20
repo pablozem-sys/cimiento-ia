@@ -526,10 +526,6 @@
           <p class="modal-section-text" id="modal-valor"></p>
         </div>
         <div class="modal-grid-item">
-          <p class="modal-section-label">Líder del área</p>
-          <p class="modal-section-text" id="modal-lider"></p>
-        </div>
-        <div class="modal-grid-item">
           <p class="modal-section-label">Datos disponibles</p>
           <p class="modal-section-text" id="modal-datos"></p>
         </div>
@@ -549,7 +545,6 @@ var datos = {
     titulo: "Generación de Cotizaciones en Salesforce",
     area: "Hormigones", color: "#16C5D6",
     impacto: "Medio", urgencia: "Alta",
-    lider: "Herman Zepeda — Ejecutivo de Negocios III Región",
     problema: "Crear cliente, obra, oferta, cotización y adjudicación en Salesforce es una carga administrativa que consume tiempo que podría usarse en visitar clientes y generar nuevos negocios.",
     resultado: "Alivianar la carga administrativa para que los ejecutivos se enfoquen en visitas y generación de negocios.",
     beneficio: "4 horas por día de ahorro por ejecutivo",
@@ -561,7 +556,6 @@ var datos = {
     titulo: "Agente Control de Gestión",
     area: "Corporativo", color: "#2BA86F",
     impacto: "Medio", urgencia: "Media",
-    lider: "Juan José Ramírez — Subgerente de Control de Gestión",
     problema: "El equipo dedica tiempo importante a consolidar análisis de resultados y generar reportes manuales para el Comex, sin tiempo para formular escenarios o nuevas responsabilidades.",
     resultado: "Automatizar detección de inconsistencias y generación de comentarios para presentaciones Comex.",
     beneficio: "4 HH semanales de ahorro estimado",
@@ -573,10 +567,9 @@ var datos = {
     titulo: "Agente Revisor de Facturación",
     area: "Hormigones", color: "#16C5D6",
     impacto: "Alto", urgencia: "Alta",
-    lider: "Sebastián Guerrero — Subgerente de Minería",
     problema: "Al sincronizar Salesforce con SAP (Contratos Marco), no siempre se actualizan todos los precios correctamente, generando menor facturación.",
     resultado: "Agente que identifique errores de facturación de forma inmediata al cierre mensual.",
-    beneficio: "$30.000.000 de impacto estimado",
+    beneficio: "",
     valor: "Aumento de ingresos · Ahorro de tiempo",
     piloto: "Cruzar precios facturados contra Contratos Marco y volúmenes contra guías emitidas.",
     datos: "Excel (sábana de facturación), SAP (Contratos Marco), Salesforce"
@@ -585,7 +578,6 @@ var datos = {
     titulo: "Agente Asesor de Calidad",
     area: "Hormigones", color: "#16C5D6",
     impacto: "Alto", urgencia: "Alta",
-    lider: "Sebastián Guerrero — Subgerente de Minería",
     problema: "El Jefe de Calidad entra 2-3 veces por semana a portales de laboratorio para descargar informes, identificar desviaciones y generar correos resumen. Todo manual.",
     resultado: "Automatizar descarga, organización, generación de reportes y envío con recomendaciones.",
     beneficio: "10 horas mensuales del Jefe de Calidad",
@@ -597,10 +589,9 @@ var datos = {
     titulo: "Investigaciones Internas con IA",
     area: "Corporativo", color: "#2BA86F",
     impacto: "Alto", urgencia: "Alta",
-    lider: "Sandra Cortés — Gerente Auditoría Interna, Riesgo y Cumplimiento",
     problema: "Cada investigación interna demanda 20+ horas de análisis manual de evidencia y su externalización cuesta ~70 UF.",
     resultado: "IA que analice la evidencia y proponga un informe de investigación final.",
-    beneficio: "20 hrs/investigación + ahorro en externalizaciones (~70 UF c/u)",
+    beneficio: "20 hrs/investigación + ahorro en externalizaciones",
     valor: "Ahorro de tiempo · Reducción de costos · Cumplimiento",
     piloto: "Asistente que analice evidencia y proponga borrador de informe para revisión humana.",
     datos: "Documentos, imágenes, audios — datos desordenados. Confidencialidad crítica."
@@ -609,7 +600,6 @@ var datos = {
     titulo: "Bitácora de Operaciones de Planta",
     area: "Hormigones", color: "#16C5D6",
     impacto: "Alto", urgencia: "Media",
-    lider: "Mauricio Barrera",
     problema: "La bitácora de operaciones se lleva en Excel, correos, WhatsApp y papel. La trazabilidad de anomalías toma más de 1 hora cuando podría responderse en segundos.",
     resultado: "Trazabilidad total de perturbaciones y anomalías a través de un agente conversacional.",
     beneficio: "Trazabilidad en 1 pregunta vs. 1+ hora manual",
@@ -621,7 +611,6 @@ var datos = {
     titulo: "Optimización Ingreso de Guías (Cerro Blanco)",
     area: "Cemento", color: "#D2232A",
     impacto: "Alto", urgencia: "Alta",
-    lider: "José Godoy — Planta Cerro Blanco",
     problema: "Los camiones llegan a Cerro Blanco y la mercancía se ingresa manualmente a SAP. Hasta 30 guías diarias, 4+ horas de trabajo con errores de digitación.",
     resultado: "Automatizar el ingreso de guías de despacho a SAP.",
     beneficio: "4 horas de trabajo diario. Meta: 100% ingreso automático",
@@ -633,7 +622,6 @@ var datos = {
     titulo: "Presentaciones de Licitaciones",
     area: "Cemento", color: "#D2232A",
     impacto: "Alto", urgencia: "Alta",
-    lider: "Gonzalo Pizarro — Compras Estratégicas",
     problema: "Los resultados de licitaciones se procesan manualmente en Excel. Falta estandarización y visualización gráfica. Demanda 1-4+ horas por licitación.",
     resultado: "Presentación automática con visualización gráfica y numérica de resultados de licitaciones.",
     beneficio: "Horas liberadas para nuevas licitaciones. Meta: +50% cobertura",
@@ -645,7 +633,6 @@ var datos = {
     titulo: "Mejora Proceso Rolling Áridos",
     area: "Áridos", color: "#E0982A",
     impacto: "Alto", urgencia: "Alta",
-    lider: "César Díaz Salas — Áridos",
     problema: "El rolling demanda 5 días al mes de consolidación manual entre 5 áreas con accuracy de solo 65%. No hay tiempo para formular escenarios.",
     resultado: "Reducir consolidación de 5 a 2 días y mejorar accuracy del 65% al 90%.",
     beneficio: "40 HH → 16 HH mensuales. Accuracy 65% → 90%",
@@ -657,7 +644,6 @@ var datos = {
     titulo: "Regularización Contractual de Silos",
     area: "Cemento", color: "#D2232A",
     impacto: "Alto", urgencia: "Alta",
-    lider: "Muriel Hernández Oyarce — Área Comercial",
     problema: "Silos en manos de clientes sin contrato de comodato. Riesgo legal y de seguridad alto: exposición social, reputacional y económica en caso de accidente.",
     resultado: "Reducir riesgo mediante regularización contractual automatizada.",
     beneficio: "Reducción de riesgo legal. Meta: 10% regularizado en 1 mes",
@@ -669,7 +655,6 @@ var datos = {
     titulo: "Agente IA Recepción de Guías Áridos",
     area: "Hormigones", color: "#16C5D6",
     impacto: "Alto", urgencia: "Media",
-    lider: "Daniel Vicencio — Jefe Clúster V Región",
     problema: "Se reciben hasta 60 correos diarios con guías de despacho en formato no estructurado. El analista los revisa uno por uno para registrar folio, material y cantidad antes de aprobar en SAP.",
     resultado: "Agente que lea, interprete y registre automáticamente las guías, y detecte folios faltantes, duplicados o descuadres contra SAP.",
     beneficio: "480 horas/año de ahorro. De ~2 hrs/día a 15 min de revisión de excepciones",
@@ -681,7 +666,6 @@ var datos = {
     titulo: "Proyecto TALIA — Atracción de Talento con IA",
     area: "Corporativo", color: "#2BA86F",
     impacto: "Alto", urgencia: "Media",
-    lider: "Fernanda Urrutia — Gerente Cultura y Talento",
     problema: "2 psicólogas gestionan ~30 procesos/mes revisando CVs manualmente, generando Excel resumen y enviando correos de agradecimiento fuera de horario laboral.",
     resultado: "IA que filtre CVs contra perfil, genere base de datos de candidatos y automatice correos de cierre.",
     beneficio: "Reducción significativa de HH administrativas. Mejora en SLA de respuesta",
@@ -784,7 +768,7 @@ function renderCards(filtroArea) {
       '<p class="caso-desc">' + c.problema + '</p>' +
       '<div class="caso-tags">' +
         '<span class="tag" style="color:' + c.color + '">' + c.area + '</span>' +
-        '<span class="tag">' + c.beneficio + '</span>' +
+        (c.beneficio ? '<span class="tag">' + c.beneficio + '</span>' : '') +
         '<span class="tag">Urgencia ' + c.urgencia + '</span>' +
       '</div>' +
       '<div class="caso-footer">' +
@@ -805,8 +789,8 @@ function abrirModal(id) {
   document.getElementById('modal-problema').textContent = c.problema;
   document.getElementById('modal-resultado').textContent = c.resultado;
   document.getElementById('modal-beneficio').textContent = c.beneficio;
+  document.getElementById('modal-beneficio').closest('.modal-grid-item').style.display = c.beneficio ? '' : 'none';
   document.getElementById('modal-valor').textContent = c.valor;
-  document.getElementById('modal-lider').textContent = c.lider;
   document.getElementById('modal-datos').textContent = c.datos;
   document.getElementById('modal-piloto').textContent = c.piloto;
 
